@@ -25,6 +25,8 @@ jobs:
           cache: npm
       - name: Configurer Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - name: Installer les dépendances
         run: npm ci
       - name: Build (Astro + base path)
