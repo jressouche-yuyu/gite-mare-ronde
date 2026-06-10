@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { locations } from '../../data/locations';
+import { site } from '../../data/site';
+
+export function getStaticPaths() {
+  return locations.map((l) => ({ params: { slug: l.slug }, props: { l } }));
+}
+const { l } = Astro.props;
+const path = `/location/${l.slug}/`;
+const title = `${l.title} — ${site.shortName}`;
+const description = `${l.intro}`.slice(0, 155);
+---
+<BaseLayout title={title} description={description} path={path}>
+  <section class="page-hero" style="background-image:linear-gradient(rgba(28,30,24,.6),rgba(28,30,24,.8)),url(/photos/domaine/01.jpg);background-size:cover;background-position:center">
+    <div class="wrap">
+      <p class="breadcrumb"><a href="/">Accueil</a> › Situation › {l.place}</p>
+      <p class="eyebrow">{l.place} · {site.department}</p>
+      <h1>{l.h1}</h1>
+      <p>{l.intro}</p>
+      <div style="margin-top:28px"><a href="/hebergements/" class="btn btn-primary">Voir les hébergements</a></div>
+    </div>
+  </section>
+
+  <section><div class="wrap prose reveal">
+    <h2>{l.h1}</h2>
+    <p>Idéalement situé près de {l.place}, le Gîte de la Mare Ronde est une ancienne ferme rénovée à {site.city}, dans la {site.department}. Vous y trouverez une piscine, un terrain de tennis et un grand parc arboré, dans un cadre nature à deux pas du Mans.</p>
+    <ul>
+      <li>Hébergement de charme au calme de la campagne</li>
+      <li>Piscine, tennis et grand parc privatifs</li>
+      <li>Accès facile au Mans, au circuit et à la Sarthe</li>
+    </ul>
+    <p><em>Distances précises depuis {l.place} : à compléter.</em></p>
+  </div></section>
+
+  <section class="loc"><div class="wrap grid">
+    <div class="reveal">
+      <p class="eyebrow">Aux alentours</p>
+      <h2>Tout près de l'essentiel.</h2>
+      <ul class="dist">
+        {site.distances.map((d) => (<li><span>{d.place}</span><span>{d.time}</span></li>))}
+      </ul>
+    </div>
+    <iframe class="mapframe" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Carte — Yvré-l'Évêque, Sarthe" src="https://www.google.com/maps?q=Yvr%C3%A9-l%27%C3%89v%C3%AAque%2C%20Sarthe&output=embed"></iframe>
+  </div></section>
+
+  <section class="cta"><div class="wrap reveal">
+    <p class="eyebrow">Votre séjour</p>
+    <h2>Séjournez près de {l.place}.</h2>
+    <a href="/contact/" class="btn btn-primary">Demander une disponibilité</a>
+  </div></section>
+</BaseLayout>

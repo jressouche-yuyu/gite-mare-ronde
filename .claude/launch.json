@@ -1,0 +1,29 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "site",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "4321"],
+      "port": 4321
+    },
+    {
+      "name": "astro",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "--port", "4330"],
+      "port": 4330
+    },
+    {
+      "name": "dist",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "4331", "--directory", "dist"],
+      "port": 4331
+    },
+    {
+      "name": "distpreview",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "preview", "--", "--port", "4332"],
+      "port": 4332
+    }
+  ]
+}

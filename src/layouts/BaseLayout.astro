@@ -1,0 +1,100 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  /** chemin relatif (ex: "/le-gite/") pour l'URL canonique */
+  path?: string;
+  /** JSON-LD additionnel (objet ou tableau) */
+  jsonld?: unknown;
+}
+const { title, description, path = '', jsonld } = Astro.props;
+// inclut le base path (ex. /gite-mare-ronde/) dans l'URL canonique
+const baseNoSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
+const canonical = new URL(baseNoSlash + path, site.domain).href;
+---
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={canonical} />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#b5623c" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:site_name" content={site.name} />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- JSON-LD : organisation/établissement (présent sur toutes les pages) -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "LodgingBusiness",
+    "name": site.name,
+    "description": site.description,
+    "url": site.domain,
+    "email": site.email,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": site.city,
+      "postalCode": site.postalCode,
+      "addressRegion": site.region,
+      "addressCountry": "FR"
+    },
+    "amenityFeature": [
+      {"@type":"LocationFeatureSpecification","name":"Piscine","value":true},
+      {"@type":"LocationFeatureSpecification","name":"Terrain de tennis","value":true},
+      {"@type":"LocationFeatureSpecification","name":"Grand parc / jardin","value":true}
+    ]
+  })} />
+  {jsonld && <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />}
+</head>
+<body>
+  <Header />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+  <script>
+    const hdr = document.getElementById('site-header');
+    const onScroll = () => hdr && hdr.classList.toggle('solid', window.scrollY > 80);
+    onScroll();
+    addEventListener('scroll', onScroll, { passive: true });
+    // Menu burger mobile
+    const burger = hdr && hdr.querySelector('.burger');
+    if (burger) {
+      burger.addEventListener('click', () => {
+        const open = hdr.classList.toggle('nav-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.textContent = open ? '✕' : '☰';
+      });
+      hdr.querySelectorAll('nav a').forEach((a) =>
+        a.addEventListener('click', () => {
+          hdr.classList.remove('nav-open');
+          burger.textContent = '☰';
+          burger.setAttribute('aria-expanded', 'false');
+        })
+      );
+    }
+    const io = new IntersectionObserver((es) => es.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }), { threshold: 0.14 });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>

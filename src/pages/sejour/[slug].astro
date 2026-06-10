@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { usages } from '../../data/usages';
+import { listings } from '../../data/listings';
+import { site } from '../../data/site';
+
+export function getStaticPaths() {
+  return usages.map((u) => ({ params: { slug: u.slug }, props: { u } }));
+}
+const { u } = Astro.props;
+const path = `/sejour/${u.slug}/`;
+const title = `${u.title} — ${site.shortName}`;
+const description = u.intro.slice(0, 155);
+const heroStyle = `background-image:linear-gradient(rgba(28,30,24,.62),rgba(28,30,24,.82)),url(${u.heroPhoto});background-size:cover;background-position:center`;
+const faqJsonLd = {
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: u.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+<BaseLayout title={title} description={description} path={path} jsonld={faqJsonLd}>
+  <section class="page-hero" style={heroStyle}>
+    <div class="wrap">
+      <p class="breadcrumb"><a href="/">Accueil</a> › <a href="/sejour/">Séjours</a> › {u.h1}</p>
+      <p class="eyebrow">Séjour sur mesure</p>
+      <h1>{u.h1}</h1>
+      <p>{u.intro}</p>
+      <div style="margin-top:26px;display:flex;gap:12px;flex-wrap:wrap">
+        <a href="/hebergements/" class="btn btn-primary">Voir les hébergements</a>
+        <a href="/contact/" class="btn btn-ghost">Demander un devis</a>
+      </div>
+    </div>
+  </section>
+
+  <section><div class="wrap" style="display:grid;grid-template-columns:1.5fr .8fr;gap:54px;align-items:start">
+    <div class="prose reveal">
+      <h2>{u.h1}</h2>
+      {u.body.map((p) => <p>{p}</p>)}
+    </div>
+    <aside class="reveal">
+      <div class="infobox sticky">
+        <p class="eyebrow">L'essentiel</p>
+        <ul class="amen-grid" style="grid-template-columns:1fr;margin-top:8px">
+          {u.bullets.map((b) => <li>{b}</li>)}
+        </ul>
+        <a href="/hebergements/" class="btn btn-primary" style="width:100%;text-align:center;margin-top:16px">Voir les hébergements</a>
+      </div>
+    </aside>
+  </div></section>
+
+  <!-- HÉBERGEMENTS -->
+  <section class="spaces"><div class="wrap">
+    <div class="sec-head reveal"><p class="eyebrow">Nos hébergements</p><h2>Choisissez votre formule.</h2></div>
+    <div class="cards">
+      {listings.map((l) => (
+        <article class="card reveal">
+          <a href={`/hebergements/${l.slug}/`} class="imgwrap" style="display:block"><img class="cover" loading="lazy" src={l.photos[0]} alt={l.name} /></a>
+          <div class="body">
+            <p class="eyebrow" style="font-size:.64rem">{l.type}</p>
+            <h3 style="margin-top:6px">{l.name}</h3>
+            <p>{l.tagline}</p>
+            <a href={`/hebergements/${l.slug}/`} class="btn btn-dark" style="margin-top:12px;padding:11px 18px">Découvrir</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div></section>
+
+  <!-- FAQ -->
+  <section class="faq"><div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:24px"><p class="eyebrow">Questions fréquentes</p><h2>Bon à savoir</h2></div>
+    <div class="reveal" style="max-width:860px">
+      {u.faq.map((f, i) => (<details open={i === 0}><summary>{f.q}</summary><p class="ans">{f.a}</p></details>))}
+    </div>
+  </div></section>
+
+  <section class="cta"><div class="wrap reveal">
+    <p class="eyebrow">Votre événement</p>
+    <h2>Organisons-le ensemble.</h2>
+    <p>Parlez-nous de votre projet : nous vous répondons rapidement.</p>
+    <a href="/contact/" class="btn btn-primary">Demander un devis</a>
+  </div></section>
+</BaseLayout>

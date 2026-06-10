@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { capacities } from '../../data/capacities';
+import { site } from '../../data/site';
+---
+<BaseLayout
+  title={`Gîte par capacité en Sarthe — ${site.shortName}`}
+  description="Trouvez le gîte adapté à votre groupe : de 2 à 20 personnes, à Yvré-l’Évêque près du Mans."
+  path="/capacite/"
+>
+  <section class="page-hero"><div class="wrap">
+    <p class="breadcrumb"><a href="/">Accueil</a> › Capacité</p>
+    <p class="eyebrow">Par capacité</p>
+    <h1>Quel que soit le nombre de convives.</h1>
+    <p>Du couple au grand groupe de 20 personnes, le domaine s'adapte à votre séjour.</p>
+  </div></section>
+  <section><div class="wrap">
+    <div class="linkgrid reveal">
+      {capacities.map((c) => (
+        <a class="linkcard" href={`/capacite/${c.slug}/`}><h3>{c.count} personnes</h3><p>{c.angle}</p></a>
+      ))}
+    </div>
+  </div></section>
+</BaseLayout>

@@ -1,0 +1,44 @@
+---
+import { site } from '../data/site';
+---
+<footer class="site">
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="brand">{site.name}</div>
+        <p>{site.description}</p>
+      </div>
+      <div>
+        <h4>Le gîte</h4>
+        <ul>
+          <li><a href="/le-gite/">Présentation</a></li>
+          <li><a href="/hebergements/">Nos hébergements</a></li>
+          <li><a href="/galerie/">Galerie</a></li>
+          <li><a href="/prix/">Prix & calendrier</a></li>
+          <li><a href="/faq/">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Séjours</h4>
+        <ul>
+          <li><a href="/sejour/gite-mariage-sarthe/">Mariage &amp; réception</a></li>
+          <li><a href="/sejour/gite-anniversaire-fete-famille/">Anniversaire &amp; famille</a></li>
+          <li><a href="/sejour/location-proche-circuit-du-mans/">Proche circuit du Mans</a></li>
+          <li><a href="/capacite/grand-gite-20-personnes/">Grand gîte 20 pers.</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>{site.city} ({site.postalCode})</li>
+          <li><a href={`tel:${site.phone.replace(/[^+\d]/g,'')}`}>{site.phone}</a></li>
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© 2026 {site.name} — Tous droits réservés</span>
+      <span><a href="/mentions-legales/">Mentions légales</a> · <a href="/confidentialite/">Confidentialité</a></span>
+    </div>
+  </div>
+</footer>

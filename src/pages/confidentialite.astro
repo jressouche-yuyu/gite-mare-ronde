@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+<BaseLayout title={`Politique de confidentialité — ${site.name}`} description="Politique de confidentialité et gestion des données du Gîte de la Mare Ronde." path="/confidentialite/">
+  <section class="page-hero"><div class="wrap">
+    <p class="breadcrumb"><a href="/">Accueil</a> › Confidentialité</p>
+    <h1>Politique de confidentialité</h1>
+  </div></section>
+  <section><div class="wrap prose reveal">
+    <h2>Données collectées</h2>
+    <p>Les informations transmises via le formulaire de contact (nom, e-mail, dates, message) servent uniquement à traiter votre demande de séjour.</p>
+    <h2>Vos droits (RGPD)</h2>
+    <p>Vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Contact : {site.email}.</p>
+    <h2>Cookies</h2>
+    <p><em>(À compléter selon les outils de mesure d'audience utilisés.)</em></p>
+  </div></section>
+</BaseLayout>

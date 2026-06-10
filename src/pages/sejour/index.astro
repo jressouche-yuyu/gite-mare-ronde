@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { usages, categoryLabels, type UsageCategory } from '../../data/usages';
+import { site } from '../../data/site';
+
+const order: UsageCategory[] = ['evenement', 'entreprise', 'groupe', 'passion'];
+const byCat = order.map((cat) => ({ cat, items: usages.filter((u) => u.category === cat) }));
+---
+<BaseLayout
+  title={`Séjours & événements — ${site.shortName} en Sarthe`}
+  description="Mariage, anniversaire, séminaire d'entreprise, team building, week-end entre amis, 24 Heures du Mans : un domaine pour chaque occasion près du Mans."
+  path="/sejour/"
+>
+  <section class="page-hero" style="background-image:linear-gradient(rgba(28,30,24,.6),rgba(28,30,24,.8)),url(/photos/domaine/01.jpg);background-size:cover;background-position:center">
+    <div class="wrap">
+      <p class="breadcrumb"><a href="/">Accueil</a> › Séjours</p>
+      <p class="eyebrow">Pour chaque occasion</p>
+      <h1>Séjours &amp; événements à la Mare Ronde</h1>
+      <p>Un domaine de caractère qui s'adapte à votre projet : célébrations, séminaires d'entreprise, retrouvailles entre amis ou en famille, et grands rendez-vous du circuit du Mans.</p>
+    </div>
+  </section>
+
+  {byCat.map(({ cat, items }) => (
+    <section class={cat === 'entreprise' || cat === 'passion' ? 'spaces' : ''}>
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">{categoryLabels[cat].eyebrow}</p>
+          <h2>{categoryLabels[cat].label}</h2>
+          <p>{categoryLabels[cat].blurb}</p>
+        </div>
+        <div class="linkgrid reveal">
+          {items.map((u) => (
+            <a class="linkcard" href={`/sejour/${u.slug}/`}>
+              <h3>{u.h1}</h3>
+              <p>{u.intro.slice(0, 110)}…</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="cta"><div class="wrap reveal">
+    <p class="eyebrow">Votre projet</p>
+    <h2>Une occasion particulière ?</h2>
+    <p>Décrivez-nous votre événement : nous vous orientons vers la meilleure formule et un devis adapté.</p>
+    <a href="/contact/" class="btn btn-primary">Demander un devis</a>
+  </div></section>
+</BaseLayout>

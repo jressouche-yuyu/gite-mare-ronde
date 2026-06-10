@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { locations } from '../../data/locations';
+import { site } from '../../data/site';
+---
+<BaseLayout
+  title={`Gîte près du Mans & dans la Sarthe — ${site.shortName}`}
+  description="Un gîte de charme à Yvré-l’Évêque, près du Mans, du circuit des 24 Heures et des communes de la Sarthe."
+  path="/location/"
+>
+  <section class="page-hero"><div class="wrap">
+    <p class="breadcrumb"><a href="/">Accueil</a> › Situation</p>
+    <p class="eyebrow">Par localisation</p>
+    <h1>Idéalement situé dans la Sarthe.</h1>
+    <p>À Yvré-l’Évêque, aux portes du Mans et du circuit des 24 Heures.</p>
+  </div></section>
+  <section><div class="wrap">
+    <div class="linkgrid reveal">
+      {locations.map((l) => (
+        <a class="linkcard" href={`/location/${l.slug}/`}><h3>{l.place}</h3><p>{l.intro.slice(0, 80)}…</p></a>
+      ))}
+    </div>
+  </div></section>
+</BaseLayout>

@@ -1,0 +1,23 @@
+# dépendances & build
+node_modules/
+dist/
+.astro/
+
+# logs & scratch
+*.log
+tunnel.log
+airbnb-data.json
+photo-manifest.json
+
+# fichiers internes de travail
+MEMORY/
+Document/
+
+# prototypes statiques (références, non utilisés par Astro)
+/index.html
+/index-b.html
+/index-c.html
+
+# OS
+.DS_Store
+Thumbs.db

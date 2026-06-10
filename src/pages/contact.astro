@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+<BaseLayout
+  title={`Contact & réservation — ${site.name}`}
+  description="Contactez le Gîte de la Mare Ronde à Yvré-l’Évêque pour vérifier les disponibilités et réserver votre séjour."
+  path="/contact/"
+>
+  <section class="page-hero"><div class="wrap">
+    <p class="breadcrumb"><a href="/">Accueil</a> › Contact</p>
+    <p class="eyebrow">Contact & réservation</p>
+    <h1>Parlons de votre séjour.</h1>
+    <p>Dites-nous vos dates et le nombre de convives, nous vous répondons rapidement.</p>
+  </div></section>
+
+  <section><div class="wrap story reveal">
+    <div class="txt">
+      <p class="eyebrow">Demande de disponibilité</p>
+      <h2>Écrivez-nous.</h2>
+      <div class="rule"></div>
+      <form name="contact" method="POST" netlify style="display:grid;gap:14px;max-width:480px">
+        <input type="text" name="nom" placeholder="Votre nom" required style="padding:14px;border:1px solid var(--line);border-radius:3px;font:inherit" />
+        <input type="email" name="email" placeholder="Votre e-mail" required style="padding:14px;border:1px solid var(--line);border-radius:3px;font:inherit" />
+        <div style="display:flex;gap:14px">
+          <input type="date" name="arrivee" style="flex:1;padding:14px;border:1px solid var(--line);border-radius:3px;font:inherit" />
+          <input type="date" name="depart" style="flex:1;padding:14px;border:1px solid var(--line);border-radius:3px;font:inherit" />
+        </div>
+        <input type="number" name="personnes" placeholder="Nombre de personnes" style="padding:14px;border:1px solid var(--line);border-radius:3px;font:inherit" />
+        <textarea name="message" rows="4" placeholder="Votre projet de séjour…" style="padding:14px;border:1px solid var(--line);border-radius:3px;font:inherit"></textarea>
+        <button type="submit" class="btn btn-primary" style="border:0">Envoyer la demande</button>
+      </form>
+      <p style="margin-top:14px;color:var(--ink-soft);font-size:.85rem"><em>Formulaire prêt pour Netlify Forms — à connecter selon l'hébergeur retenu.</em></p>
+    </div>
+    <div class="txt">
+      <p class="eyebrow">Coordonnées</p>
+      <h2>Le domaine.</h2>
+      <div class="rule"></div>
+      <p><strong>{site.name}</strong><br/>{site.city} ({site.postalCode})<br/>{site.department}, {site.region}</p>
+      <p><a href={`tel:${site.phone.replace(/[^+\d]/g,'')}`}>{site.phone}</a><br/><a href={`mailto:${site.email}`}>{site.email}</a></p>
+    </div>
+  </div></section>
+</BaseLayout>

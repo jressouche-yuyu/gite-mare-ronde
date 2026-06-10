@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+import { booking } from '../data/booking';
+import { listings } from '../data/listings';
+
+const faq = [
+  { q: 'Où se situe le Gîte de la Mare Ronde ?', a: `Le domaine se trouve à ${site.city}, dans la ${site.department} (72), à environ 10 minutes du Mans et 15 minutes du circuit des 24 Heures.` },
+  { q: 'Combien de personnes le domaine peut-il accueillir ?', a: `Le domaine entier réunit 3 gîtes et accueille jusqu'à ${site.capacityMax} personnes (${site.bedrooms} chambres, ${site.beds} couchages, ${site.baths} salles de bain). Les appartements se louent aussi séparément (2 et 4 personnes).` },
+  { q: 'Y a-t-il une piscine et un terrain de tennis ?', a: 'Oui. Le domaine dispose d\'une piscine, d\'un court de tennis et d\'un terrain de pétanque privatifs, ainsi que d\'un vaste jardin clos.' },
+  { q: 'Peut-on organiser un mariage ou un événement de famille ?', a: 'Oui, la grande capacité et le cadre du domaine se prêtent aux mariages, anniversaires et réunions de famille (formule événement sur devis).' },
+  { q: 'Le gîte est-il proche du circuit des 24 Heures du Mans ?', a: 'Oui, le domaine est à seulement 15 minutes du circuit des 24 Heures du Mans.' },
+  { q: 'Comment réserver ?', a: 'La réservation et les prix en temps réel se font sur Airbnb. Pour un événement, contactez-nous pour un devis.' },
+];
+const faqJsonLd = { '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+---
+<BaseLayout title={`${site.name} — ${site.tagline}`} description={site.description} path="/" jsonld={faqJsonLd}>
+  <!-- HERO avec photo réelle -->
+  <section class="hero" id="accueil">
+    <div class="hero-photo"><img src="/photos/domaine/01.jpg" alt="Le domaine de la Mare Ronde — ferme rénovée, piscine et jardin à Yvré-l'Évêque" /></div>
+    <div class="wrap">
+      <p class="eyebrow">{site.city} · {site.department}</p>
+      <h1>Une ferme d'autrefois, cachée dans la verdure.</h1>
+      <p class="lede">Trois gîtes de charme, une piscine, un court de tennis et un vaste jardin — à deux pas du Mans et à 15 min du circuit des 24 Heures. Pour les familles, les groupes et les grandes occasions.</p>
+      <div class="actions">
+        <a href="/hebergements/" class="btn btn-primary">Voir les hébergements</a>
+        <a href={booking.primary} target="_blank" rel="noopener" class="btn btn-ghost">Réserver sur Airbnb</a>
+      </div>
+    </div>
+    <div class="scroll-hint">Défiler</div>
+  </section>
+
+  <!-- STRIP -->
+  <div class="strip"><div class="wrap">
+    {site.highlights.map((h) => (<div class="it"><div class="n" set:html={h.n}></div><div class="l">{h.l}</div></div>))}
+  </div></div>
+
+  <!-- HISTOIRE -->
+  <section id="histoire"><div class="wrap story reveal">
+    <div class="imgwrap"><img class="cover" src="/photos/domaine/02.jpg" alt="Petit-déjeuner au bord de la piscine, face à la ferme rénovée" /></div>
+    <div class="txt">
+      <p class="eyebrow">Le lieu</p>
+      <h2>Un domaine de caractère, rénové avec âme.</h2>
+      <div class="rule"></div>
+      <p>Dissimulés derrière les arbres, à {site.city}, Les Gîtes de la Mare Ronde réunissent trois logements élégants au sein d'une authentique propriété de caractère : pierre, poutres, tomettes et grands volumes.</p>
+      <p>On s'y réveille au calme, on partage de longues tablées, on profite de la piscine et du jardin — loin de l'agitation, mais à quelques minutes du Mans.</p>
+      <a href="/hebergements/" class="btn btn-dark" style="margin-top:14px">Découvrir les 3 gîtes</a>
+    </div>
+  </div></section>
+
+  <!-- ESPACES (photos réelles vérifiées) -->
+  <section class="spaces" id="espaces"><div class="wrap">
+    <div class="sec-head reveal"><p class="eyebrow">À vivre</p><h2>Des espaces pensés pour se retrouver.</h2><p>Piscine, tennis et pétanque dehors ; cheminée et grandes tablées dedans.</p></div>
+    <div class="cards">
+      <article class="card reveal"><div class="imgwrap"><img class="cover" loading="lazy" src="/photos/domaine/02.jpg" alt="La piscine et le jardin" /></div><div class="body"><h3>La piscine &amp; le jardin</h3><p>Un bassin (avec abri) au cœur d'un vaste jardin clos, court de tennis et terrain de pétanque.</p></div></article>
+      <article class="card reveal"><div class="imgwrap"><img class="cover" loading="lazy" src="/photos/domaine/04.jpg" alt="Salle à manger avec cheminée et poutres" /></div><div class="body"><h3>Les espaces de vie</h3><p>De grandes salles à manger à poutres apparentes et cheminée, pour réunir tout le monde.</p></div></article>
+      <article class="card reveal"><div class="imgwrap"><img class="cover" loading="lazy" src="/photos/domaine/10.jpg" alt="Cuisine de caractère" /></div><div class="body"><h3>Cuisine de caractère</h3><p>Cuisines équipées mêlant pierre, brique et bois, pour cuisiner comme à la maison.</p></div></article>
+    </div>
+  </div></section>
+
+  <!-- HÉBERGEMENTS -->
+  <section id="hebergements"><div class="wrap">
+    <div class="sec-head reveal"><p class="eyebrow">Nos hébergements</p><h2>Trois gîtes, un même domaine.</h2><p>Le domaine entier pour vos grandes occasions, ou un appartement pour une escapade intime.</p></div>
+    <div class="cards">
+      {listings.map((l) => (
+        <article class="card reveal">
+          <a href={`/hebergements/${l.slug}/`} class="imgwrap" style="display:block"><img class="cover" loading="lazy" src={l.photos[0]} alt={l.name} /></a>
+          <div class="body">
+            <p class="eyebrow" style="font-size:.64rem">{l.type}</p>
+            <h3 style="margin-top:6px">{l.name}</h3>
+            <p>{l.tagline}</p>
+            <div class="specs dark" style="margin:14px 0 4px">
+              <span>👥 {l.capacity}</span>
+              {l.bedrooms && <span>🛏 {l.bedrooms}</span>}
+              {l.baths && <span>🛁 {l.baths}</span>}
+            </div>
+            <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
+              <a href={`/hebergements/${l.slug}/`} class="btn btn-dark" style="padding:11px 18px">Découvrir</a>
+              <a href={l.airbnb} target="_blank" rel="noopener" class="btn btn-book" style="padding:11px 18px">Réserver</a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div></section>
+
+  <!-- GALERIE -->
+  <section class="spaces" id="galerie"><div class="wrap">
+    <div class="sec-head reveal"><p class="eyebrow">Galerie</p><h2>Un avant-goût du domaine.</h2></div>
+    <div class="pgrid reveal">
+      {['01','03','05','07','11','13','17','21'].map((n) => (
+        <div class="imgwrap"><img class="cover" loading="lazy" src={`/photos/domaine/${n}.jpg`} alt="Les Gîtes de la Mare Ronde" /></div>
+      ))}
+    </div>
+    <div style="margin-top:30px"><a href="/galerie/" class="btn btn-dark">Voir toutes les photos</a></div>
+  </div></section>
+
+  <!-- SITUATION -->
+  <section class="loc" id="lieu"><div class="wrap grid">
+    <div class="reveal">
+      <p class="eyebrow">Situation</p>
+      <h2>Au vert, et tout près du circuit.</h2>
+      <p>À {site.city}, aux portes du Mans et à 15 minutes du circuit des 24 Heures, le domaine conjugue le calme de la campagne et l'accès facile aux temps forts de la Sarthe.</p>
+      <ul class="dist">{site.distances.map((d) => (<li><span>{d.place}</span><span>{d.time}</span></li>))}</ul>
+    </div>
+    <div class="map imgwrap"><img class="cover" src="/photos/domaine/01.jpg" alt="Le domaine de la Mare Ronde à Yvré-l'Évêque" /></div>
+  </div></section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq"><div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:30px"><p class="eyebrow">Questions fréquentes</p><h2>Tout savoir avant de réserver.</h2></div>
+    <div class="reveal">{faq.map((f, i) => (<details open={i === 0}><summary>{f.q}</summary><p class="ans">{f.a}</p></details>))}</div>
+  </div></section>
+
+  <!-- CTA -->
+  <section class="cta" id="reserver"><div class="wrap reveal">
+    <p class="eyebrow">Votre séjour</p>
+    <h2>Réservez votre parenthèse à la campagne.</h2>
+    <p>Disponibilités et prix en temps réel sur Airbnb. Pour un mariage ou un événement, demandez un devis.</p>
+    <div class="actions" style="justify-content:center;display:flex;gap:14px;flex-wrap:wrap">
+      <a href={booking.primary} target="_blank" rel="noopener" class="btn btn-book">Réserver sur Airbnb</a>
+      <a href="/contact/" class="btn btn-ghost">Demander un devis</a>
+    </div>
+  </div></section>
+</BaseLayout>

@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+<BaseLayout
+  title={`Accès & itinéraire — ${site.name}`}
+  description="Comment venir au Gîte de la Mare Ronde à Yvré-l’Évêque : accès depuis Le Mans, le circuit des 24 Heures, la gare TGV."
+  path="/acces/"
+>
+  <section class="page-hero"><div class="wrap">
+    <p class="breadcrumb"><a href="/">Accueil</a> › Accès</p>
+    <p class="eyebrow">Situation & accès</p>
+    <h1>Comment venir au domaine.</h1>
+    <p>Au vert, à {site.city}, et pourtant tout près du Mans et du circuit.</p>
+  </div></section>
+
+  <section class="loc"><div class="wrap grid">
+    <div class="reveal">
+      <p class="eyebrow">Distances</p>
+      <h2>À deux pas de l'essentiel.</h2>
+      <ul class="dist">
+        {site.distances.map((d) => (<li><span>{d.place}</span><span>{d.time}</span></li>))}
+      </ul>
+      <p style="margin-top:20px">Adresse : {site.city} ({site.postalCode}), {site.department}.</p>
+    </div>
+    <iframe class="mapframe" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Carte — Yvré-l'Évêque, Sarthe" src="https://www.google.com/maps?q=Yvr%C3%A9-l%27%C3%89v%C3%AAque%2C%20Sarthe&output=embed"></iframe>
+  </div></section>
+
+  <section><div class="wrap prose reveal">
+    <h2>En voiture</h2>
+    <p>Depuis Le Mans, rejoignez {site.city} en une dizaine de minutes. <em>(Itinéraire détaillé à compléter.)</em></p>
+    <h2>En train</h2>
+    <p>Gare du Mans à 1h de Paris en TGV, puis quelques minutes jusqu'au domaine.</p>
+  </div></section>
+</BaseLayout>

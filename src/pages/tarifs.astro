@@ -1,0 +1,13 @@
+---
+// Ancienne URL — la page tarifs vit désormais sur /prix/.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+<BaseLayout title={`Tarifs — ${site.name}`} description="Tarifs et calendrier des prix du Gîte de la Mare Ronde." path="/prix/">
+  <section class="page-hero"><div class="wrap">
+    <h1>Tarifs</h1>
+    <p>La grille tarifaire et le calendrier des prix se trouvent désormais sur la page <a href="/prix/" style="text-decoration:underline">Prix &amp; calendrier</a>.</p>
+    <div style="margin-top:20px"><a href="/prix/" class="btn btn-primary">Voir les prix</a></div>
+  </div></section>
+  <script is:inline define:vars={{ base: import.meta.env.BASE_URL }}>location.replace(base + 'prix/')</script>
+</BaseLayout>

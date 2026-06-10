@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+import { listings } from '../data/listings';
+---
+<BaseLayout
+  title={`Galerie photos — ${site.name} à ${site.city}`}
+  description="Photos des Gîtes de la Mare Ronde : piscine, tennis, jardin, intérieurs de charme à Yvré-l'Évêque, près du Mans."
+  path="/galerie/"
+>
+  <section class="page-hero"><div class="wrap">
+    <p class="breadcrumb"><a href="/">Accueil</a> › Galerie</p>
+    <p class="eyebrow">Galerie</p>
+    <h1>Le domaine en images.</h1>
+    <p>Le domaine, ses extérieurs et ses trois gîtes de charme.</p>
+  </div></section>
+
+  {listings.map((l) => (
+    <section style="padding-bottom:0"><div class="wrap">
+      <div class="sec-head reveal" style="margin-bottom:24px">
+        <p class="eyebrow">{l.type}</p><h2>{l.name}</h2>
+      </div>
+      <div class="pgrid reveal">
+        {l.photos.slice(0, 30).map((p, i) => (<div class="imgwrap"><img class="cover" loading="lazy" decoding="async" src={p} alt={`${l.name} — photo ${i + 1}`} /></div>))}
+      </div>
+      <div style="margin-top:24px"><a href={`/hebergements/${l.slug}/`} class="btn btn-dark">Découvrir {l.name}</a></div>
+    </div></section>
+  ))}
+
+  <section class="cta" style="margin-top:90px"><div class="wrap reveal">
+    <p class="eyebrow">Votre séjour</p>
+    <h2>Ces images vous parlent ?</h2>
+    <a href="/hebergements/" class="btn btn-primary">Voir les hébergements</a>
+  </div></section>
+</BaseLayout>

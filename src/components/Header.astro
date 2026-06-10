@@ -1,0 +1,22 @@
+---
+import { site } from '../data/site';
+---
+<header class="site" id="site-header">
+  <div class="bar">
+    <a href="/" class="logo">
+      <img src="/logo-160.png" alt="Logo La Mare Ronde — Gîtes de caractère" class="logo-badge" width="46" height="46" />
+      <span class="logo-txt">La Mare Ronde<small>Gîtes de caractère · {site.department}</small></span>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="/le-gite/">Le gîte</a></li>
+        <li><a href="/hebergements/">Hébergements</a></li>
+        <li><a href="/sejour/">Séjours</a></li>
+        <li><a href="/prix/">Prix</a></li>
+        <li><a href="/galerie/">Galerie</a></li>
+        <li><a href="/hebergements/" class="nav-cta">Réserver</a></li>
+      </ul>
+      <button class="burger" aria-label="Menu" aria-expanded="false">☰</button>
+    </nav>
+  </div>
+</header>

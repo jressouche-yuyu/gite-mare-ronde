@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+const faq = [
+  { q: 'Où se situe le Gîte de la Mare Ronde ?', a: `À ${site.city}, dans la ${site.department} (72), à environ 10 minutes du centre du Mans, en pleine campagne.` },
+  { q: 'Combien de personnes le gîte peut-il accueillir ?', a: `Jusqu’à ${site.capacityMax} personnes dans ${site.bedrooms} chambres. (à confirmer)` },
+  { q: 'Y a-t-il une piscine et un terrain de tennis ?', a: 'Oui, le domaine dispose d’une piscine et d’un terrain de tennis privatifs, ainsi que d’un grand parc arboré.' },
+  { q: 'Peut-on organiser un mariage ou une réception ?', a: 'La capacité et le cadre s’y prêtent (mariages, anniversaires, réunions de famille). Conditions à préciser.' },
+  { q: 'Le gîte est-il proche du circuit des 24 Heures du Mans ?', a: 'Oui, c’est un point de chute idéal pour les 24 Heures et les événements du circuit.' },
+  { q: 'Quel est le budget pour louer le gîte ?', a: 'Le tarif dépend de la saison et de la durée. Consultez la page Tarifs ou demandez un devis personnalisé.' },
+  { q: 'Les animaux sont-ils acceptés ?', a: 'À préciser avec le propriétaire.' },
+  { q: 'Comment réserver ?', a: 'Via le formulaire de contact : indiquez vos dates et le nombre de personnes, nous revenons vers vous rapidement.' },
+];
+const faqJsonLd = {
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+<BaseLayout
+  title={`FAQ — ${site.name}`}
+  description="Questions fréquentes sur le Gîte de la Mare Ronde : localisation, capacité, piscine, tennis, mariage, tarifs et réservation."
+  path="/faq/"
+  jsonld={faqJsonLd}
+>
+  <section class="page-hero"><div class="wrap">
+    <p class="breadcrumb"><a href="/">Accueil</a> › FAQ</p>
+    <p class="eyebrow">Questions fréquentes</p>
+    <h1>Tout savoir avant de réserver.</h1>
+  </div></section>
+
+  <section class="faq"><div class="wrap reveal">
+    {faq.map((f, i) => (<details open={i === 0}><summary>{f.q}</summary><p class="ans">{f.a}</p></details>))}
+  </div></section>
+
+  <section class="cta"><div class="wrap reveal">
+    <p class="eyebrow">Une autre question ?</p>
+    <h2>Nous sommes à votre écoute.</h2>
+    <a href="/contact/" class="btn btn-primary">Nous contacter</a>
+  </div></section>
+</BaseLayout>
