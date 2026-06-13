@@ -1,0 +1,9 @@
+---
+import { richTextToHtml } from '../../lib/richtext';
+const { heading, body } = Astro.props;
+const html = richTextToHtml(body);
+---
+<section><div class="wrap prose reveal">
+  {heading && <h2>{heading}</h2>}
+  <div set:html={html} />
+</div></section>

@@ -1,0 +1,11 @@
+---
+import { withBase } from '../../lib/url';
+const { title, text, buttonLabel, buttonHref } = Astro.props;
+---
+<section class="cta"><div class="wrap reveal">
+  {title && <h2>{title}</h2>}
+  {text && <p>{text}</p>}
+  {buttonLabel && buttonHref && (
+    <a href={withBase(buttonHref)} class="btn btn-primary">{buttonLabel}</a>
+  )}
+</div></section>

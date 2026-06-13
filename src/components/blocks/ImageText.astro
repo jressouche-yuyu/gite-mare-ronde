@@ -1,0 +1,18 @@
+---
+import { withBase } from '../../lib/url';
+import { richTextToHtml } from '../../lib/richtext';
+const { image, heading, body, imageLeft } = Astro.props;
+const src = image?.src;
+const alt = image?.alt || heading || '';
+const html = richTextToHtml(body);
+---
+<section><div class="wrap story reveal">
+  <div class="imgwrap" style={imageLeft ? '' : 'order:2'}>
+    {src && <img class="cover" src={withBase(src)} alt={alt} />}
+  </div>
+  <div class="txt">
+    {heading && <h2>{heading}</h2>}
+    {heading && <div class="rule"></div>}
+    <div set:html={html} />
+  </div>
+</div></section>

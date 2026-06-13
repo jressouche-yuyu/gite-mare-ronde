@@ -1,0 +1,13 @@
+---
+import { withBase } from '../../lib/url';
+const { heading, images = [] } = Astro.props;
+const pics = images.filter((i: any) => i?.src);
+---
+<section><div class="wrap">
+  {heading && <div class="sec-head reveal"><h2>{heading}</h2></div>}
+  <div class="pgrid reveal">
+    {pics.map((im: any, i: number) => (
+      <div class="imgwrap"><img class="cover" loading="lazy" src={withBase(im.src)} alt={im.alt || `Photo ${i + 1}`} /></div>
+    ))}
+  </div>
+</div></section>

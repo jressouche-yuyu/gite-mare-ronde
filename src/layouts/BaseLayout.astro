@@ -11,11 +11,18 @@ interface Props {
   path?: string;
   /** JSON-LD additionnel (objet ou tableau) */
   jsonld?: unknown;
+  /** SEO : masquer des moteurs (noindex) */
+  noindex?: boolean;
+  /** SEO : image de partage (Open Graph) */
+  ogImage?: string;
 }
-const { title, description, path = '', jsonld } = Astro.props;
+const { title, description, path = '', jsonld, noindex = false, ogImage } = Astro.props;
 // inclut le base path (ex. /gite-mare-ronde/) dans l'URL canonique
 const baseNoSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
 const canonical = new URL(baseNoSlash + path, site.domain).href;
+const ogImageUrl = ogImage
+  ? new URL(baseNoSlash + (ogImage.startsWith('/') ? ogImage : '/' + ogImage), site.domain).href
+  : new URL(baseNoSlash + '/logo.png', site.domain).href;
 ---
 <!DOCTYPE html>
 <html lang="fr">
@@ -24,7 +31,7 @@ const canonical = new URL(baseNoSlash + path, site.domain).href;
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
   <meta name="description" content={description} />
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
   <link rel="canonical" href={canonical} />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -36,6 +43,8 @@ const canonical = new URL(baseNoSlash + path, site.domain).href;
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:url" content={canonical} />
   <meta property="og:site_name" content={site.name} />
+  <meta property="og:image" content={ogImageUrl} />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

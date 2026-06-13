@@ -1,0 +1,15 @@
+---
+const { heading, items = [] } = Astro.props;
+---
+<section class="spaces"><div class="wrap">
+  {heading && <div class="sec-head reveal"><h2>{heading}</h2></div>}
+  <div class="why reveal">
+    {items.map((it: any) => (
+      <div class="it">
+        {it.icon && <div class="ic">{it.icon}</div>}
+        {it.title && <h3>{it.title}</h3>}
+        {it.text && <p>{it.text}</p>}
+      </div>
+    ))}
+  </div>
+</div></section>

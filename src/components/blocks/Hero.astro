@@ -1,0 +1,19 @@
+---
+import { withBase } from '../../lib/url';
+const { eyebrow, title, text, image, ctaLabel, ctaHref } = Astro.props;
+const src = image?.src;
+const alt = image?.alt || title || '';
+const style = src
+  ? `background-image:linear-gradient(rgba(18,16,12,.55),rgba(18,16,12,.72)),url(${withBase(src)});background-size:cover;background-position:center`
+  : '';
+---
+<section class="page-hero" style={style} role="img" aria-label={src ? alt : undefined}>
+  <div class="wrap">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    {title && <h1>{title}</h1>}
+    {text && <p>{text}</p>}
+    {ctaLabel && ctaHref && (
+      <div style="margin-top:24px"><a href={withBase(ctaHref)} class="btn btn-primary">{ctaLabel}</a></div>
+    )}
+  </div>
+</section>

@@ -1,0 +1,17 @@
+---
+import Hero from './Hero.astro';
+import RichText from './RichText.astro';
+import ImageText from './ImageText.astro';
+import Features from './Features.astro';
+import Gallery from './Gallery.astro';
+import Table from './Table.astro';
+import Faq from './Faq.astro';
+import Cta from './Cta.astro';
+
+const { blocks = [] } = Astro.props;
+const MAP: Record<string, any> = { hero: Hero, richText: RichText, imageText: ImageText, features: Features, gallery: Gallery, table: Table, faq: Faq, cta: Cta };
+---
+{blocks.map((b: any) => {
+  const C = MAP[b?._template];
+  return C ? <C {...b} /> : null;
+})}

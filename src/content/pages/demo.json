@@ -1,0 +1,50 @@
+{
+  "title": "Démo CMS",
+  "seo": {
+    "metaTitle": "Démo de l'éditeur — Gîte de la Mare Ronde",
+    "metaDescription": "Page de démonstration entièrement éditable : blocs, textes riches, tableaux, FAQ et données structurées automatiques.",
+    "schemaType": "WebPage",
+    "noindex": true
+  },
+  "blocks": [
+    {
+      "_template": "hero",
+      "eyebrow": "Page éditable via le CMS",
+      "title": "Composez vos pages, bloc par bloc",
+      "text": "Le H1 ci-dessus est indépendant de la balise Title (réglée dans l'onglet SEO). Textes, photos, tableaux et FAQ s'éditent depuis /admin.",
+      "image": { "src": "/photos/domaine/01.jpg", "alt": "Façade en pierre du domaine de la Mare Ronde avec piscine et jardin" },
+      "ctaLabel": "Voir les hébergements",
+      "ctaHref": "/hebergements/"
+    },
+    {
+      "_template": "richText",
+      "heading": "Un titre de section (H2) modifiable",
+      "body": "Voici un paragraphe éditable, avec gras, listes et liens possibles.\n\nUn second paragraphe pour la démonstration de la mise en forme."
+    },
+    {
+      "_template": "table",
+      "caption": "Exemple de tableau (idéal pour Google et les LLM)",
+      "headers": ["Hébergement", "Capacité", "Chambres"],
+      "rows": [
+        { "cells": ["Les Gîtes de la Mare Ronde", "16 voyageurs", "7 chambres"] },
+        { "cells": ["Le Jardin", "4 voyageurs", "1 chambre"] },
+        { "cells": ["L'Escapade", "2 voyageurs", "1 chambre"] }
+      ]
+    },
+    {
+      "_template": "faq",
+      "heading": "FAQ (génère automatiquement le schema FAQPage)",
+      "items": [
+        { "question": "Le domaine est-il proche du circuit des 24 Heures ?", "answer": "Oui, à environ 15 minutes du Circuit des 24 Heures du Mans." },
+        { "question": "Peut-on louer les gîtes séparément ?", "answer": "Oui : Le Jardin (4 pers.) et L'Escapade (2 pers.) se louent indépendamment du domaine entier." }
+      ]
+    },
+    {
+      "_template": "cta",
+      "title": "Réservez votre séjour",
+      "text": "Disponibilités et prix en temps réel sur Airbnb.",
+      "buttonLabel": "Réserver",
+      "buttonHref": "/hebergements/"
+    }
+  ]
+}

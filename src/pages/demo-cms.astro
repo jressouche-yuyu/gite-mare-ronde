@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Blocks from '../components/blocks/Blocks.astro';
+import { buildJsonLd } from '../lib/seo';
+import { site } from '../data/site';
+import data from '../content/pages/demo.json';
+
+const seo = (data as any).seo ?? {};
+const path = '/demo-cms/';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const url = new URL(base + path, site.domain).href;
+const jsonld = buildJsonLd(data, { url, siteName: site.name, path: base + path });
+---
+<BaseLayout
+  title={seo.metaTitle || data.title}
+  description={seo.metaDescription || ''}
+  path={path}
+  noindex={seo.noindex}
+  ogImage={seo.ogImage?.src}
+  jsonld={jsonld}
+>
+  <Blocks blocks={(data as any).blocks} />
+</BaseLayout>

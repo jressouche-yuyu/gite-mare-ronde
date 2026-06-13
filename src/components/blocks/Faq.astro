@@ -1,0 +1,13 @@
+---
+// La FAQ alimente aussi le schema FAQPage (généré dans lib/seo.ts).
+const { heading, items = [] } = Astro.props;
+const qa = items.filter((i: any) => i?.question && i?.answer);
+---
+<section class="faq"><div class="wrap">
+  {heading && <div class="sec-head reveal" style="margin-bottom:24px"><h2>{heading}</h2></div>}
+  <div class="reveal" style="max-width:860px">
+    {qa.map((i: any, idx: number) => (
+      <details open={idx === 0}><summary>{i.question}</summary><p class="ans">{i.answer}</p></details>
+    ))}
+  </div>
+</div></section>
