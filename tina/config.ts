@@ -151,6 +151,14 @@ const reviewsBlock = {
     },
   ],
 };
+const availabilityBlock = {
+  name: 'availability', label: '📅 Disponibilités (calendrier Airbnb)',
+  fields: [
+    { type: 'string' as const, name: 'title', label: 'Titre' },
+    { type: 'string' as const, name: 'unit', label: 'Hébergement', options: ['domaine', 'jardin', 'escapade'] },
+    { type: 'number' as const, name: 'months', label: 'Nombre de mois affichés (1 à 4)' },
+  ],
+};
 const ctaBlock = {
   name: 'cta', label: '🎯 Appel à l’action',
   fields: [
@@ -180,7 +188,7 @@ export default defineConfig({
           {
             type: 'object', name: 'blocks', label: '🧱 Blocs de contenu', list: true,
             ui: { itemProps: (item: any) => ({ label: item?._template }) },
-            templates: [heroBlock, richTextBlock, imageTextBlock, featuresBlock, galleryBlock, tableBlock, faqBlock, countdownBlock, weatherBlock, reviewsBlock, ctaBlock],
+            templates: [heroBlock, richTextBlock, imageTextBlock, featuresBlock, galleryBlock, tableBlock, faqBlock, countdownBlock, weatherBlock, reviewsBlock, availabilityBlock, ctaBlock],
           },
         ],
       },

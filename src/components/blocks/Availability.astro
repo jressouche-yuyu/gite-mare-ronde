@@ -1,0 +1,62 @@
+---
+import { booking } from '../../data/booking';
+import { fetchBookedDates, iso } from '../../lib/ical';
+import { withBase } from '../../lib/url';
+
+const { title, unit = 'domaine', months = 2 } = Astro.props;
+const icalUrl = (booking.ical || {})[unit];
+const airbnbUrl = (booking as any)[unit] || booking.primary;
+const booked = await fetchBookedDates(icalUrl); // null si non configuré / indispo
+const hasData = booked !== null;
+
+const FR_MONTHS = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+const today = new Date(); today.setHours(0, 0, 0, 0);
+
+function buildMonth(offset: number) {
+  const base = new Date(today.getFullYear(), today.getMonth() + offset, 1);
+  const y = base.getFullYear(), m = base.getMonth();
+  const lead = (new Date(y, m, 1).getDay() + 6) % 7; // lundi = 0
+  const nb = new Date(y, m + 1, 0).getDate();
+  const cells: any[] = Array.from({ length: lead }, () => null);
+  for (let d = 1; d <= nb; d++) {
+    const date = new Date(y, m, d);
+    const key = iso(date);
+    cells.push({ d, past: date < today, booked: hasData && booked!.has(key) });
+  }
+  return { label: `${FR_MONTHS[m]} ${y}`, cells };
+}
+const grid = Array.from({ length: Math.max(1, Math.min(4, months)) }, (_, i) => buildMonth(i));
+---
+<section class="spaces"><div class="wrap reveal">
+  <div class="sec-head" style="margin-bottom:24px">
+    <p class="eyebrow">Disponibilités</p>
+    {title && <h2>{title}</h2>}
+  </div>
+
+  {hasData ? (
+    <>
+      <div class="avail-cal">
+        {grid.map((mo) => (
+          <div class="avail-month">
+            <h3>{mo.label}</h3>
+            <div class="avail-grid">
+              {['L', 'M', 'M', 'J', 'V', 'S', 'D'].map((w) => <span class="avail-dow">{w}</span>)}
+              {mo.cells.map((c: any) => c === null
+                ? <span></span>
+                : <span class={`avail-day ${c.past ? 'past' : c.booked ? 'booked' : 'free'}`}>{c.d}</span>)}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="legend" style="margin-top:18px">
+        <span class="lg"><span class="dot" style="background:var(--sage)"></span>Disponible</span>
+        <span class="lg"><span class="dot" style="background:var(--terracotta)"></span>Réservé</span>
+      </div>
+      <p class="book-note">Calendrier synchronisé depuis Airbnb (mis à jour automatiquement).</p>
+    </>
+  ) : (
+    <p style="color:var(--ink-soft)">Consultez les disponibilités en temps réel sur Airbnb. <em>(Calendrier à connecter : collez l'URL iCal de l'annonce dans la configuration.)</em></p>
+  )}
+
+  <div style="margin-top:22px"><a href={airbnbUrl} target="_blank" rel="noopener" class="btn btn-book">Réserver sur Airbnb</a></div>
+</div></section>

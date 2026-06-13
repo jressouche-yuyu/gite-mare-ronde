@@ -219,6 +219,16 @@ img.cover{width:100%;height:100%;object-fit:cover;display:block}
 /* ===== Carte (iframe) ===== */
 .mapframe{width:100%;aspect-ratio:16/9;border:0;border-radius:6px;filter:saturate(.9)}
 
+/* ===== Calendrier de disponibilités ===== */
+.avail-cal{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px}
+.avail-month h3{font-size:1.3rem;margin-bottom:12px;text-transform:capitalize}
+.avail-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.avail-dow{text-align:center;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);padding:4px 0}
+.avail-day{display:flex;align-items:center;justify-content:center;aspect-ratio:1;border-radius:5px;font-size:.86rem;font-variant-numeric:tabular-nums}
+.avail-day.free{background:rgba(109,116,89,.16);color:var(--sage-deep);font-weight:500}
+.avail-day.booked{background:var(--terracotta);color:#fff;text-decoration:line-through;opacity:.85}
+.avail-day.past{color:var(--line)}
+
 /* ===== Lightbox galerie ===== */
 .pgrid img,.gallery img{cursor:zoom-in}
 .lightbox{position:fixed;inset:0;z-index:200;background:rgba(18,16,12,.94);display:none;align-items:center;justify-content:center}

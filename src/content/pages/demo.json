@@ -62,6 +62,12 @@
       ]
     },
     {
+      "_template": "availability",
+      "title": "Disponibilités du domaine",
+      "unit": "domaine",
+      "months": 2
+    },
+    {
       "_template": "cta",
       "title": "Réservez votre séjour",
       "text": "Disponibilités et prix en temps réel sur Airbnb.",

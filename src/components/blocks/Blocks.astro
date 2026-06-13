@@ -9,10 +9,11 @@ import Faq from './Faq.astro';
 import Countdown from './Countdown.astro';
 import Weather from './Weather.astro';
 import Reviews from './Reviews.astro';
+import Availability from './Availability.astro';
 import Cta from './Cta.astro';
 
 const { blocks = [] } = Astro.props;
-const MAP: Record<string, any> = { hero: Hero, richText: RichText, imageText: ImageText, features: Features, gallery: Gallery, table: Table, faq: Faq, countdown: Countdown, weather: Weather, reviews: Reviews, cta: Cta };
+const MAP: Record<string, any> = { hero: Hero, richText: RichText, imageText: ImageText, features: Features, gallery: Gallery, table: Table, faq: Faq, countdown: Countdown, weather: Weather, reviews: Reviews, availability: Availability, cta: Cta };
 ---
 {blocks.map((b: any) => {
   const C = MAP[b?._template];
