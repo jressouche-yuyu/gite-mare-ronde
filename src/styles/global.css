@@ -229,6 +229,10 @@ img.cover{width:100%;height:100%;object-fit:cover;display:block}
 .avail-day.booked{background:var(--terracotta);color:#fff;text-decoration:line-through;opacity:.85}
 .avail-day.past{color:var(--line)}
 
+/* ===== Bascule de version (flottant) ===== */
+.ver-switch{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:120;background:var(--ink);color:var(--cream);border-radius:999px;padding:11px 22px;font-family:var(--sans);font-size:.8rem;font-weight:600;letter-spacing:.04em;box-shadow:0 10px 30px -8px rgba(0,0,0,.5);display:inline-flex;align-items:center;gap:8px;transition:.25s;border:1px solid rgba(255,255,255,.15)}
+.ver-switch:hover{background:var(--terracotta);transform:translateX(-50%) translateY(-2px);color:#fff}
+
 /* ===== Lightbox galerie ===== */
 .pgrid img,.gallery img{cursor:zoom-in}
 .lightbox{position:fixed;inset:0;z-index:200;background:rgba(18,16,12,.94);display:none;align-items:center;justify-content:center}

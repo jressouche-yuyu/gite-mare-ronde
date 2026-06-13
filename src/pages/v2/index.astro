@@ -1,0 +1,118 @@
+---
+import V2Layout from '../../layouts/V2Layout.astro';
+import { site } from '../../data/site';
+import { booking } from '../../data/booking';
+import { v2Gites } from '../../data/v2';
+import { withBase } from '../../lib/url';
+
+const jsonld = {
+  '@context': 'https://schema.org', '@type': 'LodgingBusiness',
+  name: 'La Mare Ronde', description: 'Domaine de caractère à Yvré-l’Évêque (Sarthe) : 3 gîtes, piscine, tennis et pétanque.',
+  url: new URL(import.meta.env.BASE_URL, site.domain).href,
+  address: { '@type': 'PostalAddress', addressLocality: site.city, postalCode: site.postalCode, addressRegion: site.region, addressCountry: 'FR' },
+};
+const revs = [
+  { who: 'Marie L. · Airbnb', stars: 5, text: 'Un domaine magnifique, idéal pour notre réunion de famille. La piscine et le parc ont fait l’unanimité !' },
+  { who: 'Thomas R. · Google', stars: 5, text: 'Parfait pour les 24 Heures : à 15 min du circuit et tellement calme au retour. On reviendra.' },
+];
+---
+<V2Layout
+  title="La Mare Ronde — Gîtes de caractère à Yvré-l’Évêque (Sarthe)"
+  description="Découvrez La Mare Ronde, un domaine de caractère en Sarthe avec 3 gîtes élégants, piscine, tennis et pétanque. Séjours inoubliables à Yvré-l’Évêque, près du Mans."
+  path="/v2/" jsonld={jsonld}
+>
+  <!-- HERO -->
+  <section class="v-hero">
+    <div class="photo"><img src={withBase('/photos/domaine/01.jpg')} alt="Le domaine de la Mare Ronde, sa ferme en pierre et sa piscine" /></div>
+    <div class="v-wrap">
+      <p class="v-eyebrow">Yvré-l’Évêque · Sarthe</p>
+      <h1>Bienvenue à La Mare Ronde</h1>
+      <div class="v-rule"></div>
+      <p class="lede">Trois gîtes élégants, une piscine, des espaces de vie généreux et la douceur d’un parc verdoyant. Pour des séjours en famille, entre amis ou en amoureux.</p>
+      <div class="actions">
+        <a href={withBase('/v2/nos-gites/')} class="v-btn v-btn-primary">Découvrir nos gîtes</a>
+        <a href={booking.primary} target="_blank" rel="noopener" class="v-btn v-btn-ghost">Réserver sur Airbnb</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTRE DOMAINE -->
+  <section class="v-sec"><div class="v-wrap v-story v-reveal">
+    <div class="imgs">
+      <img src={withBase('/photos/domaine/01.jpg')} alt="Extérieur du domaine et sa piscine" />
+      <img src={withBase('/photos/domaine/04.jpg')} alt="Salle à manger de caractère à poutres et cheminée" />
+    </div>
+    <div>
+      <p class="v-eyebrow">Notre domaine</p>
+      <h2>Un domaine où il fait bon se retrouver</h2>
+      <p>Nichée à quelques minutes du Mans, La Mare Ronde est une propriété de caractère qui conjugue l’élégance des vieilles pierres et le confort d’aménagements soignés. Ici, tout a été pensé pour que votre séjour soit une parenthèse hors du temps.</p>
+      <p>Trois gîtes indépendants — chacun avec sa propre personnalité — composent ce domaine. Qu’il s’agisse d’un week-end en couple, d’un rassemblement familial ou d’une célébration mémorable, La Mare Ronde a le gîte qu’il vous faut.</p>
+      <a href={withBase('/v2/nos-gites/')} class="v-btn v-btn-dark" style="margin-top:8px">Voir les 3 gîtes</a>
+    </div>
+  </div></section>
+
+  <!-- 3 GÎTES -->
+  <section class="v-sec alt"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">Nos hébergements</p><h2>Nos trois gîtes</h2><div class="v-rule"></div></div>
+    <div class="v-gites">
+      {v2Gites.map((g) => (
+        <article class="v-gcard v-reveal">
+          <a href={withBase(`/v2/gites/${g.slug}/`)} class="ph"><img src={withBase(g.photos[0])} alt={g.name} loading="lazy" /></a>
+          <div class="hd">{g.name}</div>
+          <div class="bd">
+            <p class="spec">{g.spec}</p>
+            <div class="links">
+              <a href={withBase(`/v2/gites/${g.slug}/`)} class="v-btn v-btn-dark" style="padding:10px 16px">Découvrir</a>
+              <a href={g.airbnb} target="_blank" rel="noopener" class="v-btn v-btn-book" style="padding:10px 16px">Réserver</a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div></section>
+
+  <!-- ÉQUIPEMENTS -->
+  <section class="v-sec"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">Équipements partagés</p><h2>Des équipements pensés pour votre plaisir</h2><div class="v-rule"></div></div>
+    <div class="v-amen v-reveal">
+      <div class="it"><div class="ic">🏊</div><h3>Piscine</h3><p>Extérieure, au cœur du parc</p></div>
+      <div class="it"><div class="ic">🎾</div><h3>Tennis</h3><p>Court privatif</p></div>
+      <div class="it"><div class="ic">🎯</div><h3>Pétanque</h3><p>Apéritif garanti</p></div>
+      <div class="it"><div class="ic">🌿</div><h3>Parc arboré</h3><p>Jardins & calme</p></div>
+    </div>
+  </div></section>
+
+  <!-- BANDEAU -->
+  <div class="v-band"><img src={withBase('/photos/domaine/02.jpg')} alt="Le bord de la piscine au soleil, face à la ferme" /></div>
+
+  <!-- RÉGION -->
+  <section class="v-sec alt"><div class="v-wrap v-2col v-reveal">
+    <iframe class="v-mapframe" loading="lazy" title="Carte — Yvré-l’Évêque" src="https://www.google.com/maps?q=Yvr%C3%A9-l%27%C3%89v%C3%AAque%2C%20Sarthe&output=embed"></iframe>
+    <div>
+      <p class="v-eyebrow">La région</p>
+      <h2>Aux portes du Mans, au cœur de la nature</h2>
+      <p>Yvré-l’Évêque est une commune paisible à quelques minutes du Mans, dans la Sarthe, dans un cadre naturel préservé tout en restant proche des commodités.</p>
+      <p>À découvrir aux alentours : le <strong>circuit des 24 Heures du Mans</strong> (à ~15 min), la cité Plantagenêt et la cathédrale Saint-Julien, les châteaux de la vallée du Loir, les marchés et la gastronomie sarthoise.</p>
+    </div>
+  </div></section>
+
+  <!-- TÉMOIGNAGES -->
+  <section class="v-sec"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">Ils ont séjourné chez nous</p><h2>Témoignages</h2><div class="v-rule"></div></div>
+    <div class="v-revs v-reveal">
+      {revs.map((r) => (
+        <div class="v-rev"><div class="stars">{'★'.repeat(r.stars)}</div><p>« {r.text} »</p><div class="who">{r.who}</div></div>
+      ))}
+    </div>
+  </div></section>
+
+  <!-- CTA -->
+  <section class="v-sec v-cta"><div class="v-wrap v-reveal">
+    <h2>Prêt à vivre La Mare Ronde ?</h2>
+    <p>Réservez en direct sur Airbnb, ou écrivez-nous pour un séjour sur mesure.</p>
+    <div class="actions" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <a href={booking.primary} target="_blank" rel="noopener" class="v-btn v-btn-book">Réserver sur Airbnb</a>
+      <a href={withBase('/v2/contact/')} class="v-btn v-btn-ghost" style="border-color:rgba(255,255,255,.7)">Nous contacter</a>
+    </div>
+  </div></section>
+</V2Layout>

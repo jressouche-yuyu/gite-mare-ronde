@@ -79,6 +79,7 @@ const ogImageUrl = ogImage
     <slot />
   </main>
   <Footer />
+  <a class="ver-switch" href={import.meta.env.BASE_URL.replace(/\/$/, '') + '/v2/'}>✨ Découvrir la nouvelle version</a>
   <script>
     const hdr = document.getElementById('site-header');
     const onScroll = () => hdr && hdr.classList.toggle('solid', window.scrollY > 80);

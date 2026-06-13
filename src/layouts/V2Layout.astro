@@ -1,0 +1,116 @@
+---
+import '../styles/v2.css';
+import { site } from '../data/site';
+import { booking } from '../data/booking';
+import { withBase } from '../lib/url';
+
+interface Props { title: string; description: string; path?: string; ogImage?: string; jsonld?: unknown; noindex?: boolean; }
+const { title, description, path = '', jsonld, noindex = false, ogImage } = Astro.props;
+const baseNoSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
+const canonical = new URL(baseNoSlash + path, site.domain).href;
+const nav = [
+  { href: '/v2/', label: 'Accueil' },
+  { href: '/v2/nos-gites/', label: 'Nos Gîtes' },
+  { href: '/v2/qui-sommes-nous/', label: 'Qui sommes-nous' },
+  { href: '/v2/contact/', label: 'Contact' },
+];
+---
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+  <link rel="canonical" href={canonical} />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta name="theme-color" content="#5C3A2E" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={new URL(baseNoSlash + (ogImage || '/logo.png'), site.domain).href} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  {jsonld && <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />}
+</head>
+<body class="v2">
+  <header class="v-header" id="v-header">
+    <div class="bar">
+      <a href={withBase('/v2/')} class="v-logo">
+        <img src={withBase('/logo-160.png')} alt="Logo La Mare Ronde" width="44" height="44" />
+        <span class="t">La Mare Ronde<small>Gîtes de caractère</small></span>
+      </a>
+      <nav class="v-nav">
+        <ul>
+          {nav.map((n) => <li><a href={withBase(n.href)}>{n.label}</a></li>)}
+          <li><a class="cta" href={booking.primary} target="_blank" rel="noopener">Réserver</a></li>
+        </ul>
+        <button class="v-burger" aria-label="Menu" aria-expanded="false">☰</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="v-footer">
+    <div class="v-wrap">
+      <div class="v-fgrid">
+        <div>
+          <div class="brand">La Mare Ronde</div>
+          <p>Domaine de caractère à {site.city} ({site.postalCode}), Sarthe — trois gîtes, piscine, tennis et pétanque, à deux pas du Mans.</p>
+        </div>
+        <div>
+          <h4>Navigation</h4>
+          <ul>
+            {nav.map((n) => <li><a href={withBase(n.href)}>{n.label}</a></li>)}
+          </ul>
+        </div>
+        <div>
+          <h4>Réserver sur Airbnb</h4>
+          <ul>
+            <li><a href={booking.domaine} target="_blank" rel="noopener">Le Grand Gîte</a></li>
+            <li><a href={booking.escapade} target="_blank" rel="noopener">L’Escapade</a></li>
+            <li><a href={booking.jardin} target="_blank" rel="noopener">Le Jardin</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="v-fbot">© 2026 La Mare Ronde · {site.city} (72) · <a href={withBase('/v2/contact/')}>Contact</a> · <a href={withBase('/mentions-legales/')}>Mentions légales</a></div>
+    </div>
+  </footer>
+
+  <!-- Bascule de version -->
+  <a class="ver-switch" href={withBase('/')}>↩ Revenir à la version actuelle</a>
+
+  <script>
+    const h = document.getElementById('v-header');
+    const onS = () => h && h.classList.toggle('solid', window.scrollY > 60);
+    onS(); addEventListener('scroll', onS, { passive: true });
+    const b = h && h.querySelector('.v-burger');
+    if (b) b.addEventListener('click', () => { const o = h.classList.toggle('nav-open'); b.textContent = o ? '✕' : '☰'; b.setAttribute('aria-expanded', o ? 'true' : 'false'); });
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.12 });
+    document.querySelectorAll('.v-reveal').forEach((el) => io.observe(el));
+    // Lightbox
+    const gi = Array.from(document.querySelectorAll('.v-grid img'));
+    if (gi.length) {
+      const ov = document.createElement('div'); ov.className = 'lightbox'; ov.innerHTML = '<button class="lb-close" aria-label="Fermer">✕</button><button class="lb-prev" aria-label="Précédent">‹</button><img class="lb-img" alt=""/><button class="lb-next" aria-label="Suivant">›</button>';
+      document.body.appendChild(ov);
+      const im = ov.querySelector('.lb-img'); let i = 0;
+      const show = (n) => { i = (n + gi.length) % gi.length; im.setAttribute('src', gi[i].currentSrc || gi[i].src); im.setAttribute('alt', gi[i].alt || ''); };
+      const open = (n) => { show(n); ov.classList.add('open'); document.body.style.overflow = 'hidden'; };
+      const close = () => { ov.classList.remove('open'); document.body.style.overflow = ''; };
+      gi.forEach((x, n) => x.addEventListener('click', () => open(n)));
+      ov.querySelector('.lb-close').addEventListener('click', close);
+      ov.querySelector('.lb-next').addEventListener('click', (e) => { e.stopPropagation(); show(i + 1); });
+      ov.querySelector('.lb-prev').addEventListener('click', (e) => { e.stopPropagation(); show(i - 1); });
+      ov.addEventListener('click', (e) => { if (e.target === ov) close(); });
+      addEventListener('keydown', (e) => { if (!ov.classList.contains('open')) return; if (e.key === 'Escape') close(); else if (e.key === 'ArrowRight') show(i + 1); else if (e.key === 'ArrowLeft') show(i - 1); });
+    }
+  </script>
+</body>
+</html>
