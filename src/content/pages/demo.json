@@ -40,6 +40,28 @@
       ]
     },
     {
+      "_template": "countdown",
+      "title": "Compte à rebours — 24 Heures du Mans",
+      "targetDate": "2026-06-13T15:00:00.000Z",
+      "note": "Date d'exemple, modifiable dans le CMS.",
+      "ctaLabel": "Dormir près du circuit",
+      "ctaHref": "/sejour/location-proche-circuit-du-mans/"
+    },
+    {
+      "_template": "weather",
+      "title": "La météo à Yvré-l'Évêque",
+      "lat": "48.0077",
+      "lon": "0.2581"
+    },
+    {
+      "_template": "reviews",
+      "heading": "Ce qu'en disent nos hôtes",
+      "items": [
+        { "author": "Marie L.", "rating": 5, "text": "Un domaine magnifique, idéal pour notre réunion de famille. La piscine et le parc ont fait l'unanimité !", "source": "Airbnb", "date": "2025-08-12" },
+        { "author": "Thomas R.", "rating": 5, "text": "Parfait pour les 24 Heures : à 15 min du circuit et tellement calme au retour. On reviendra.", "source": "Google", "date": "2025-06-16" }
+      ]
+    },
+    {
       "_template": "cta",
       "title": "Réservez votre séjour",
       "text": "Disponibilités et prix en temps réel sur Airbnb.",

@@ -1,0 +1,28 @@
+---
+const { title, lat = '48.0077', lon = '0.2581' } = Astro.props;
+---
+<section><div class="wrap reveal">
+  {title && <div class="sec-head" style="margin-bottom:24px"><p class="eyebrow">Sur place</p><h2>{title}</h2></div>}
+  <div class="weather" data-lat={lat} data-lon={lon} style="display:flex;gap:16px;flex-wrap:wrap">
+    <p style="color:var(--ink-soft)">Chargement de la météo…</p>
+  </div>
+  <p style="font-size:.75rem;color:var(--ink-soft);margin-top:12px">Données météo : Open-Meteo · sans cookie ni traceur.</p>
+</div></section>
+<script>
+  const ICONS = { 0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️', 45: '🌫️', 48: '🌫️', 51: '🌦️', 61: '🌧️', 63: '🌧️', 65: '🌧️', 71: '🌨️', 80: '🌦️', 95: '⛈️' };
+  const lib = (c) => ICONS[c] || '🌡️';
+  document.querySelectorAll('.weather').forEach(async (el) => {
+    try {
+      const lat = el.getAttribute('data-lat'), lon = el.getAttribute('data-lon');
+      const u = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=Europe%2FParis&forecast_days=3`;
+      const j = await (await fetch(u)).json();
+      const days = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
+      let html = `<div style="border:1px solid var(--line);border-radius:8px;padding:18px 22px;background:var(--cream)"><div style="font-size:2rem">${lib(j.current.weather_code)} ${Math.round(j.current.temperature_2m)}°C</div><div style="font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)">Maintenant</div></div>`;
+      for (let i = 1; i < (j.daily?.time?.length || 0); i++) {
+        const d = new Date(j.daily.time[i]);
+        html += `<div style="border:1px solid var(--line);border-radius:8px;padding:18px 22px;background:var(--cream);text-align:center"><div style="font-weight:600">${days[d.getDay()]}</div><div style="font-size:1.6rem">${lib(j.daily.weather_code[i])}</div><div style="font-variant-numeric:tabular-nums">${Math.round(j.daily.temperature_2m_max[i])}° / ${Math.round(j.daily.temperature_2m_min[i])}°</div></div>`;
+      }
+      el.innerHTML = html;
+    } catch (e) { el.innerHTML = '<p style="color:var(--ink-soft)">Météo momentanément indisponible.</p>'; }
+  });
+</script>

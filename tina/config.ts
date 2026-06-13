@@ -116,6 +116,41 @@ const faqBlock = {
     },
   ],
 };
+const countdownBlock = {
+  name: 'countdown', label: '⏱️ Compteur (24 H du Mans, etc.)',
+  fields: [
+    { type: 'string' as const, name: 'title', label: 'Titre' },
+    { type: 'datetime' as const, name: 'targetDate', label: 'Date cible (ex. départ des 24 H)' },
+    { type: 'string' as const, name: 'note', label: 'Texte sous le compteur' },
+    { type: 'string' as const, name: 'ctaLabel', label: 'Bouton — texte' },
+    { type: 'string' as const, name: 'ctaHref', label: 'Bouton — lien' },
+  ],
+};
+const weatherBlock = {
+  name: 'weather', label: '🌦️ Météo locale',
+  fields: [
+    { type: 'string' as const, name: 'title', label: 'Titre' },
+    { type: 'string' as const, name: 'lat', label: 'Latitude', description: 'Yvré-l’Évêque ≈ 48.0077' },
+    { type: 'string' as const, name: 'lon', label: 'Longitude', description: 'Yvré-l’Évêque ≈ 0.2581' },
+  ],
+};
+const reviewsBlock = {
+  name: 'reviews', label: '⭐ Avis clients (→ étoiles Google)',
+  fields: [
+    { type: 'string' as const, name: 'heading', label: 'Titre' },
+    {
+      type: 'object' as const, name: 'items', label: 'Avis', list: true,
+      ui: { itemProps: (i: any) => ({ label: i?.author }) },
+      fields: [
+        { type: 'string' as const, name: 'author', label: 'Auteur' },
+        { type: 'number' as const, name: 'rating', label: 'Note (1 à 5)' },
+        { type: 'string' as const, name: 'text', label: 'Avis', ui: { component: 'textarea' } },
+        { type: 'string' as const, name: 'source', label: 'Source (Google, Airbnb…)' },
+        { type: 'string' as const, name: 'date', label: 'Date (AAAA-MM-JJ)' },
+      ],
+    },
+  ],
+};
 const ctaBlock = {
   name: 'cta', label: '🎯 Appel à l’action',
   fields: [
@@ -145,7 +180,7 @@ export default defineConfig({
           {
             type: 'object', name: 'blocks', label: '🧱 Blocs de contenu', list: true,
             ui: { itemProps: (item: any) => ({ label: item?._template }) },
-            templates: [heroBlock, richTextBlock, imageTextBlock, featuresBlock, galleryBlock, tableBlock, faqBlock, ctaBlock],
+            templates: [heroBlock, richTextBlock, imageTextBlock, featuresBlock, galleryBlock, tableBlock, faqBlock, countdownBlock, weatherBlock, reviewsBlock, ctaBlock],
           },
         ],
       },

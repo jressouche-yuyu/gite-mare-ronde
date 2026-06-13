@@ -11,6 +11,8 @@ export const site = {
   department: 'Sarthe',
   email: 'contact@gite-marre-ronde.fr',
   phone: '+33 (0)X XX XX XX XX',
+  // Formulaire de contact : clé gratuite à créer sur https://web3forms.com (saisir l'e-mail du gîte)
+  web3formsKey: 'VOTRE_CLE_WEB3FORMS',
   capacityMax: '16',
   bedrooms: '7',
   beds: '19',

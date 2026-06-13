@@ -1,0 +1,26 @@
+---
+const { heading, items = [] } = Astro.props;
+const reviews = items.filter((r: any) => r?.author && r?.text);
+const avg = reviews.length
+  ? (reviews.reduce((s: number, r: any) => s + (Number(r.rating) || 5), 0) / reviews.length).toFixed(1)
+  : null;
+---
+<section class="spaces"><div class="wrap">
+  <div class="sec-head reveal">
+    <p class="eyebrow">Ils ont séjourné chez nous</p>
+    {heading && <h2>{heading}</h2>}
+    {avg && <p>Note moyenne <strong>{avg}/5</strong> · {reviews.length} avis</p>}
+  </div>
+  <div class="cards reveal">
+    {reviews.map((r: any) => {
+      const n = Math.round(Number(r.rating) || 5);
+      return (
+        <article class="card"><div class="body">
+          <div style="color:var(--gold);letter-spacing:2px" aria-label={`${n} sur 5`}>{'★'.repeat(n)}<span style="color:var(--line)">{'★'.repeat(5 - n)}</span></div>
+          <p style="margin:10px 0;font-style:italic">« {r.text} »</p>
+          <p class="eyebrow" style="font-size:.68rem">{r.author}{r.source ? ` · ${r.source}` : ''}</p>
+        </div></article>
+      );
+    })}
+  </div>
+</div></section>

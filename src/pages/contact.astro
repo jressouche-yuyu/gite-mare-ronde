@@ -19,7 +19,11 @@ import { site } from '../data/site';
       <p class="eyebrow">Demande de disponibilité</p>
       <h2>Écrivez-nous.</h2>
       <div class="rule"></div>
-      <form name="contact" method="POST" netlify style="display:grid;gap:14px;max-width:480px">
+      <form action="https://api.web3forms.com/submit" method="POST" style="display:grid;gap:14px;max-width:480px">
+        <input type="hidden" name="access_key" value={site.web3formsKey} />
+        <input type="hidden" name="subject" value="Nouvelle demande — Gîte de la Mare Ronde" />
+        <input type="hidden" name="from_name" value="Site Gîte de la Mare Ronde" />
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
         <input type="text" name="nom" placeholder="Votre nom" required style="padding:14px;border:1px solid var(--line);border-radius:3px;font:inherit" />
         <input type="email" name="email" placeholder="Votre e-mail" required style="padding:14px;border:1px solid var(--line);border-radius:3px;font:inherit" />
         <div style="display:flex;gap:14px">
@@ -30,7 +34,7 @@ import { site } from '../data/site';
         <textarea name="message" rows="4" placeholder="Votre projet de séjour…" style="padding:14px;border:1px solid var(--line);border-radius:3px;font:inherit"></textarea>
         <button type="submit" class="btn btn-primary" style="border:0">Envoyer la demande</button>
       </form>
-      <p style="margin-top:14px;color:var(--ink-soft);font-size:.85rem"><em>Formulaire prêt pour Netlify Forms — à connecter selon l'hébergeur retenu.</em></p>
+      <p style="margin-top:14px;color:var(--ink-soft);font-size:.85rem"><em>Formulaire fonctionnel via Web3Forms (gratuit, sans serveur) — il suffit de coller votre clé dans <code>src/data/site.ts</code>.</em></p>
     </div>
     <div class="txt">
       <p class="eyebrow">Coordonnées</p>

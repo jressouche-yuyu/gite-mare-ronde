@@ -35,6 +35,28 @@ export function buildJsonLd(data: any, opts: { url: string; siteName: string; pa
     if (ents.length) graph.push({ '@type': 'FAQPage', mainEntity: ents });
   });
 
+  // 4) Blocs d'avis → AggregateRating + Review (étoiles dans Google)
+  const allReviews = blocks
+    .filter((b) => b?._template === 'reviews')
+    .flatMap((b) => (b.items || []).filter((r: any) => r?.author && r?.text));
+  if (allReviews.length) {
+    const ratings = allReviews.map((r: any) => Number(r.rating) || 5);
+    const avg = (ratings.reduce((s: number, n: number) => s + n, 0) / ratings.length).toFixed(1);
+    graph.push({
+      '@type': 'LodgingBusiness',
+      name: opts.siteName,
+      url: origin + '/',
+      aggregateRating: { '@type': 'AggregateRating', ratingValue: avg, reviewCount: allReviews.length, bestRating: '5' },
+      review: allReviews.map((r: any) => ({
+        '@type': 'Review',
+        author: { '@type': 'Person', name: r.author },
+        reviewRating: { '@type': 'Rating', ratingValue: String(Number(r.rating) || 5), bestRating: '5' },
+        reviewBody: r.text,
+        ...(r.date ? { datePublished: r.date } : {}),
+      })),
+    });
+  }
+
   const auto = { '@context': 'https://schema.org', '@graph': graph };
 
   // 4) Override JSON-LD avancé (saisi dans le CMS)
