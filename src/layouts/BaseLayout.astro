@@ -104,6 +104,39 @@ const ogImageUrl = ogImage
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
     }), { threshold: 0.14 });
     document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+    // Lightbox galerie (toutes les grilles .pgrid / .gallery)
+    const gImgs = Array.from(document.querySelectorAll('.pgrid img, .gallery img'));
+    if (gImgs.length) {
+      const ov = document.createElement('div');
+      ov.className = 'lightbox';
+      ov.setAttribute('aria-hidden', 'true');
+      ov.innerHTML = '<button class="lb-close" aria-label="Fermer">✕</button><button class="lb-prev" aria-label="Photo précédente">‹</button><img class="lb-img" alt=""/><button class="lb-next" aria-label="Photo suivante">›</button><div class="lb-cap"></div>';
+      document.body.appendChild(ov);
+      const lbImg = ov.querySelector('.lb-img');
+      const lbCap = ov.querySelector('.lb-cap');
+      let idx = 0;
+      const show = (i) => {
+        idx = (i + gImgs.length) % gImgs.length;
+        const im = gImgs[idx];
+        lbImg.setAttribute('src', im.currentSrc || im.src);
+        lbImg.setAttribute('alt', im.alt || '');
+        lbCap.textContent = im.alt || '';
+      };
+      const open = (i) => { show(i); ov.classList.add('open'); ov.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; };
+      const close = () => { ov.classList.remove('open'); ov.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; };
+      gImgs.forEach((im, i) => im.addEventListener('click', () => open(i)));
+      ov.querySelector('.lb-close').addEventListener('click', close);
+      ov.querySelector('.lb-next').addEventListener('click', (e) => { e.stopPropagation(); show(idx + 1); });
+      ov.querySelector('.lb-prev').addEventListener('click', (e) => { e.stopPropagation(); show(idx - 1); });
+      ov.addEventListener('click', (e) => { if (e.target === ov) close(); });
+      document.addEventListener('keydown', (e) => {
+        if (!ov.classList.contains('open')) return;
+        if (e.key === 'Escape') close();
+        else if (e.key === 'ArrowRight') show(idx + 1);
+        else if (e.key === 'ArrowLeft') show(idx - 1);
+      });
+    }
   </script>
 </body>
 </html>
