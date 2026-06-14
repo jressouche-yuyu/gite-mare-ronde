@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "tina": "tinacms dev -c \"astro dev --port 4321\"",
+    "tina:build": "tinacms build",
     "build": "astro build",
     "postbuild": "node scripts/fix-base.mjs",
     "preview": "astro preview",
