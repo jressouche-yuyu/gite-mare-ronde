@@ -1,0 +1,40 @@
+---
+import V3Layout from '../../layouts/V3Layout.astro';
+import { listings } from '../../data/listings';
+import { withBase } from '../../lib/url';
+---
+<V3Layout
+  title="Nos Gîtes — La Mare Ronde, Yvré-l’Évêque (Sarthe)"
+  description="Découvrez les gîtes de caractère de La Mare Ronde : le domaine entier (16 pers.), Le Jardin (4 pers.) et L’Escapade (2 pers.). Piscine, tennis, pétanque."
+  path="/v3/nos-gites/"
+  ogImage="/photos/domaine/01.jpg"
+>
+  <section class="v-phero"><div class="v-wrap">
+    <p class="v-eyebrow" style="color:var(--v-rose)">Nos hébergements</p>
+    <h1>Trois gîtes, un même domaine</h1>
+    <p>Louez le domaine entier pour vos grandes occasions, ou l’un des appartements pour une escapade plus intime — à Yvré-l’Évêque, près du Mans.</p>
+  </div></section>
+
+  <section class="v-sec"><div class="v-wrap">
+    <div class="v-gites">
+      {listings.map((l) => (
+        <article class={`v-gcard v-reveal${l.featured ? ' featured' : ''}`}>
+          <a href={withBase(`/v3/gites/${l.slug}/`)} class="ph"><img src={withBase(l.photos[0])} alt={l.name} loading="lazy" /></a>
+          <div class="hd"><span class="tag">{l.type}</span>{l.name}</div>
+          <div class="bd">
+            <p class="tagline">{l.tagline}</p>
+            <div class="v-specs">
+              <span>👥 {l.capacity} pers.</span>
+              {l.bedrooms && <span>🛏 {l.bedrooms}</span>}
+              {l.baths && <span>🛁 {l.baths}</span>}
+            </div>
+            <div class="links">
+              <a href={withBase(`/v3/gites/${l.slug}/`)} class="v-btn v-btn-dark" style="padding:10px 16px">Découvrir</a>
+              <a href={l.airbnb} target="_blank" rel="noopener" class="v-btn v-btn-book" style="padding:10px 16px">Réserver</a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div></section>
+</V3Layout>

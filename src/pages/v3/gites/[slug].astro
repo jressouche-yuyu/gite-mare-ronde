@@ -1,0 +1,92 @@
+---
+import V3Layout from '../../../layouts/V3Layout.astro';
+import { listings } from '../../../data/listings';
+import { site } from '../../../data/site';
+import { withBase } from '../../../lib/url';
+
+export function getStaticPaths() {
+  return listings.map((l) => ({ params: { slug: l.slug }, props: { l } }));
+}
+const { l } = Astro.props;
+const path = `/v3/gites/${l.slug}/`;
+const baseNoSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
+const gallery = l.photos.slice(1, 13);
+
+const specBits = [`${l.capacity} personnes`, l.bedrooms, l.beds, l.baths].filter(Boolean).join(' · ');
+
+const jsonld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Accommodation',
+    name: l.name,
+    description: l.intro,
+    url: new URL(baseNoSlash + path, site.domain).href,
+    image: l.photos.slice(0, 6).map((p) => new URL(baseNoSlash + p, site.domain).href),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: l.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+];
+---
+<V3Layout
+  title={`${l.name} — ${l.tagline}`}
+  description={l.intro.slice(0, 155)}
+  path={path}
+  ogImage={l.photos[0]}
+  jsonld={jsonld}
+>
+  <div class="v-band"><img src={withBase(l.photos[0])} alt={l.name} /></div>
+
+  <section class="v-sec"><div class="v-wrap v-detail">
+    <div class="v-prose v-reveal">
+      <p class="v-crumb"><a href={withBase('/v3/nos-gites/')}>Nos gîtes</a> · {l.name}</p>
+      <p class="v-eyebrow">{l.type}</p>
+      <h1 style="font-size:clamp(2rem,4vw,2.8rem);margin:8px 0 6px">{l.name}</h1>
+      <p style="font-style:italic;color:var(--v-terra);font-size:1.15rem;margin-bottom:20px">{l.tagline}</p>
+      {l.long.map((p) => <p>{p}</p>)}
+
+      <h2>Points forts</h2>
+      <ul class="v-hlist">{l.highlights.map((h) => <li>{h}</li>)}</ul>
+
+      <h2>Équipements</h2>
+      <div class="v-badges">{l.amenities.map((a) => <span class="v-badge">{a}</span>)}</div>
+    </div>
+
+    <aside class="v-reveal">
+      <div class="v-book">
+        <p class="v-eyebrow">Réservation</p>
+        <p class="price">{specBits}</p>
+        <a href={l.airbnb} target="_blank" rel="noopener" class="v-btn v-btn-book">Réserver sur Airbnb</a>
+        <a href={withBase('/v3/contact/')} class="v-btn v-btn-dark" style="margin-top:10px">Demander un devis</a>
+        <p class="note">Disponibilités et prix en temps réel sur Airbnb.</p>
+      </div>
+    </aside>
+  </div></section>
+
+  <!-- GALERIE -->
+  <section class="v-sec alt"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">Galerie</p><h2>{l.name} en images</h2><div class="v-rule"></div></div>
+    <div class="v-grid v-reveal">
+      {gallery.map((p, i) => <img src={withBase(p)} alt={`${l.name} — photo ${i + 2}`} loading="lazy" />)}
+    </div>
+  </div></section>
+
+  <!-- FAQ propre au gîte -->
+  <section class="v-sec"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">Bon à savoir</p><h2>Questions fréquentes</h2><div class="v-rule"></div></div>
+    <div class="v-faq v-reveal">
+      {l.faq.map((f) => (
+        <details><summary>{f.q}</summary><div class="ans">{f.a}</div></details>
+      ))}
+    </div>
+  </div></section>
+
+  <!-- CTA -->
+  <section class="v-sec v-cta"><div class="v-wrap v-reveal">
+    <h2>Envie de réserver {l.name} ?</h2>
+    <p>Consultez les disponibilités en direct sur Airbnb, ou demandez-nous un devis.</p>
+    <a href={l.airbnb} target="_blank" rel="noopener" class="v-btn v-btn-book">Réserver sur Airbnb</a>
+  </div></section>
+</V3Layout>

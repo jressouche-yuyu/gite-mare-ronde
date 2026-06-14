@@ -1,0 +1,37 @@
+---
+import V3Layout from '../../layouts/V3Layout.astro';
+import { values } from '../../data/v3';
+import { withBase } from '../../lib/url';
+---
+<V3Layout
+  title="Qui sommes-nous — Les hôtes de La Mare Ronde"
+  description="Découvrez l’histoire et les valeurs du domaine La Mare Ronde, gîtes de caractère à Yvré-l’Évêque en Sarthe. Nos hôtes vous accueillent avec passion."
+  path="/v3/qui-sommes-nous/"
+>
+  <section class="v-phero"><div class="v-wrap">
+    <p class="v-eyebrow" style="color:var(--v-rose)">Notre histoire</p>
+    <h1>L’histoire de La Mare Ronde</h1>
+  </div></section>
+
+  <section class="v-sec"><div class="v-wrap v-story v-reveal">
+    <div class="imgs">
+      <img src={withBase('/photos/domaine/05.jpg')} alt="Le domaine de la Mare Ronde" />
+      <img src={withBase('/photos/domaine/03.jpg')} alt="Ambiance du domaine" />
+    </div>
+    <div>
+      <p class="v-quote" style="text-align:left;margin:0 0 18px">« Vous accueillir comme nous aimerions l’être. »</p>
+      <p>La Mare Ronde, c’est avant tout une histoire de passion. Celle d’un domaine tombé sous le charme de ses propriétaires, et d’un projet porté avec soin pour en faire un lieu d’exception ouvert aux voyageurs.</p>
+      <p>Séduits par le caractère de cette propriété sarthoise, nous avons imaginé et aménagé chaque gîte avec une attention particulière : des matériaux naturels, l’âme des lieux préservée, et le confort d’aujourd’hui.</p>
+      <p><em>(Texte à personnaliser avec votre histoire — trame fournie.)</em></p>
+    </div>
+  </div></section>
+
+  <section class="v-sec alt"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">Ce qui nous tient à cœur</p><h2>Nos valeurs</h2><div class="v-rule"></div></div>
+    <div class="v-amen v-reveal">
+      {values.map((v) => (
+        <div class="it"><div class="ic">{v.ic}</div><h3>{v.name}</h3><p>{v.desc}</p></div>
+      ))}
+    </div>
+  </div></section>
+</V3Layout>
