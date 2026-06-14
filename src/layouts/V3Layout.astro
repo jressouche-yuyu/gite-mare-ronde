@@ -4,6 +4,7 @@ import '../styles/v3.css';
 import { site } from '../data/site';
 import { booking } from '../data/booking';
 import { withBase } from '../lib/url';
+import VersionSwitch from '../components/VersionSwitch.astro';
 
 interface Props {
   title: string;
@@ -144,7 +145,7 @@ const lodging = {
   </footer>
 
   <!-- Bascule de version -->
-  <a class="ver-switch" href={withBase('/')}>↩ Revenir au site actuel</a>
+  <VersionSwitch active="3" />
 
   <script>
     const h = document.getElementById('v-header');

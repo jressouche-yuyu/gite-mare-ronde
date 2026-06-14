@@ -1,0 +1,57 @@
+---
+// Sélecteur de version flottant — affiché à l'identique sur les 3 versions du site.
+// `active` : '1' (site actuel), '2' (V2) ou '3' (V3).
+import { withBase } from '../lib/url';
+interface Props { active: '1' | '2' | '3'; }
+const { active } = Astro.props;
+const versions = [
+  { key: '1', label: 'V1', sub: 'Actuel', href: withBase('/') },
+  { key: '2', label: 'V2', sub: 'Refonte', href: withBase('/v2/') },
+  { key: '3', label: 'V3', sub: 'Nouveau', href: withBase('/v3/') },
+];
+---
+<div class="vswitch" role="group" aria-label="Choisir la version du site">
+  <span class="vswitch-lbl">Version</span>
+  {versions.map((v) => (
+    <a
+      class:list={["vswitch-seg", { active: v.key === active }]}
+      href={v.href}
+      aria-current={v.key === active ? 'true' : undefined}
+    >
+      <strong>{v.label}</strong>
+      <em>{v.sub}</em>
+    </a>
+  ))}
+</div>
+
+<style>
+  .vswitch{
+    position:fixed; bottom:18px; left:50%; transform:translateX(-50%);
+    z-index:200; display:flex; align-items:stretch; gap:4px;
+    background:rgba(28,24,22,.92); backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,.16); border-radius:999px;
+    padding:5px 6px 5px 14px; box-shadow:0 12px 34px -10px rgba(0,0,0,.6);
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  .vswitch-lbl{
+    display:flex; align-items:center; color:rgba(255,255,255,.6);
+    font-size:.64rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+    padding-right:6px;
+  }
+  .vswitch-seg{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    min-width:54px; padding:6px 12px; border-radius:999px;
+    color:rgba(255,255,255,.78); text-decoration:none; line-height:1.05;
+    transition:background .2s, color .2s, transform .2s;
+  }
+  .vswitch-seg strong{ font-size:.86rem; font-weight:700; }
+  .vswitch-seg em{ font-style:normal; font-size:.58rem; letter-spacing:.04em; opacity:.7; margin-top:1px; }
+  .vswitch-seg:hover{ background:rgba(255,255,255,.1); color:#fff; }
+  .vswitch-seg.active{ background:#b5623c; color:#fff; box-shadow:0 4px 12px -4px rgba(181,98,60,.7); }
+  .vswitch-seg.active em{ opacity:.9; }
+  @media(max-width:480px){
+    .vswitch{ padding:5px; bottom:12px; }
+    .vswitch-lbl{ display:none; }
+    .vswitch-seg{ min-width:46px; padding:5px 9px; }
+  }
+</style>

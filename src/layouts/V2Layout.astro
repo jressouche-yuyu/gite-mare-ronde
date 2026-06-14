@@ -3,6 +3,7 @@ import '../styles/v2.css';
 import { site } from '../data/site';
 import { booking } from '../data/booking';
 import { withBase } from '../lib/url';
+import VersionSwitch from '../components/VersionSwitch.astro';
 
 interface Props { title: string; description: string; path?: string; ogImage?: string; jsonld?: unknown; noindex?: boolean; }
 // Tout le site est en noindex par défaut (aperçu non public). Passer noindex={false} pour ouvrir une page à l'indexation.
@@ -86,7 +87,7 @@ const nav = [
   </footer>
 
   <!-- Bascule de version -->
-  <a class="ver-switch" href={withBase('/')}>↩ Revenir à la version actuelle</a>
+  <VersionSwitch active="2" />
 
   <script>
     const h = document.getElementById('v-header');
