@@ -1,0 +1,28 @@
+---
+// Bloc « gîte(s) adapté(s) » — cartes photo avec aperçu rapide (capacité, badges, CTA),
+// repris de l'accueil V3. Utilisé sur les pages capacité et localisation.
+import type { Listing } from '../data/listings';
+import { withBase } from '../lib/url';
+interface Props { items: Listing[]; }
+const { items } = Astro.props;
+---
+<div class:list={["v-gites", "adapted", { solo: items.length === 1 }]}>
+  {items.map((l) => (
+    <article class:list={["v-gcard", "v-reveal", { featured: l.featured }]}>
+      <a href={withBase(`/v3/gites/${l.slug}/`)} class="ph"><img src={withBase(l.photos[0])} alt={l.name} loading="lazy" /></a>
+      <div class="hd"><span class="tag">{l.type}</span>{l.name}</div>
+      <div class="bd">
+        <p class="tagline">{l.tagline}</p>
+        <div class="v-specs">
+          <span>👥 {l.capacity} pers.</span>
+          {l.bedrooms && <span>🛏 {l.bedrooms}</span>}
+          {l.baths && <span>🛁 {l.baths}</span>}
+        </div>
+        <div class="links">
+          <a href={withBase(`/v3/gites/${l.slug}/`)} class="v-btn v-btn-dark" style="padding:10px 16px">Découvrir</a>
+          <a href={l.airbnb} target="_blank" rel="noopener" class="v-btn v-btn-book" style="padding:10px 16px">Réserver</a>
+        </div>
+      </div>
+    </article>
+  ))}
+</div>

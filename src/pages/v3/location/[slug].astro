@@ -1,8 +1,10 @@
 ---
 import V3Layout from '../../../layouts/V3Layout.astro';
 import { locations } from '../../../data/locations';
+import { listings } from '../../../data/listings';
 import { site } from '../../../data/site';
 import { locationEditorial } from '../../../data/seoContent';
+import GiteCards from '../../../components/GiteCards.astro';
 import { withBase } from '../../../lib/url';
 
 export function getStaticPaths() {
@@ -10,7 +12,10 @@ export function getStaticPaths() {
 }
 const { l } = Astro.props;
 const path = `/v3/location/${l.slug}/`;
-const title = `${l.title} — ${site.shortName}`;
+// Title précis et local : on garde l'intitulé géographique et on ajoute un repère concret,
+// sans dupliquer la marque quand l'intitulé la contient déjà.
+const hasBrand = /Mare Ronde/.test(l.title);
+const title = hasBrand ? `${l.title} — piscine, tennis & grand parc` : `${l.title} — piscine, tennis & parc | La Mare Ronde`;
 const description = `${l.intro}`.slice(0, 155);
 const edito = locationEditorial(l.place, Boolean(l.isHub));
 const faqJsonLd = {
@@ -34,7 +39,13 @@ const faqJsonLd = {
     </ul>
   </div></section>
 
-  <section class="v-sec alt"><div class="v-wrap v-2col v-reveal">
+  <!-- GÎTES ADAPTÉS -->
+  <section class="v-sec alt"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">Le gîte adapté</p><h2>Nos gîtes près de {l.place}</h2><div class="v-rule"></div><p>Le domaine entier pour vos grandes occasions, ou un appartement pour une escapade plus intime.</p></div>
+    <GiteCards items={listings} />
+  </div></section>
+
+  <section class="v-sec"><div class="v-wrap v-2col v-reveal">
     <iframe class="v-mapframe" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Carte — Yvré-l’Évêque, Sarthe" src="https://www.google.com/maps?q=Yvr%C3%A9-l%27%C3%89v%C3%AAque%2C%20Sarthe&output=embed"></iframe>
     <div>
       <p class="v-eyebrow">Aux alentours</p>
@@ -46,7 +57,7 @@ const faqJsonLd = {
   </div></section>
 
   <!-- EN SAVOIR PLUS (SEO/GEO replié) -->
-  <section class="v-sec"><div class="v-wrap">
+  <section class="v-sec alt"><div class="v-wrap">
     <div class="v-head v-reveal"><p class="v-eyebrow">En savoir plus</p><h2>Votre gîte près de {l.place}</h2><div class="v-rule"></div></div>
     <div class="v-faq v-reveal">
       {edito.more.map((f) => (<details><summary>{f.q}</summary><div class="ans">{f.a}</div></details>))}
