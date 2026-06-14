@@ -10,7 +10,7 @@ export function getStaticPaths() {
 }
 const { u } = Astro.props;
 const path = `/v3/sejour/${u.slug}/`;
-const title = `${u.title} — ${site.shortName}`;
+const title = `${u.title} — Yvré-l’Évêque (72)`;
 const description = u.intro.slice(0, 155);
 const faqJsonLd = {
   '@context': 'https://schema.org', '@type': 'FAQPage',
