@@ -39,7 +39,53 @@
 .v3 .v-crumb{font-size:.78rem;color:var(--v-gris);margin-bottom:6px}
 .v3 .v-crumb a{color:var(--v-terra)}
 
+/* Footer 4 colonnes */
+.v3 .v-fgrid{grid-template-columns:1.6fr 1fr 1fr 1.2fr}
+
+/* Grille de liens (pages silos : capacité, séjours, localisation) */
+.v3 .v-linkgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.v3 .v-linkcard{display:block;background:var(--v-blanc);border:1px solid var(--v-rose);border-radius:4px;padding:24px;transition:.3s}
+.v3 .v-linkcard:hover{transform:translateY(-5px);box-shadow:0 22px 40px -26px rgba(92,58,46,.5);border-color:var(--v-terra)}
+.v3 .v-linkcard h3{font-size:1.15rem;margin:0 0 6px}
+.v3 .v-linkcard p{color:var(--v-gris);font-size:.9rem;margin:0}
+.v3 .v-linkcard .arrow{color:var(--v-terra);font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;margin-top:12px;display:inline-block}
+
+/* Prose : listes et liens */
+.v3 .v-prose ul{margin:8px 0 16px;padding-left:0;list-style:none;display:grid;gap:9px}
+.v3 .v-prose ul li{position:relative;padding-left:26px;color:#3a2c28}
+.v3 .v-prose ul li::before{content:"›";position:absolute;left:6px;top:-1px;color:var(--v-terra);font-weight:700;font-size:1.1rem}
+.v3 .v-prose a{color:var(--v-terra);text-decoration:underline}
+
+/* Distances */
+.v3 .v-dist{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:0}
+.v3 .v-dist li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--v-rose)}
+.v3 .v-dist li span:first-child{color:var(--v-brun)}
+.v3 .v-dist li span:last-child{color:var(--v-terra);font-weight:700;white-space:nowrap}
+
+/* Calendrier tarifaire (frise + légende) */
+.v3 .v-calbar{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;border-radius:4px;overflow:hidden}
+.v3 .v-calbar .m{color:#fff;padding:18px 6px;text-align:center;min-height:84px;display:flex;flex-direction:column;justify-content:center}
+.v3 .v-calbar .mn{font-family:var(--v-serif);font-size:1rem}
+.v3 .v-calbar .mt{font-size:.6rem;letter-spacing:.04em;text-transform:uppercase;opacity:.92;margin-top:6px}
+.v3 .v-legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:20px;font-size:.85rem}
+.v3 .v-legend .lg{display:flex;align-items:center;gap:8px;color:var(--v-brun)}
+.v3 .v-legend .dot{width:12px;height:12px;border-radius:50%;flex:none}
+
+/* Tableau tarifaire */
+.v3 .v-table{width:100%;border-collapse:collapse;background:var(--v-blanc);border:1px solid var(--v-rose);border-radius:4px;overflow:hidden}
+.v3 .v-table th,.v3 .v-table td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--v-rose);font-size:.92rem}
+.v3 .v-table thead th{background:var(--v-terra);color:#fff;font-family:var(--v-sans);font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
+.v3 .v-table tbody td:first-child{color:var(--v-brun);font-weight:700}
+.v3 .v-table tbody tr:last-child td{border-bottom:0}
+
 @media(max-width:900px){
   .v3 .v-detail{grid-template-columns:1fr;gap:30px}
   .v3 .v-book{position:static}
+  .v3 .v-fgrid{grid-template-columns:1fr 1fr}
+  .v3 .v-linkgrid{grid-template-columns:1fr 1fr}
+  .v3 .v-calbar{grid-template-columns:repeat(6,1fr)}
+}
+@media(max-width:600px){
+  .v3 .v-linkgrid{grid-template-columns:1fr}
+  .v3 .v-calbar{grid-template-columns:repeat(3,1fr)}
 }

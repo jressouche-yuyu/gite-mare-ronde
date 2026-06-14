@@ -24,8 +24,9 @@ const ogImageUrl = new URL(baseNoSlash + (ogImage || '/logo.png'), site.domain).
 
 const nav = [
   { href: '/v3/', label: 'Accueil' },
+  { href: '/v3/le-gite/', label: 'Le domaine' },
   { href: '/v3/nos-gites/', label: 'Nos Gîtes' },
-  { href: '/v3/qui-sommes-nous/', label: 'Qui sommes-nous' },
+  { href: '/v3/sejour/', label: 'Séjours' },
   { href: '/v3/contact/', label: 'Contact' },
 ];
 
@@ -107,23 +108,38 @@ const lodging = {
         <div>
           <div class="brand">La Mare Ronde</div>
           <p>Domaine de caractère à {site.city} ({site.postalCode}), Sarthe — trois gîtes, piscine, tennis et pétanque, à deux pas du Mans.</p>
+          <p style="margin-top:10px"><a href={booking.primary} target="_blank" rel="noopener" style="color:var(--v-terra-light);font-weight:700">Réserver sur Airbnb →</a></p>
         </div>
         <div>
-          <h4>Navigation</h4>
+          <h4>Découvrir</h4>
           <ul>
-            {nav.map((n) => <li><a href={withBase(n.href)}>{n.label}</a></li>)}
+            <li><a href={withBase('/v3/le-gite/')}>Le domaine</a></li>
+            <li><a href={withBase('/v3/nos-gites/')}>Nos gîtes</a></li>
+            <li><a href={withBase('/v3/galerie/')}>Galerie photos</a></li>
+            <li><a href={withBase('/v3/prix/')}>Prix &amp; disponibilités</a></li>
           </ul>
         </div>
         <div>
-          <h4>Réserver sur Airbnb</h4>
+          <h4>Séjourner</h4>
           <ul>
-            <li><a href={booking.domaine} target="_blank" rel="noopener">Les Gîtes de la Mare Ronde</a></li>
-            <li><a href={booking.jardin} target="_blank" rel="noopener">Le Jardin</a></li>
-            <li><a href={booking.escapade} target="_blank" rel="noopener">L’Escapade</a></li>
+            <li><a href={withBase('/v3/sejour/')}>Séjours &amp; événements</a></li>
+            <li><a href={withBase('/v3/capacite/')}>Par capacité</a></li>
+            <li><a href={withBase('/v3/location/')}>Par localisation</a></li>
+            <li><a href={withBase('/v3/faq/')}>Questions fréquentes</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>La Mare Ronde</h4>
+          <ul>
+            <li><a href={withBase('/v3/qui-sommes-nous/')}>Qui sommes-nous</a></li>
+            <li><a href={withBase('/v3/acces/')}>Accès &amp; itinéraire</a></li>
+            <li><a href={withBase('/v3/contact/')}>Contact</a></li>
+            <li><a href={withBase('/v3/mentions-legales/')}>Mentions légales</a></li>
+            <li><a href={withBase('/v3/confidentialite/')}>Confidentialité</a></li>
           </ul>
         </div>
       </div>
-      <div class="v-fbot">© 2026 La Mare Ronde · {site.city} (72) · <a href={withBase('/v3/contact/')}>Contact</a> · <a href={withBase('/mentions-legales/')}>Mentions légales</a></div>
+      <div class="v-fbot">© 2026 La Mare Ronde · {site.city} (72) · Aperçu V3</div>
     </div>
   </footer>
 
