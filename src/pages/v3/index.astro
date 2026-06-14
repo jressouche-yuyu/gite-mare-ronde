@@ -74,13 +74,25 @@ const faqJsonLd = {
     </div>
   </div></section>
 
-  <!-- ÉQUIPEMENTS -->
+  <!-- À VIVRE — cartes photo des espaces -->
   <section class="v-sec"><div class="v-wrap">
-    <div class="v-head v-reveal"><p class="v-eyebrow">Équipements partagés</p><h2>Des espaces pensés pour se retrouver</h2><div class="v-rule"></div></div>
-    <div class="v-amen v-reveal">
-      {equipment.map((e) => (
-        <div class="it"><div class="ic">{e.ic}</div><h3>{e.name}</h3><p>{e.desc}</p></div>
-      ))}
+    <div class="v-head v-reveal"><p class="v-eyebrow">À vivre</p><h2>Des espaces pensés pour se retrouver</h2><div class="v-rule"></div><p>Piscine, tennis et pétanque dehors ; cheminée et grandes tablées dedans.</p></div>
+    <div class="v-spaces v-reveal">
+      <article class="sp">
+        <div class="ph"><img src={withBase('/photos/domaine/02.jpg')} alt="La piscine et le jardin clos du domaine" loading="lazy" /></div>
+        <div class="bd"><h3>La piscine &amp; le jardin</h3><p>Un bassin (avec abri) au cœur d’un vaste jardin clos, court de tennis et terrain de pétanque.</p></div>
+      </article>
+      <article class="sp">
+        <div class="ph"><img src={withBase('/photos/domaine/04.jpg')} alt="Salle à manger à poutres apparentes et cheminée" loading="lazy" /></div>
+        <div class="bd"><h3>Les espaces de vie</h3><p>De grandes salles à manger à poutres apparentes et cheminée, pour réunir tout le monde.</p></div>
+      </article>
+      <article class="sp">
+        <div class="ph"><img src={withBase('/photos/domaine/10.jpg')} alt="Cuisine de caractère en pierre et bois" loading="lazy" /></div>
+        <div class="bd"><h3>Cuisine de caractère</h3><p>Cuisines équipées mêlant pierre, brique et bois, pour cuisiner comme à la maison.</p></div>
+      </article>
+    </div>
+    <div class="v-amenrow v-reveal">
+      {equipment.map((e) => (<span class="chip"><span class="em">{e.ic}</span>{e.name}</span>))}
     </div>
   </div></section>
 
