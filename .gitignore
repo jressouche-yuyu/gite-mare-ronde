@@ -2,6 +2,8 @@
 node_modules/
 dist/
 .astro/
+tina/__generated__/
+public/admin/
 
 # logs & scratch
 *.log

@@ -8,7 +8,7 @@ on:
     - cron: '0 */6 * * *'  # rafraîchit les disponibilités Airbnb toutes les 6 h
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -19,6 +19,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      TINA_CLIENT_ID: ${{ secrets.TINA_CLIENT_ID }}
+      TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -31,6 +34,15 @@ jobs:
           enablement: true
       - name: Installer les dépendances
         run: npm ci
+      - name: Construire l'admin TinaCMS (+ tina-lock.json)
+        run: npx tinacms build
+      - name: Committer tina-lock.json (indexation TinaCloud)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add tina-lock.json
+          git diff --staged --quiet || git commit -m "chore: update tina-lock.json [skip ci]"
+          git push || echo "rien à pousser"
       - name: Build (Astro + base path)
         run: npm run build
       - name: Uploader l'artefact
