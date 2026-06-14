@@ -3,6 +3,7 @@ import V3Layout from '../../../layouts/V3Layout.astro';
 import { capacities } from '../../../data/capacities';
 import { usages } from '../../../data/usages';
 import { site } from '../../../data/site';
+import { capacityEditorial } from '../../../data/seoContent';
 import { withBase } from '../../../lib/url';
 
 export function getStaticPaths() {
@@ -13,8 +14,13 @@ const path = `/v3/capacite/${c.slug}/`;
 const title = `${c.title} — ${site.shortName}, près du Mans`;
 const description = `Louez un gîte pour ${c.count} personnes à ${site.city} : piscine, tennis, grand parc. ${c.angle}. Disponibilités & tarifs.`;
 const related = usages.filter((u) => u.priority).slice(0, 3);
+const edito = capacityEditorial(c.count);
+const faqJsonLd = {
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: edito.more.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
 ---
-<V3Layout title={title} description={description} path={path} ogImage="/photos/domaine/01.jpg">
+<V3Layout title={title} description={description} path={path} ogImage="/photos/domaine/01.jpg" jsonld={faqJsonLd}>
   <div class="v-band"><img src={withBase('/photos/domaine/01.jpg')} alt={`Gîte ${c.count} personnes — La Mare Ronde`} /></div>
 
   <section class="v-sec"><div class="v-wrap v-prose v-reveal">
@@ -24,23 +30,28 @@ const related = usages.filter((u) => u.priority).slice(0, 3);
     <p style="font-style:italic;color:var(--v-terra);font-size:1.15rem">{c.intro}</p>
 
     <h2>Un gîte adapté à {c.count} personnes en Sarthe</h2>
-    <p>Le Gîte de la Mare Ronde, ancienne ferme rénovée à {site.city}, accueille confortablement {c.count} personnes dans un cadre nature préservé, à une dizaine de minutes du Mans.</p>
-    <ul>
-      <li>Piscine privative et terrain de tennis</li>
-      <li>Grand parc arboré, à l’abri des regards</li>
+    {edito.lead.map((p) => <p>{p}</p>)}
+    <ul class="v-hlist">
+      <li>Piscine privative et court de tennis</li>
+      <li>Grand parc arboré et clos, à l’abri des regards</li>
       <li>Espaces de vie généreux pour les grandes tablées</li>
-      <li>Proche du Mans et du circuit des 24 Heures</li>
+      <li>À ~10 min du Mans et ~15 min du circuit des 24 Heures</li>
     </ul>
-    <h2>Idéal pour</h2>
-    <p>Que ce soit pour des vacances, un week-end ou une grande occasion, ce format de {c.count} personnes convient parfaitement à votre projet de séjour dans la Sarthe.</p>
-    <p><em>Détails de couchage et tarifs : à compléter avec les informations du propriétaire.</em></p>
-    <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
+    <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap">
       <a href={withBase('/v3/nos-gites/')} class="v-btn v-btn-primary" style="border:0">Voir les hébergements</a>
       <a href={withBase('/v3/contact/')} class="v-btn v-btn-dark">Demander une disponibilité</a>
     </div>
   </div></section>
 
+  <!-- EN SAVOIR PLUS (SEO/GEO replié) -->
   <section class="v-sec alt"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">En savoir plus</p><h2>Un gîte pour {c.count} personnes près du Mans</h2><div class="v-rule"></div></div>
+    <div class="v-faq v-reveal">
+      {edito.more.map((f) => (<details><summary>{f.q}</summary><div class="ans">{f.a}</div></details>))}
+    </div>
+  </div></section>
+
+  <section class="v-sec"><div class="v-wrap">
     <div class="v-head v-reveal"><p class="v-eyebrow">Et aussi</p><h2>Pour quelle occasion ?</h2><div class="v-rule"></div></div>
     <div class="v-linkgrid v-reveal">
       {related.map((u) => (

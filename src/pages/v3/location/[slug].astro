@@ -2,6 +2,7 @@
 import V3Layout from '../../../layouts/V3Layout.astro';
 import { locations } from '../../../data/locations';
 import { site } from '../../../data/site';
+import { locationEditorial } from '../../../data/seoContent';
 import { withBase } from '../../../lib/url';
 
 export function getStaticPaths() {
@@ -11,8 +12,13 @@ const { l } = Astro.props;
 const path = `/v3/location/${l.slug}/`;
 const title = `${l.title} — ${site.shortName}`;
 const description = `${l.intro}`.slice(0, 155);
+const edito = locationEditorial(l.place, Boolean(l.isHub));
+const faqJsonLd = {
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: edito.more.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
 ---
-<V3Layout title={title} description={description} path={path} ogImage="/photos/domaine/01.jpg">
+<V3Layout title={title} description={description} path={path} ogImage="/photos/domaine/01.jpg" jsonld={faqJsonLd}>
   <div class="v-band"><img src={withBase('/photos/domaine/01.jpg')} alt={l.h1} /></div>
 
   <section class="v-sec"><div class="v-wrap v-prose v-reveal">
@@ -20,13 +26,12 @@ const description = `${l.intro}`.slice(0, 155);
     <p class="v-eyebrow">{l.place} · {site.department}</p>
     <h1 style="font-size:clamp(2rem,4vw,2.8rem);margin:8px 0 14px">{l.h1}</h1>
     <p style="font-style:italic;color:var(--v-terra);font-size:1.15rem">{l.intro}</p>
-    <p>Idéalement situé près de {l.place}, le Gîte de la Mare Ronde est une ancienne ferme rénovée à {site.city}, dans la {site.department}. Vous y trouverez une piscine, un terrain de tennis et un grand parc arboré, dans un cadre nature à deux pas du Mans.</p>
-    <ul>
+    {edito.lead.map((p) => <p>{p}</p>)}
+    <ul class="v-hlist">
       <li>Hébergement de charme au calme de la campagne</li>
-      <li>Piscine, tennis et grand parc privatifs</li>
+      <li>Piscine, court de tennis et grand parc clos privatifs</li>
       <li>Accès facile au Mans, au circuit et à la Sarthe</li>
     </ul>
-    <p><em>Distances précises depuis {l.place} : à compléter.</em></p>
   </div></section>
 
   <section class="v-sec alt"><div class="v-wrap v-2col v-reveal">
@@ -37,6 +42,14 @@ const description = `${l.intro}`.slice(0, 155);
       <ul class="v-dist">
         {site.distances.map((d) => (<li><span>{d.place}</span><span>{d.time}</span></li>))}
       </ul>
+    </div>
+  </div></section>
+
+  <!-- EN SAVOIR PLUS (SEO/GEO replié) -->
+  <section class="v-sec"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">En savoir plus</p><h2>Votre gîte près de {l.place}</h2><div class="v-rule"></div></div>
+    <div class="v-faq v-reveal">
+      {edito.more.map((f) => (<details><summary>{f.q}</summary><div class="ans">{f.a}</div></details>))}
     </div>
   </div></section>
 
