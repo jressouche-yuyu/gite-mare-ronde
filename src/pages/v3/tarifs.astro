@@ -1,0 +1,14 @@
+---
+// Ancienne URL — la page tarifs vit désormais sur /v3/prix/.
+import V3Layout from '../../layouts/V3Layout.astro';
+import { site } from '../../data/site';
+import { withBase } from '../../lib/url';
+---
+<V3Layout title={`Tarifs — ${site.name}`} description="Tarifs et calendrier des prix du Gîte de la Mare Ronde." path="/v3/prix/">
+  <section class="v-phero"><div class="v-wrap">
+    <h1>Tarifs</h1>
+    <p>La grille tarifaire et le calendrier des prix se trouvent désormais sur la page <a href={withBase('/v3/prix/')} style="color:var(--v-rose);text-decoration:underline">Prix &amp; calendrier</a>.</p>
+    <div style="margin-top:20px"><a href={withBase('/v3/prix/')} class="v-btn v-btn-primary">Voir les prix</a></div>
+  </div></section>
+  <script is:inline define:vars={{ url: withBase('/v3/prix/') }}>location.replace(url)</script>
+</V3Layout>

@@ -1,0 +1,55 @@
+---
+import V3Layout from '../../layouts/V3Layout.astro';
+import { site } from '../../data/site';
+import { equipment } from '../../data/v3';
+import { withBase } from '../../lib/url';
+---
+<V3Layout
+  title={`Le domaine — ${site.name} à ${site.city}`}
+  description="Découvrez Les Gîtes de la Mare Ronde : ancienne ferme rénovée avec piscine, tennis et pétanque à Yvré-l’Évêque, près du Mans. 3 gîtes, jusqu’à 16 personnes."
+  path="/v3/le-gite/"
+  ogImage="/photos/domaine/01.jpg"
+>
+  <section class="v-phero"><div class="v-wrap">
+    <p class="v-eyebrow" style="color:var(--v-rose)">Le lieu</p>
+    <h1>Une ancienne ferme rénovée, au cœur de la verdure</h1>
+    <p>Pierre, bois et grands volumes : tout le charme de l’ancien, avec le confort d’aujourd’hui.</p>
+  </div></section>
+
+  <section class="v-sec"><div class="v-wrap v-story v-reveal">
+    <div class="imgs">
+      <img src={withBase('/photos/domaine/01.jpg')} alt="La façade en pierre du domaine de la Mare Ronde et sa piscine" />
+      <img src={withBase('/photos/domaine/10.jpg')} alt="Cuisine de caractère en pierre et bois" />
+    </div>
+    <div>
+      <p class="v-eyebrow">Présentation</p>
+      <h2>Bienvenue à la Mare Ronde</h2>
+      <p>Niché à {site.city}, à deux pas du Mans, le domaine de la Mare Ronde réunit <strong>trois gîtes de charme</strong> au sein d’une authentique propriété de caractère, restaurée avec soin pour conserver l’âme de la ferme d’origine.</p>
+      <p>On y vient pour le calme, l’espace et la nature — et pour se retrouver, en famille ou entre amis. Le domaine entier accueille jusqu’à <strong>{site.capacityMax} personnes</strong> ({site.bedrooms} chambres, {site.beds} couchages, {site.baths} salles de bain) ; les appartements se louent aussi séparément.</p>
+      <a href={withBase('/v3/nos-gites/')} class="v-btn v-btn-dark" style="margin-top:8px">Voir les 3 hébergements</a>
+    </div>
+  </div></section>
+
+  <section class="v-sec alt"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">Les espaces</p><h2>Tout ce qu’il faut pour un grand séjour</h2><div class="v-rule"></div><p>Piscine, tennis et pétanque dehors ; cheminée, grandes tablées et cuisines de caractère dedans.</p></div>
+    <div class="v-amen v-reveal">
+      {equipment.map((e) => (
+        <div class="it"><div class="ic">{e.ic}</div><h3>{e.name}</h3><p>{e.desc}</p></div>
+      ))}
+    </div>
+  </div></section>
+
+  <section class="v-sec"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">Aperçu</p><h2>Le domaine en images</h2><div class="v-rule"></div></div>
+    <div class="v-grid v-reveal">
+      {['01','03','05','07','11','17'].map((n) => (<img src={withBase(`/photos/domaine/${n}.jpg`)} alt="Les Gîtes de la Mare Ronde" loading="lazy" />))}
+    </div>
+    <div style="text-align:center;margin-top:28px"><a href={withBase('/v3/galerie/')} class="v-btn v-btn-dark">Voir toutes les photos</a></div>
+  </div></section>
+
+  <section class="v-sec v-cta"><div class="v-wrap v-reveal">
+    <h2>Envie de découvrir le domaine ?</h2>
+    <p>Réservez en direct sur Airbnb, ou écrivez-nous pour un séjour sur mesure.</p>
+    <a href={withBase('/v3/nos-gites/')} class="v-btn v-btn-ghost" style="border-color:rgba(255,255,255,.7)">Voir les hébergements</a>
+  </div></section>
+</V3Layout>

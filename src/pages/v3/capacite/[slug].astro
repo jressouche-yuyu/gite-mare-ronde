@@ -1,0 +1,61 @@
+---
+import V3Layout from '../../../layouts/V3Layout.astro';
+import { capacities } from '../../../data/capacities';
+import { usages } from '../../../data/usages';
+import { site } from '../../../data/site';
+import { withBase } from '../../../lib/url';
+
+export function getStaticPaths() {
+  return capacities.map((c) => ({ params: { slug: c.slug }, props: { c } }));
+}
+const { c } = Astro.props;
+const path = `/v3/capacite/${c.slug}/`;
+const title = `${c.title} — ${site.shortName}, près du Mans`;
+const description = `Louez un gîte pour ${c.count} personnes à ${site.city} : piscine, tennis, grand parc. ${c.angle}. Disponibilités & tarifs.`;
+const related = usages.filter((u) => u.priority).slice(0, 3);
+---
+<V3Layout title={title} description={description} path={path} ogImage="/photos/domaine/01.jpg">
+  <div class="v-band"><img src={withBase('/photos/domaine/01.jpg')} alt={`Gîte ${c.count} personnes — La Mare Ronde`} /></div>
+
+  <section class="v-sec"><div class="v-wrap v-prose v-reveal">
+    <p class="v-crumb"><a href={withBase('/v3/capacite/')}>Par capacité</a> · {c.count} personnes</p>
+    <p class="v-eyebrow">{c.angle}</p>
+    <h1 style="font-size:clamp(2rem,4vw,2.8rem);margin:8px 0 14px">{c.title}</h1>
+    <p style="font-style:italic;color:var(--v-terra);font-size:1.15rem">{c.intro}</p>
+
+    <h2>Un gîte adapté à {c.count} personnes en Sarthe</h2>
+    <p>Le Gîte de la Mare Ronde, ancienne ferme rénovée à {site.city}, accueille confortablement {c.count} personnes dans un cadre nature préservé, à une dizaine de minutes du Mans.</p>
+    <ul>
+      <li>Piscine privative et terrain de tennis</li>
+      <li>Grand parc arboré, à l’abri des regards</li>
+      <li>Espaces de vie généreux pour les grandes tablées</li>
+      <li>Proche du Mans et du circuit des 24 Heures</li>
+    </ul>
+    <h2>Idéal pour</h2>
+    <p>Que ce soit pour des vacances, un week-end ou une grande occasion, ce format de {c.count} personnes convient parfaitement à votre projet de séjour dans la Sarthe.</p>
+    <p><em>Détails de couchage et tarifs : à compléter avec les informations du propriétaire.</em></p>
+    <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
+      <a href={withBase('/v3/nos-gites/')} class="v-btn v-btn-primary" style="border:0">Voir les hébergements</a>
+      <a href={withBase('/v3/contact/')} class="v-btn v-btn-dark">Demander une disponibilité</a>
+    </div>
+  </div></section>
+
+  <section class="v-sec alt"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">Et aussi</p><h2>Pour quelle occasion ?</h2><div class="v-rule"></div></div>
+    <div class="v-linkgrid v-reveal">
+      {related.map((u) => (
+        <a class="v-linkcard" href={withBase(`/v3/sejour/${u.slug}/`)}>
+          <h3>{u.h1}</h3>
+          <p>{u.intro.slice(0, 100)}…</p>
+          <span class="arrow">Découvrir →</span>
+        </a>
+      ))}
+    </div>
+  </div></section>
+
+  <section class="v-sec v-cta"><div class="v-wrap v-reveal">
+    <h2>Réservez le gîte pour {c.count} personnes</h2>
+    <p>Dites-nous vos dates : nous revenons vers vous rapidement.</p>
+    <a href={withBase('/v3/contact/')} class="v-btn v-btn-ghost" style="border-color:rgba(255,255,255,.7)">Demander une disponibilité</a>
+  </div></section>
+</V3Layout>
