@@ -17,8 +17,10 @@ interface Props {
   jsonld?: unknown;
   /** SEO : masquer des moteurs (preview = true par défaut) */
   noindex?: boolean;
+  /** En-tête transparent par-dessus un grand visuel sombre (accueil). Sinon en-tête plein (toujours lisible). */
+  heroHeader?: boolean;
 }
-const { title, description, path = '', ogImage, jsonld, noindex = true } = Astro.props;
+const { title, description, path = '', ogImage, jsonld, noindex = true, heroHeader = false } = Astro.props;
 const baseNoSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
 const canonical = new URL(baseNoSlash + path, site.domain).href;
 const ogImageUrl = new URL(baseNoSlash + (ogImage || '/logo.png'), site.domain).href;
@@ -83,7 +85,7 @@ const lodging = {
   {jsonld && <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />}
 </head>
 <body class="v2 v3">
-  <header class="v-header" id="v-header">
+  <header class:list={["v-header", { "solid": !heroHeader, "solid-locked": !heroHeader }]} id="v-header">
     <div class="bar">
       <a href={withBase('/v3/')} class="v-logo">
         <img src={withBase('/logo-160.png')} alt="Logo La Mare Ronde" width="44" height="44" />
@@ -149,7 +151,7 @@ const lodging = {
 
   <script>
     const h = document.getElementById('v-header');
-    const onS = () => h && h.classList.toggle('solid', window.scrollY > 60);
+    const onS = () => { if (h && !h.classList.contains('solid-locked')) h.classList.toggle('solid', window.scrollY > 60); };
     onS(); addEventListener('scroll', onS, { passive: true });
     const b = h && h.querySelector('.v-burger');
     if (b) b.addEventListener('click', () => { const o = h.classList.toggle('nav-open'); b.textContent = o ? '✕' : '☰'; b.setAttribute('aria-expanded', o ? 'true' : 'false'); });
