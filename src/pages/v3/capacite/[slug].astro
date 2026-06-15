@@ -27,8 +27,8 @@ const faqJsonLd = {
   mainEntity: edito.more.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
 };
 ---
-<V3Layout title={title} description={description} path={path} ogImage="/photos/domaine/01.jpg" jsonld={faqJsonLd}>
-  <div class="v-band"><img src={withBase('/photos/domaine/01.jpg')} alt={`Gîte pour ${c.count} personnes près du Mans — La Mare Ronde`} /></div>
+<V3Layout title={title} description={description} path={path} ogImage="/uploads/domaine/01.jpg" jsonld={faqJsonLd}>
+  <div class="v-band"><img src={withBase('/uploads/domaine/01.jpg')} alt={`Gîte pour ${c.count} personnes près du Mans — La Mare Ronde`} /></div>
 
   <section class="v-sec"><div class="v-wrap v-prose v-reveal">
     <p class="v-crumb"><a href={withBase('/v3/capacite/')}>Par capacité</a> · {c.count} personnes</p>

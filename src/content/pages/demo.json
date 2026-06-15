@@ -12,7 +12,7 @@
       "eyebrow": "Page éditable via le CMS",
       "title": "Composez vos pages, bloc par bloc",
       "text": "Le H1 ci-dessus est indépendant de la balise Title (réglée dans l'onglet SEO). Textes, photos, tableaux et FAQ s'éditent depuis /admin.",
-      "image": { "src": "/photos/domaine/01.jpg", "alt": "Façade en pierre du domaine de la Mare Ronde avec piscine et jardin" },
+      "image": { "src": "/uploads/domaine/01.jpg", "alt": "Façade en pierre du domaine de la Mare Ronde avec piscine et jardin" },
       "ctaLabel": "Voir les hébergements",
       "ctaHref": "/hebergements/"
     },

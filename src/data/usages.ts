@@ -25,7 +25,7 @@ const FAQ_CIRCUIT = { q: "Le domaine est-il proche du circuit des 24 Heures ?", 
 
 export const usages: Usage[] = [
   {
-    slug: 'gite-mariage-sarthe', category: 'evenement', priority: true, heroPhoto: '/photos/domaine/04.jpg',
+    slug: 'gite-mariage-sarthe', category: 'evenement', priority: true, heroPhoto: '/uploads/domaine/04.jpg',
     title: 'Gîte mariage & réception en Sarthe près du Mans',
     h1: 'Votre mariage dans un domaine de charme en Sarthe',
     intro: "Un cadre nature préservé, une grande capacité d'hébergement et un vaste jardin : le domaine de la Mare Ronde réunit vos invités pour célébrer à deux pas du Mans.",
@@ -48,7 +48,7 @@ export const usages: Usage[] = [
     ],
   },
   {
-    slug: 'gite-anniversaire-fete-famille', category: 'evenement', priority: true, heroPhoto: '/photos/domaine/01.jpg',
+    slug: 'gite-anniversaire-fete-famille', category: 'evenement', priority: true, heroPhoto: '/uploads/domaine/01.jpg',
     title: 'Gîte anniversaire & fête de famille en Sarthe',
     h1: 'Fêtez l’événement dans un grand gîte près du Mans',
     intro: "Anniversaire, baptême ou réunion de famille : profitez de la piscine, du tennis et des grandes tablées pour rassembler tous vos proches.",
@@ -71,7 +71,7 @@ export const usages: Usage[] = [
     ],
   },
   {
-    slug: 'gite-evjf-evg', category: 'evenement', heroPhoto: '/photos/domaine/02.jpg',
+    slug: 'gite-evjf-evg', category: 'evenement', heroPhoto: '/uploads/domaine/02.jpg',
     title: 'Gîte EVJF / EVG en Sarthe près du Mans',
     h1: 'Enterrement de vie de jeune fille ou de garçon',
     intro: "Un domaine privatif rien que pour votre groupe : piscine, tennis et jardin pour fêter l'événement en toute liberté.",
@@ -91,7 +91,7 @@ export const usages: Usage[] = [
     ],
   },
   {
-    slug: 'gite-cousinade-reunion-famille', category: 'evenement', heroPhoto: '/photos/domaine/01.jpg',
+    slug: 'gite-cousinade-reunion-famille', category: 'evenement', heroPhoto: '/uploads/domaine/01.jpg',
     title: 'Gîte cousinade & réunion de famille en Sarthe',
     h1: 'Réunir toute la famille sous un même toit',
     intro: "La grande capacité du domaine permet de rassembler plusieurs générations le temps d'une cousinade au vert.",
@@ -112,7 +112,7 @@ export const usages: Usage[] = [
     ],
   },
   {
-    slug: 'gite-seminaire-entreprise', category: 'entreprise', priority: true, heroPhoto: '/photos/domaine/04.jpg',
+    slug: 'gite-seminaire-entreprise', category: 'entreprise', priority: true, heroPhoto: '/uploads/domaine/04.jpg',
     title: 'Gîte séminaire d’entreprise en Sarthe près du Mans',
     h1: 'Séminaire d’entreprise au vert près du Mans',
     intro: "Réunissez vos équipes dans un cadre ressourçant : grandes salles, jardin et activités (tennis, piscine) pour un séminaire mémorable.",
@@ -134,7 +134,7 @@ export const usages: Usage[] = [
     ],
   },
   {
-    slug: 'gite-team-building', category: 'entreprise', priority: true, heroPhoto: '/photos/domaine/02.jpg',
+    slug: 'gite-team-building', category: 'entreprise', priority: true, heroPhoto: '/uploads/domaine/02.jpg',
     title: 'Gîte team building & journée d’équipe en Sarthe',
     h1: 'Un team building au vert près du Mans',
     intro: "Renforcez la cohésion de vos équipes dans un domaine privatif : activités de plein air, piscine, tennis et pétanque, à 10 minutes du Mans.",
@@ -156,7 +156,7 @@ export const usages: Usage[] = [
     ],
   },
   {
-    slug: 'gite-week-end-entre-amis', category: 'groupe', heroPhoto: '/photos/domaine/02.jpg',
+    slug: 'gite-week-end-entre-amis', category: 'groupe', heroPhoto: '/uploads/domaine/02.jpg',
     title: 'Gîte week-end entre amis en Sarthe',
     h1: 'Un grand gîte pour un week-end entre amis',
     intro: "Détente, piscine, tennis et grandes soirées : le lieu parfait pour se retrouver entre amis le temps d'un week-end près du Mans.",
@@ -177,7 +177,7 @@ export const usages: Usage[] = [
     ],
   },
   {
-    slug: 'gite-vacances-famille', category: 'groupe', heroPhoto: '/photos/domaine/01.jpg',
+    slug: 'gite-vacances-famille', category: 'groupe', heroPhoto: '/uploads/domaine/01.jpg',
     title: 'Gîte vacances en famille en Sarthe',
     h1: 'Des vacances en famille au cœur de la campagne',
     intro: "Un jardin clos pour les enfants, une piscine pour tous et le calme de la campagne sarthoise pour des vacances réussies.",
@@ -198,7 +198,7 @@ export const usages: Usage[] = [
     ],
   },
   {
-    slug: 'location-proche-circuit-du-mans', category: 'passion', priority: true, heroPhoto: '/photos/domaine/02.jpg',
+    slug: 'location-proche-circuit-du-mans', category: 'passion', priority: true, heroPhoto: '/uploads/domaine/02.jpg',
     title: 'Location proche du Circuit des 24 Heures du Mans',
     h1: 'Dormir près du circuit des 24 Heures du Mans',
     intro: "Spectateurs et passionnés : un hébergement de charme idéalement situé pour vivre les 24 Heures du Mans et les grands rendez-vous du circuit.",

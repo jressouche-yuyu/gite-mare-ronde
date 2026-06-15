@@ -2,7 +2,7 @@
 import { booking } from './booking';
 
 const pics = (slug: string, n: number) =>
-  Array.from({ length: n }, (_, i) => `/photos/${slug}/${String(i + 1).padStart(2, '0')}.jpg`);
+  Array.from({ length: n }, (_, i) => `/uploads/${slug}/${String(i + 1).padStart(2, '0')}.jpg`);
 
 export interface V2Gite {
   slug: string;

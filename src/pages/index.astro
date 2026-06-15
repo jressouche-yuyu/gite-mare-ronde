@@ -18,7 +18,7 @@ const faqJsonLd = { '@context': 'https://schema.org', '@type': 'FAQPage',
 <BaseLayout title={`${site.name} — ${site.tagline}`} description={site.description} path="/" jsonld={faqJsonLd}>
   <!-- HERO avec photo réelle -->
   <section class="hero" id="accueil">
-    <div class="hero-photo"><img src="/photos/domaine/01.jpg" alt="Le domaine de la Mare Ronde — ferme rénovée, piscine et jardin à Yvré-l'Évêque" /></div>
+    <div class="hero-photo"><img src="/uploads/domaine/01.jpg" alt="Le domaine de la Mare Ronde — ferme rénovée, piscine et jardin à Yvré-l'Évêque" /></div>
     <div class="wrap">
       <p class="eyebrow">{site.city} · {site.department}</p>
       <h1>Une ferme d'autrefois, cachée dans la verdure.</h1>
@@ -38,7 +38,7 @@ const faqJsonLd = { '@context': 'https://schema.org', '@type': 'FAQPage',
 
   <!-- HISTOIRE -->
   <section id="histoire"><div class="wrap story reveal">
-    <div class="imgwrap"><img class="cover" src="/photos/domaine/02.jpg" alt="Petit-déjeuner au bord de la piscine, face à la ferme rénovée" /></div>
+    <div class="imgwrap"><img class="cover" src="/uploads/domaine/02.jpg" alt="Petit-déjeuner au bord de la piscine, face à la ferme rénovée" /></div>
     <div class="txt">
       <p class="eyebrow">Le lieu</p>
       <h2>Un domaine de caractère, rénové avec âme.</h2>
@@ -53,9 +53,9 @@ const faqJsonLd = { '@context': 'https://schema.org', '@type': 'FAQPage',
   <section class="spaces" id="espaces"><div class="wrap">
     <div class="sec-head reveal"><p class="eyebrow">À vivre</p><h2>Des espaces pensés pour se retrouver.</h2><p>Piscine, tennis et pétanque dehors ; cheminée et grandes tablées dedans.</p></div>
     <div class="cards">
-      <article class="card reveal"><div class="imgwrap"><img class="cover" loading="lazy" src="/photos/domaine/02.jpg" alt="La piscine et le jardin" /></div><div class="body"><h3>La piscine &amp; le jardin</h3><p>Un bassin (avec abri) au cœur d'un vaste jardin clos, court de tennis et terrain de pétanque.</p></div></article>
-      <article class="card reveal"><div class="imgwrap"><img class="cover" loading="lazy" src="/photos/domaine/04.jpg" alt="Salle à manger avec cheminée et poutres" /></div><div class="body"><h3>Les espaces de vie</h3><p>De grandes salles à manger à poutres apparentes et cheminée, pour réunir tout le monde.</p></div></article>
-      <article class="card reveal"><div class="imgwrap"><img class="cover" loading="lazy" src="/photos/domaine/10.jpg" alt="Cuisine de caractère" /></div><div class="body"><h3>Cuisine de caractère</h3><p>Cuisines équipées mêlant pierre, brique et bois, pour cuisiner comme à la maison.</p></div></article>
+      <article class="card reveal"><div class="imgwrap"><img class="cover" loading="lazy" src="/uploads/domaine/02.jpg" alt="La piscine et le jardin" /></div><div class="body"><h3>La piscine &amp; le jardin</h3><p>Un bassin (avec abri) au cœur d'un vaste jardin clos, court de tennis et terrain de pétanque.</p></div></article>
+      <article class="card reveal"><div class="imgwrap"><img class="cover" loading="lazy" src="/uploads/domaine/04.jpg" alt="Salle à manger avec cheminée et poutres" /></div><div class="body"><h3>Les espaces de vie</h3><p>De grandes salles à manger à poutres apparentes et cheminée, pour réunir tout le monde.</p></div></article>
+      <article class="card reveal"><div class="imgwrap"><img class="cover" loading="lazy" src="/uploads/domaine/10.jpg" alt="Cuisine de caractère" /></div><div class="body"><h3>Cuisine de caractère</h3><p>Cuisines équipées mêlant pierre, brique et bois, pour cuisiner comme à la maison.</p></div></article>
     </div>
   </div></section>
 
@@ -90,7 +90,7 @@ const faqJsonLd = { '@context': 'https://schema.org', '@type': 'FAQPage',
     <div class="sec-head reveal"><p class="eyebrow">Galerie</p><h2>Un avant-goût du domaine.</h2></div>
     <div class="pgrid reveal">
       {['01','03','05','07','11','13','17','21'].map((n) => (
-        <div class="imgwrap"><img class="cover" loading="lazy" src={`/photos/domaine/${n}.jpg`} alt="Les Gîtes de la Mare Ronde" /></div>
+        <div class="imgwrap"><img class="cover" loading="lazy" src={`/uploads/domaine/${n}.jpg`} alt="Les Gîtes de la Mare Ronde" /></div>
       ))}
     </div>
     <div style="margin-top:30px"><a href="/galerie/" class="btn btn-dark">Voir toutes les photos</a></div>
@@ -104,7 +104,7 @@ const faqJsonLd = { '@context': 'https://schema.org', '@type': 'FAQPage',
       <p>À {site.city}, aux portes du Mans et à 15 minutes du circuit des 24 Heures, le domaine conjugue le calme de la campagne et l'accès facile aux temps forts de la Sarthe.</p>
       <ul class="dist">{site.distances.map((d) => (<li><span>{d.place}</span><span>{d.time}</span></li>))}</ul>
     </div>
-    <div class="map imgwrap"><img class="cover" src="/photos/domaine/01.jpg" alt="Le domaine de la Mare Ronde à Yvré-l'Évêque" /></div>
+    <div class="map imgwrap"><img class="cover" src="/uploads/domaine/01.jpg" alt="Le domaine de la Mare Ronde à Yvré-l'Évêque" /></div>
   </div></section>
 
   <!-- FAQ -->
