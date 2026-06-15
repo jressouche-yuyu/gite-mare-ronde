@@ -1,0 +1,60 @@
+{
+  "slug": "lescapade-de-la-mare-ronde",
+  "name": "L'Escapade de la Mare Ronde",
+  "type": "Appartement · intime",
+  "capacity": 2,
+  "bedrooms": "1 chambre",
+  "beds": "1 lit double",
+  "baths": "1 salle de bain",
+  "featured": false,
+  "tagline": "Un cocon intime pour 2 personnes",
+  "intro": "Une escapade intime et chaleureuse dans une maison de caractère, pensée pour deux personnes. Tomettes authentiques, poutres apparentes et décoration douce créent une ambiance raffinée et apaisante. Accès au domaine partagé avec son court de tennis et son terrain de pétanque, pour alterner détente et convivialité.",
+  "long": [
+    "L'Escapade de la Mare Ronde est un studio intime et raffiné, pensé pour deux personnes. Tomettes authentiques, poutres apparentes et décoration douce composent un cocon propice à la détente.",
+    "Il offre tout le nécessaire pour un séjour en autonomie : espace nuit cosy, salle d'eau moderne avec douche à l'italienne et cuisine équipée pour vos petits-déjeuners et repas. L'arrivée se fait en toute autonomie grâce à une boîte à clé sécurisée.",
+    "Escapade romantique, séjour ressourçant ou déplacement professionnel : vous profitez aussi du cadre verdoyant du domaine et de ses équipements (court de tennis, terrain de pétanque)."
+  ],
+  "amenities": [
+    "Cuisine équipée",
+    "Wifi",
+    "Télévision",
+    "Stationnement gratuit",
+    "Court de tennis",
+    "Terrain de pétanque",
+    "Arrière-cour privée",
+    "Chauffage",
+    "Cafetière expresso",
+    "Arrivée autonome (boîte à clé)"
+  ],
+  "highlights": [
+    "Studio cosy pour 2 personnes",
+    "Tomettes authentiques et poutres apparentes",
+    "Salle d’eau avec douche à l’italienne",
+    "Cuisine équipée pour vos repas en autonomie",
+    "Arrivée autonome avec boîte à clé sécurisée",
+    "Accès au court de tennis et au terrain de pétanque"
+  ],
+  "faq": [
+    {
+      "q": "Quelle est la capacité ?",
+      "a": "2 personnes : idéal pour une escapade romantique, un séjour ressourçant ou un déplacement professionnel."
+    },
+    {
+      "q": "Comment se passe l'arrivée ?",
+      "a": "Arrivée autonome grâce à une boîte à clé sécurisée."
+    },
+    {
+      "q": "Quels équipements extérieurs ?",
+      "a": "Accès au court de tennis et au terrain de pétanque du domaine partagé."
+    }
+  ],
+  "photos": [
+    "/uploads/escapade/01.jpg",
+    "/uploads/escapade/02.jpg",
+    "/uploads/escapade/03.jpg",
+    "/uploads/escapade/04.jpg",
+    "/uploads/escapade/05.jpg",
+    "/uploads/escapade/06.jpg"
+  ],
+  "airbnb": "https://www.airbnb.fr/rooms/1694091011638103276"
+}

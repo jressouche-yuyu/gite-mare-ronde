@@ -1,0 +1,66 @@
+{
+  "slug": "le-jardin-de-la-mare-ronde",
+  "name": "Le Jardin de la Mare Ronde",
+  "type": "Appartement · 1er étage",
+  "capacity": 4,
+  "bedrooms": "1 chambre",
+  "beds": "2 lits simples modulables + 2 couchages salon",
+  "baths": "1 salle de bain",
+  "featured": false,
+  "tagline": "Charme et sérénité pour 4 personnes",
+  "intro": "Au premier étage d'une propriété de caractère, un appartement confortable pour 4 personnes au cœur d'un environnement calme et verdoyant. Une chambre (deux lits simples modulables en grand lit double), une cuisine équipée avec espace repas et un salon avec deux couchages supplémentaires. Accès au court de tennis, au terrain de pétanque et au stationnement privé.",
+  "long": [
+    "Situé au premier étage d'une propriété de caractère, Le Jardin de la Mare Ronde est un appartement chaleureux qui marie le charme de l'ancien et le confort du moderne : aménagements récents, literie neuve et équipements de qualité.",
+    "Il se compose d'une chambre (deux lits simples de 90×200 modulables en grand lit double), d'un salon offrant deux couchages supplémentaires et d'une cuisine entièrement équipée ouverte sur un espace repas convivial — de quoi accueillir confortablement jusqu'à 4 personnes.",
+    "Vous profitez du calme d'un environnement verdoyant, d'un stationnement privé dans la cour, et de l'accès au court de tennis et au terrain de pétanque du domaine."
+  ],
+  "amenities": [
+    "Cuisine équipée",
+    "Wifi",
+    "Stationnement gratuit",
+    "Court de tennis",
+    "Terrain de pétanque",
+    "Arrière-cour privée",
+    "Chauffage central",
+    "Réfrigérateur",
+    "Micro-ondes",
+    "Cafetière expresso"
+  ],
+  "highlights": [
+    "Appartement au 1er étage d’une propriété de caractère",
+    "1 chambre (2 lits simples modulables en lit double)",
+    "Salon avec 2 couchages supplémentaires",
+    "Cuisine équipée ouverte sur l’espace repas",
+    "Accès au court de tennis et au terrain de pétanque",
+    "Stationnement privé dans la cour"
+  ],
+  "faq": [
+    {
+      "q": "Quelle est la capacité ?",
+      "a": "Jusqu'à 4 personnes : une chambre (2 lits simples modulables en grand lit double) et un salon avec 2 couchages."
+    },
+    {
+      "q": "Y a-t-il un parking ?",
+      "a": "Oui, un stationnement privé est disponible dans la cour de la propriété."
+    },
+    {
+      "q": "A-t-on accès aux équipements du domaine ?",
+      "a": "Oui, accès au court de tennis et au terrain de pétanque partagés."
+    }
+  ],
+  "photos": [
+    "/uploads/jardin/01.jpg",
+    "/uploads/jardin/02.jpg",
+    "/uploads/jardin/03.jpg",
+    "/uploads/jardin/04.jpg",
+    "/uploads/jardin/05.jpg",
+    "/uploads/jardin/06.jpg",
+    "/uploads/jardin/07.jpg",
+    "/uploads/jardin/08.jpg",
+    "/uploads/jardin/09.jpg",
+    "/uploads/jardin/10.jpg",
+    "/uploads/jardin/11.jpg",
+    "/uploads/jardin/12.jpg"
+  ],
+  "airbnb": "https://www.airbnb.fr/rooms/1670469102359046485"
+}
