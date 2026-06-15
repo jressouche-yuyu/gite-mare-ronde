@@ -4,33 +4,35 @@ import '../styles/v3.css';
 import { site } from '../data/site';
 import { booking } from '../data/booking';
 import { withBase } from '../lib/url';
-import VersionSwitch from '../components/VersionSwitch.astro';
 
 interface Props {
   title: string;
   description: string;
-  /** chemin relatif (ex: "/v3/nos-gites/") pour l'URL canonique */
+  /** chemin relatif (ex: "/nos-gites/") pour l'URL canonique */
   path?: string;
   /** image de partage (Open Graph) */
   ogImage?: string;
   /** JSON-LD additionnel (objet ou tableau) */
   jsonld?: unknown;
-  /** SEO : masquer des moteurs (preview = true par défaut) */
+  /** SEO : masquer des moteurs (false = indexable par défaut, site en production) */
   noindex?: boolean;
   /** En-tête transparent par-dessus un grand visuel sombre (accueil). Sinon en-tête plein (toujours lisible). */
   heroHeader?: boolean;
 }
-const { title, description, path = '', ogImage, jsonld, noindex = true, heroHeader = false } = Astro.props;
+const { title, description, path = '', ogImage, jsonld, noindex = false, heroHeader = false } = Astro.props;
 const baseNoSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
-const canonical = new URL(baseNoSlash + path, site.domain).href;
-const ogImageUrl = new URL(baseNoSlash + (ogImage || '/logo.png'), site.domain).href;
+// Origine = `site` d'astro.config (source unique). Le jour de la connexion du domaine OVH :
+// modifier `site` (+ base:'/') dans astro.config.mjs → canonical, OG et sitemap suivent automatiquement.
+const origin = Astro.site ?? new URL(site.domain);
+const canonical = new URL(baseNoSlash + path, origin).href;
+const ogImageUrl = new URL(baseNoSlash + (ogImage || '/logo.png'), origin).href;
 
 const nav = [
-  { href: '/v3/', label: 'Accueil' },
-  { href: '/v3/le-gite/', label: 'Le domaine' },
-  { href: '/v3/nos-gites/', label: 'Nos Gîtes' },
-  { href: '/v3/sejour/', label: 'Séjours' },
-  { href: '/v3/contact/', label: 'Contact' },
+  { href: '/', label: 'Accueil' },
+  { href: '/le-gite/', label: 'Le domaine' },
+  { href: '/nos-gites/', label: 'Nos Gîtes' },
+  { href: '/sejour/', label: 'Séjours' },
+  { href: '/contact/', label: 'Contact' },
 ];
 
 // JSON-LD établissement présent sur toutes les pages (richesse SEO/GEO héritée de la V1)
@@ -39,7 +41,7 @@ const lodging = {
   '@type': 'LodgingBusiness',
   name: site.name,
   description: site.description,
-  url: site.domain,
+  url: new URL(baseNoSlash + '/', origin).href,
   email: site.email,
   address: {
     '@type': 'PostalAddress',
@@ -87,7 +89,7 @@ const lodging = {
 <body class="v2 v3">
   <header class:list={["v-header", { "solid": !heroHeader, "solid-locked": !heroHeader }]} id="v-header">
     <div class="bar">
-      <a href={withBase('/v3/')} class="v-logo">
+      <a href={withBase('/')} class="v-logo">
         <img src={withBase('/logo-160.png')} alt="Logo La Mare Ronde" width="44" height="44" />
         <span class="t">La Mare Ronde<small>Gîtes de caractère</small></span>
       </a>
@@ -116,38 +118,35 @@ const lodging = {
         <div>
           <h4>Découvrir</h4>
           <ul>
-            <li><a href={withBase('/v3/le-gite/')}>Le domaine</a></li>
-            <li><a href={withBase('/v3/nos-gites/')}>Nos gîtes</a></li>
-            <li><a href={withBase('/v3/galerie/')}>Galerie photos</a></li>
-            <li><a href={withBase('/v3/prix/')}>Prix &amp; disponibilités</a></li>
+            <li><a href={withBase('/le-gite/')}>Le domaine</a></li>
+            <li><a href={withBase('/nos-gites/')}>Nos gîtes</a></li>
+            <li><a href={withBase('/galerie/')}>Galerie photos</a></li>
+            <li><a href={withBase('/prix/')}>Prix &amp; disponibilités</a></li>
           </ul>
         </div>
         <div>
           <h4>Séjourner</h4>
           <ul>
-            <li><a href={withBase('/v3/sejour/')}>Séjours &amp; événements</a></li>
-            <li><a href={withBase('/v3/capacite/')}>Par capacité</a></li>
-            <li><a href={withBase('/v3/location/')}>Par localisation</a></li>
-            <li><a href={withBase('/v3/faq/')}>Questions fréquentes</a></li>
+            <li><a href={withBase('/sejour/')}>Séjours &amp; événements</a></li>
+            <li><a href={withBase('/capacite/')}>Par capacité</a></li>
+            <li><a href={withBase('/location/')}>Par localisation</a></li>
+            <li><a href={withBase('/faq/')}>Questions fréquentes</a></li>
           </ul>
         </div>
         <div>
           <h4>La Mare Ronde</h4>
           <ul>
-            <li><a href={withBase('/v3/qui-sommes-nous/')}>Qui sommes-nous</a></li>
-            <li><a href={withBase('/v3/acces/')}>Accès &amp; itinéraire</a></li>
-            <li><a href={withBase('/v3/contact/')}>Contact</a></li>
-            <li><a href={withBase('/v3/mentions-legales/')}>Mentions légales</a></li>
-            <li><a href={withBase('/v3/confidentialite/')}>Confidentialité</a></li>
+            <li><a href={withBase('/qui-sommes-nous/')}>Qui sommes-nous</a></li>
+            <li><a href={withBase('/acces/')}>Accès &amp; itinéraire</a></li>
+            <li><a href={withBase('/contact/')}>Contact</a></li>
+            <li><a href={withBase('/mentions-legales/')}>Mentions légales</a></li>
+            <li><a href={withBase('/confidentialite/')}>Confidentialité</a></li>
           </ul>
         </div>
       </div>
-      <div class="v-fbot">© 2026 La Mare Ronde · {site.city} (72) · Aperçu V3</div>
+      <div class="v-fbot">© 2026 La Mare Ronde · {site.city} (72)</div>
     </div>
   </footer>
-
-  <!-- Bascule de version -->
-  <VersionSwitch active="3" />
 
   <script>
     const h = document.getElementById('v-header');

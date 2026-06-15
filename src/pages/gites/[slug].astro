@@ -1,14 +1,14 @@
 ---
-import V3Layout from '../../../layouts/V3Layout.astro';
-import { listings } from '../../../data/listings';
-import { site } from '../../../data/site';
-import { withBase } from '../../../lib/url';
+import V3Layout from '../../layouts/V3Layout.astro';
+import { listings } from '../../data/listings';
+import { site } from '../../data/site';
+import { withBase } from '../../lib/url';
 
 export function getStaticPaths() {
   return listings.map((l) => ({ params: { slug: l.slug }, props: { l } }));
 }
 const { l } = Astro.props;
-const path = `/v3/gites/${l.slug}/`;
+const path = `/gites/${l.slug}/`;
 const baseNoSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
 const gallery = l.photos.slice(1, 13);
 
@@ -41,7 +41,7 @@ const jsonld = [
 
   <section class="v-sec"><div class="v-wrap v-detail">
     <div class="v-prose v-reveal">
-      <p class="v-crumb"><a href={withBase('/v3/nos-gites/')}>Nos gîtes</a> · {l.name}</p>
+      <p class="v-crumb"><a href={withBase('/nos-gites/')}>Nos gîtes</a> · {l.name}</p>
       <p class="v-eyebrow">{l.type}</p>
       <h1 style="font-size:clamp(2rem,4vw,2.8rem);margin:8px 0 6px">{l.name}</h1>
       <p style="font-style:italic;color:var(--v-terra);font-size:1.15rem;margin-bottom:20px">{l.tagline}</p>
@@ -59,7 +59,7 @@ const jsonld = [
         <p class="v-eyebrow">Réservation</p>
         <p class="price">{specBits}</p>
         <a href={l.airbnb} target="_blank" rel="noopener" class="v-btn v-btn-book">Réserver sur Airbnb</a>
-        <a href={withBase('/v3/contact/')} class="v-btn v-btn-dark" style="margin-top:10px">Demander un devis</a>
+        <a href={withBase('/contact/')} class="v-btn v-btn-dark" style="margin-top:10px">Demander un devis</a>
         <p class="note">Disponibilités et prix en temps réel sur Airbnb.</p>
       </div>
     </aside>

@@ -9,7 +9,7 @@ const { items } = Astro.props;
 <div class:list={["v-gites", "adapted", { solo: items.length === 1 }]}>
   {items.map((l) => (
     <article class:list={["v-gcard", "v-reveal", { featured: l.featured }]}>
-      <a href={withBase(`/v3/gites/${l.slug}/`)} class="ph"><img src={withBase(l.photos[0])} alt={l.name} loading="lazy" /></a>
+      <a href={withBase(`/gites/${l.slug}/`)} class="ph"><img src={withBase(l.photos[0])} alt={l.name} loading="lazy" /></a>
       <div class="hd"><span class="tag">{l.type}</span>{l.name}</div>
       <div class="bd">
         <p class="tagline">{l.tagline}</p>
@@ -19,7 +19,7 @@ const { items } = Astro.props;
           {l.baths && <span>🛁 {l.baths}</span>}
         </div>
         <div class="links">
-          <a href={withBase(`/v3/gites/${l.slug}/`)} class="v-btn v-btn-dark" style="padding:10px 16px">Découvrir</a>
+          <a href={withBase(`/gites/${l.slug}/`)} class="v-btn v-btn-dark" style="padding:10px 16px">Découvrir</a>
           <a href={l.airbnb} target="_blank" rel="noopener" class="v-btn v-btn-book" style="padding:10px 16px">Réserver</a>
         </div>
       </div>

@@ -1,64 +1,62 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import V3Layout from '../../layouts/V3Layout.astro';
 import { usages } from '../../data/usages';
 import { listings } from '../../data/listings';
 import { site } from '../../data/site';
+import { withBase } from '../../lib/url';
 
 export function getStaticPaths() {
   return usages.map((u) => ({ params: { slug: u.slug }, props: { u } }));
 }
 const { u } = Astro.props;
 const path = `/sejour/${u.slug}/`;
-const title = `${u.title} — ${site.shortName}`;
+const title = `${u.title} — Yvré-l’Évêque (72)`;
 const description = u.intro.slice(0, 155);
-const heroStyle = `background-image:linear-gradient(rgba(28,30,24,.62),rgba(28,30,24,.82)),url(${u.heroPhoto});background-size:cover;background-position:center`;
 const faqJsonLd = {
   '@context': 'https://schema.org', '@type': 'FAQPage',
   mainEntity: u.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
 };
 ---
-<BaseLayout title={title} description={description} path={path} jsonld={faqJsonLd}>
-  <section class="page-hero" style={heroStyle}>
-    <div class="wrap">
-      <p class="breadcrumb"><a href="/">Accueil</a> › <a href="/sejour/">Séjours</a> › {u.h1}</p>
-      <p class="eyebrow">Séjour sur mesure</p>
-      <h1>{u.h1}</h1>
-      <p>{u.intro}</p>
-      <div style="margin-top:26px;display:flex;gap:12px;flex-wrap:wrap">
-        <a href="/hebergements/" class="btn btn-primary">Voir les hébergements</a>
-        <a href="/contact/" class="btn btn-ghost">Demander un devis</a>
-      </div>
-    </div>
-  </section>
+<V3Layout title={title} description={description} path={path} ogImage={u.heroPhoto} jsonld={faqJsonLd}>
+  <div class="v-band"><img src={withBase(u.heroPhoto)} alt={u.h1} /></div>
 
-  <section><div class="wrap" style="display:grid;grid-template-columns:1.5fr .8fr;gap:54px;align-items:start">
-    <div class="prose reveal">
-      <h2>{u.h1}</h2>
+  <section class="v-sec"><div class="v-wrap v-detail">
+    <div class="v-prose v-reveal">
+      <p class="v-crumb"><a href={withBase('/sejour/')}>Séjours</a> · {u.h1}</p>
+      <p class="v-eyebrow">Séjour sur mesure</p>
+      <h1 style="font-size:clamp(2rem,4vw,2.8rem);margin:8px 0 14px">{u.h1}</h1>
+      <p style="font-style:italic;color:var(--v-terra);font-size:1.15rem">{u.intro}</p>
       {u.body.map((p) => <p>{p}</p>)}
     </div>
-    <aside class="reveal">
-      <div class="infobox sticky">
-        <p class="eyebrow">L'essentiel</p>
-        <ul class="amen-grid" style="grid-template-columns:1fr;margin-top:8px">
-          {u.bullets.map((b) => <li>{b}</li>)}
-        </ul>
-        <a href="/hebergements/" class="btn btn-primary" style="width:100%;text-align:center;margin-top:16px">Voir les hébergements</a>
+    <aside class="v-reveal">
+      <div class="v-book">
+        <p class="v-eyebrow">L’essentiel</p>
+        <ul class="v-hlist" style="margin-top:12px">{u.bullets.map((b) => <li>{b}</li>)}</ul>
+        <a href={withBase('/contact/')} class="v-btn v-btn-book" style="margin-top:18px">Demander un devis</a>
+        <a href={withBase('/nos-gites/')} class="v-btn v-btn-dark" style="margin-top:10px">Voir les hébergements</a>
       </div>
     </aside>
   </div></section>
 
   <!-- HÉBERGEMENTS -->
-  <section class="spaces"><div class="wrap">
-    <div class="sec-head reveal"><p class="eyebrow">Nos hébergements</p><h2>Choisissez votre formule.</h2></div>
-    <div class="cards">
+  <section class="v-sec alt"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">Nos hébergements</p><h2>Choisissez votre formule</h2><div class="v-rule"></div></div>
+    <div class="v-gites">
       {listings.map((l) => (
-        <article class="card reveal">
-          <a href={`/hebergements/${l.slug}/`} class="imgwrap" style="display:block"><img class="cover" loading="lazy" src={l.photos[0]} alt={l.name} /></a>
-          <div class="body">
-            <p class="eyebrow" style="font-size:.64rem">{l.type}</p>
-            <h3 style="margin-top:6px">{l.name}</h3>
-            <p>{l.tagline}</p>
-            <a href={`/hebergements/${l.slug}/`} class="btn btn-dark" style="margin-top:12px;padding:11px 18px">Découvrir</a>
+        <article class={`v-gcard v-reveal${l.featured ? ' featured' : ''}`}>
+          <a href={withBase(`/gites/${l.slug}/`)} class="ph"><img src={withBase(l.photos[0])} alt={l.name} loading="lazy" /></a>
+          <div class="hd"><span class="tag">{l.type}</span>{l.name}</div>
+          <div class="bd">
+            <p class="tagline">{l.tagline}</p>
+            <div class="v-specs">
+              <span>👥 {l.capacity} pers.</span>
+              {l.bedrooms && <span>🛏 {l.bedrooms}</span>}
+              {l.baths && <span>🛁 {l.baths}</span>}
+            </div>
+            <div class="links">
+              <a href={withBase(`/gites/${l.slug}/`)} class="v-btn v-btn-dark" style="padding:10px 16px">Découvrir</a>
+              <a href={l.airbnb} target="_blank" rel="noopener" class="v-btn v-btn-book" style="padding:10px 16px">Réserver</a>
+            </div>
           </div>
         </article>
       ))}
@@ -66,17 +64,16 @@ const faqJsonLd = {
   </div></section>
 
   <!-- FAQ -->
-  <section class="faq"><div class="wrap">
-    <div class="sec-head reveal" style="margin-bottom:24px"><p class="eyebrow">Questions fréquentes</p><h2>Bon à savoir</h2></div>
-    <div class="reveal" style="max-width:860px">
-      {u.faq.map((f, i) => (<details open={i === 0}><summary>{f.q}</summary><p class="ans">{f.a}</p></details>))}
+  <section class="v-sec"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">Questions fréquentes</p><h2>Bon à savoir</h2><div class="v-rule"></div></div>
+    <div class="v-faq v-reveal">
+      {u.faq.map((f) => (<details><summary>{f.q}</summary><div class="ans">{f.a}</div></details>))}
     </div>
   </div></section>
 
-  <section class="cta"><div class="wrap reveal">
-    <p class="eyebrow">Votre événement</p>
-    <h2>Organisons-le ensemble.</h2>
+  <section class="v-sec v-cta"><div class="v-wrap v-reveal">
+    <h2>Organisons-le ensemble</h2>
     <p>Parlez-nous de votre projet : nous vous répondons rapidement.</p>
-    <a href="/contact/" class="btn btn-primary">Demander un devis</a>
+    <a href={withBase('/contact/')} class="v-btn v-btn-ghost" style="border-color:rgba(255,255,255,.7)">Demander un devis</a>
   </div></section>
-</BaseLayout>
+</V3Layout>

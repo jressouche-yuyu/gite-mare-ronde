@@ -1,83 +1,75 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import V3Layout from '../layouts/V3Layout.astro';
 import { site } from '../data/site';
 import { booking } from '../data/booking';
 import { listings } from '../data/listings';
+import { withBase } from '../lib/url';
+import home from '../content/home/home.json';
 
-const faq = [
-  { q: 'Où se situe le Gîte de la Mare Ronde ?', a: `Le domaine se trouve à ${site.city}, dans la ${site.department} (72), à environ 10 minutes du Mans et 15 minutes du circuit des 24 Heures.` },
-  { q: 'Combien de personnes le domaine peut-il accueillir ?', a: `Le domaine entier réunit 3 gîtes et accueille jusqu'à ${site.capacityMax} personnes (${site.bedrooms} chambres, ${site.beds} couchages, ${site.baths} salles de bain). Les appartements se louent aussi séparément (2 et 4 personnes).` },
-  { q: 'Y a-t-il une piscine et un terrain de tennis ?', a: 'Oui. Le domaine dispose d\'une piscine, d\'un court de tennis et d\'un terrain de pétanque privatifs, ainsi que d\'un vaste jardin clos.' },
-  { q: 'Peut-on organiser un mariage ou un événement de famille ?', a: 'Oui, la grande capacité et le cadre du domaine se prêtent aux mariages, anniversaires et réunions de famille (formule événement sur devis).' },
-  { q: 'Le gîte est-il proche du circuit des 24 Heures du Mans ?', a: 'Oui, le domaine est à seulement 15 minutes du circuit des 24 Heures du Mans.' },
-  { q: 'Comment réserver ?', a: 'La réservation et les prix en temps réel se font sur Airbnb. Pour un événement, contactez-nous pour un devis.' },
-];
-const faqJsonLd = { '@context': 'https://schema.org', '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+const seo = (home as any).seo ?? {};
+const { hero, domaine, spaces, region, reviewsSection, faqSection, cta } = home as any;
+const paras = (s: string) => String(s || '').split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
+const faqJsonLd = {
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: (faqSection.items || []).map((f: any) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
 ---
-<BaseLayout title={`${site.name} — ${site.tagline}`} description={site.description} path="/" jsonld={faqJsonLd}>
-  <!-- HERO avec photo réelle -->
-  <section class="hero" id="accueil">
-    <div class="hero-photo"><img src="/uploads/domaine/01.jpg" alt="Le domaine de la Mare Ronde — ferme rénovée, piscine et jardin à Yvré-l'Évêque" /></div>
-    <div class="wrap">
-      <p class="eyebrow">{site.city} · {site.department}</p>
-      <h1>Une ferme d'autrefois, cachée dans la verdure.</h1>
-      <p class="lede">Trois gîtes de charme, une piscine, un court de tennis et un vaste jardin — à deux pas du Mans et à 15 min du circuit des 24 Heures. Pour les familles, les groupes et les grandes occasions.</p>
+<V3Layout
+  title={seo.metaTitle || site.name}
+  description={seo.metaDescription || site.description}
+  path="/"
+  ogImage={hero?.image?.src || '/uploads/domaine/01.jpg'}
+  noindex={seo.noindex}
+  jsonld={faqJsonLd}
+  heroHeader
+>
+  <!-- HERO -->
+  <section class="v-hero">
+    <div class="photo"><img src={withBase(hero.image?.src)} alt={hero.image?.alt || ''} /></div>
+    <div class="v-wrap">
+      <p class="v-eyebrow">{hero.eyebrow}</p>
+      <h1>{hero.title}</h1>
+      <div class="v-rule"></div>
+      <p class="lede">{hero.lede}</p>
       <div class="actions">
-        <a href="/hebergements/" class="btn btn-primary">Voir les hébergements</a>
-        <a href={booking.primary} target="_blank" rel="noopener" class="btn btn-ghost">Réserver sur Airbnb</a>
+        <a href={withBase('/nos-gites/')} class="v-btn v-btn-primary">{hero.ctaPrimaryLabel}</a>
+        <a href={booking.primary} target="_blank" rel="noopener" class="v-btn v-btn-ghost">{hero.ctaSecondaryLabel}</a>
       </div>
     </div>
-    <div class="scroll-hint">Défiler</div>
   </section>
 
-  <!-- STRIP -->
-  <div class="strip"><div class="wrap">
-    {site.highlights.map((h) => (<div class="it"><div class="n" set:html={h.n}></div><div class="l">{h.l}</div></div>))}
-  </div></div>
-
-  <!-- HISTOIRE -->
-  <section id="histoire"><div class="wrap story reveal">
-    <div class="imgwrap"><img class="cover" src="/uploads/domaine/02.jpg" alt="Petit-déjeuner au bord de la piscine, face à la ferme rénovée" /></div>
-    <div class="txt">
-      <p class="eyebrow">Le lieu</p>
-      <h2>Un domaine de caractère, rénové avec âme.</h2>
-      <div class="rule"></div>
-      <p>Dissimulés derrière les arbres, à {site.city}, Les Gîtes de la Mare Ronde réunissent trois logements élégants au sein d'une authentique propriété de caractère : pierre, poutres, tomettes et grands volumes.</p>
-      <p>On s'y réveille au calme, on partage de longues tablées, on profite de la piscine et du jardin — loin de l'agitation, mais à quelques minutes du Mans.</p>
-      <a href="/hebergements/" class="btn btn-dark" style="margin-top:14px">Découvrir les 3 gîtes</a>
+  <!-- NOTRE DOMAINE -->
+  <section class="v-sec"><div class="v-wrap v-story v-reveal">
+    <div class="imgs">
+      <img src={withBase(domaine.image1?.src)} alt={domaine.image1?.alt || ''} />
+      <img src={withBase(domaine.image2?.src)} alt={domaine.image2?.alt || ''} />
+    </div>
+    <div>
+      <p class="v-eyebrow">{domaine.eyebrow}</p>
+      <h2>{domaine.heading}</h2>
+      {paras(domaine.body).map((p) => <p>{p}</p>)}
+      <a href={withBase('/nos-gites/')} class="v-btn v-btn-dark" style="margin-top:8px">Découvrir les 3 gîtes</a>
     </div>
   </div></section>
 
-  <!-- ESPACES (photos réelles vérifiées) -->
-  <section class="spaces" id="espaces"><div class="wrap">
-    <div class="sec-head reveal"><p class="eyebrow">À vivre</p><h2>Des espaces pensés pour se retrouver.</h2><p>Piscine, tennis et pétanque dehors ; cheminée et grandes tablées dedans.</p></div>
-    <div class="cards">
-      <article class="card reveal"><div class="imgwrap"><img class="cover" loading="lazy" src="/uploads/domaine/02.jpg" alt="La piscine et le jardin" /></div><div class="body"><h3>La piscine &amp; le jardin</h3><p>Un bassin (avec abri) au cœur d'un vaste jardin clos, court de tennis et terrain de pétanque.</p></div></article>
-      <article class="card reveal"><div class="imgwrap"><img class="cover" loading="lazy" src="/uploads/domaine/04.jpg" alt="Salle à manger avec cheminée et poutres" /></div><div class="body"><h3>Les espaces de vie</h3><p>De grandes salles à manger à poutres apparentes et cheminée, pour réunir tout le monde.</p></div></article>
-      <article class="card reveal"><div class="imgwrap"><img class="cover" loading="lazy" src="/uploads/domaine/10.jpg" alt="Cuisine de caractère" /></div><div class="body"><h3>Cuisine de caractère</h3><p>Cuisines équipées mêlant pierre, brique et bois, pour cuisiner comme à la maison.</p></div></article>
-    </div>
-  </div></section>
-
-  <!-- HÉBERGEMENTS -->
-  <section id="hebergements"><div class="wrap">
-    <div class="sec-head reveal"><p class="eyebrow">Nos hébergements</p><h2>Trois gîtes, un même domaine.</h2><p>Le domaine entier pour vos grandes occasions, ou un appartement pour une escapade intime.</p></div>
-    <div class="cards">
+  <!-- 3 GÎTES (cartes enrichies V1) -->
+  <section class="v-sec alt"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">Nos hébergements</p><h2>Trois gîtes, un même domaine</h2><div class="v-rule"></div><p>Le domaine entier pour vos grandes occasions, ou un appartement pour une escapade intime.</p></div>
+    <div class="v-gites">
       {listings.map((l) => (
-        <article class="card reveal">
-          <a href={`/hebergements/${l.slug}/`} class="imgwrap" style="display:block"><img class="cover" loading="lazy" src={l.photos[0]} alt={l.name} /></a>
-          <div class="body">
-            <p class="eyebrow" style="font-size:.64rem">{l.type}</p>
-            <h3 style="margin-top:6px">{l.name}</h3>
-            <p>{l.tagline}</p>
-            <div class="specs dark" style="margin:14px 0 4px">
-              <span>👥 {l.capacity}</span>
+        <article class={`v-gcard v-reveal${l.featured ? ' featured' : ''}`}>
+          <a href={withBase(`/gites/${l.slug}/`)} class="ph"><img src={withBase(l.photos[0])} alt={l.name} loading="lazy" /></a>
+          <div class="hd"><span class="tag">{l.type}</span>{l.name}</div>
+          <div class="bd">
+            <p class="tagline">{l.tagline}</p>
+            <div class="v-specs">
+              <span>👥 {l.capacity} pers.</span>
               {l.bedrooms && <span>🛏 {l.bedrooms}</span>}
               {l.baths && <span>🛁 {l.baths}</span>}
             </div>
-            <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
-              <a href={`/hebergements/${l.slug}/`} class="btn btn-dark" style="padding:11px 18px">Découvrir</a>
-              <a href={l.airbnb} target="_blank" rel="noopener" class="btn btn-book" style="padding:11px 18px">Réserver</a>
+            <div class="links">
+              <a href={withBase(`/gites/${l.slug}/`)} class="v-btn v-btn-dark" style="padding:10px 16px">Découvrir</a>
+              <a href={l.airbnb} target="_blank" rel="noopener" class="v-btn v-btn-book" style="padding:10px 16px">Réserver</a>
             </div>
           </div>
         </article>
@@ -85,42 +77,62 @@ const faqJsonLd = { '@context': 'https://schema.org', '@type': 'FAQPage',
     </div>
   </div></section>
 
-  <!-- GALERIE -->
-  <section class="spaces" id="galerie"><div class="wrap">
-    <div class="sec-head reveal"><p class="eyebrow">Galerie</p><h2>Un avant-goût du domaine.</h2></div>
-    <div class="pgrid reveal">
-      {['01','03','05','07','11','13','17','21'].map((n) => (
-        <div class="imgwrap"><img class="cover" loading="lazy" src={`/uploads/domaine/${n}.jpg`} alt="Les Gîtes de la Mare Ronde" /></div>
+  <!-- À VIVRE -->
+  <section class="v-sec"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">À vivre</p><h2>{spaces.heading}</h2><div class="v-rule"></div><p>{spaces.intro}</p></div>
+    <div class="v-spaces v-reveal">
+      {spaces.cards.map((c: any) => (
+        <article class="sp">
+          <div class="ph"><img src={withBase(c.image?.src)} alt={c.image?.alt || ''} loading="lazy" /></div>
+          <div class="bd"><h3>{c.title}</h3><p>{c.text}</p></div>
+        </article>
       ))}
     </div>
-    <div style="margin-top:30px"><a href="/galerie/" class="btn btn-dark">Voir toutes les photos</a></div>
+    <div class="v-amenrow v-reveal">
+      {spaces.equipment.map((e: any) => (<span class="chip"><span class="em">{e.icon}</span>{e.name}</span>))}
+    </div>
   </div></section>
 
-  <!-- SITUATION -->
-  <section class="loc" id="lieu"><div class="wrap grid">
-    <div class="reveal">
-      <p class="eyebrow">Situation</p>
-      <h2>Au vert, et tout près du circuit.</h2>
-      <p>À {site.city}, aux portes du Mans et à 15 minutes du circuit des 24 Heures, le domaine conjugue le calme de la campagne et l'accès facile aux temps forts de la Sarthe.</p>
-      <ul class="dist">{site.distances.map((d) => (<li><span>{d.place}</span><span>{d.time}</span></li>))}</ul>
+  <!-- BANDEAU -->
+  <div class="v-band"><img src={withBase('/uploads/domaine/02.jpg')} alt="Le bord de la piscine au soleil, face à la ferme" /></div>
+
+  <!-- RÉGION -->
+  <section class="v-sec alt"><div class="v-wrap v-2col v-reveal">
+    <iframe class="v-mapframe" loading="lazy" title="Carte — Yvré-l'Évêque" src="https://www.google.com/maps?q=Yvr%C3%A9-l%27%C3%89v%C3%AAque%2C%20Sarthe&output=embed"></iframe>
+    <div>
+      <p class="v-eyebrow">{region.eyebrow}</p>
+      <h2>{region.heading}</h2>
+      {paras(region.body).map((p) => <p set:html={p.replace(/circuit des 24 Heures du Mans/i, '<strong>circuit des 24 Heures du Mans</strong>')} />)}
     </div>
-    <div class="map imgwrap"><img class="cover" src="/uploads/domaine/01.jpg" alt="Le domaine de la Mare Ronde à Yvré-l'Évêque" /></div>
+  </div></section>
+
+  <!-- TÉMOIGNAGES -->
+  <section class="v-sec"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">Ils ont séjourné chez nous</p><h2>{reviewsSection.heading}</h2><div class="v-rule"></div></div>
+    <div class="v-revs v-reveal">
+      {reviewsSection.items.map((r: any) => (
+        <div class="v-rev"><div class="stars">{'★'.repeat(r.stars || 5)}</div><p>« {r.text} »</p><div class="who">{r.who} · {r.via}</div></div>
+      ))}
+    </div>
   </div></section>
 
   <!-- FAQ -->
-  <section class="faq" id="faq"><div class="wrap">
-    <div class="sec-head reveal" style="margin-bottom:30px"><p class="eyebrow">Questions fréquentes</p><h2>Tout savoir avant de réserver.</h2></div>
-    <div class="reveal">{faq.map((f, i) => (<details open={i === 0}><summary>{f.q}</summary><p class="ans">{f.a}</p></details>))}</div>
+  <section class="v-sec alt"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">Bon à savoir</p><h2>{faqSection.heading}</h2><div class="v-rule"></div></div>
+    <div class="v-faq v-reveal">
+      {faqSection.items.map((f: any) => (
+        <details><summary>{f.q}</summary><div class="ans">{f.a}</div></details>
+      ))}
+    </div>
   </div></section>
 
   <!-- CTA -->
-  <section class="cta" id="reserver"><div class="wrap reveal">
-    <p class="eyebrow">Votre séjour</p>
-    <h2>Réservez votre parenthèse à la campagne.</h2>
-    <p>Disponibilités et prix en temps réel sur Airbnb. Pour un mariage ou un événement, demandez un devis.</p>
-    <div class="actions" style="justify-content:center;display:flex;gap:14px;flex-wrap:wrap">
-      <a href={booking.primary} target="_blank" rel="noopener" class="btn btn-book">Réserver sur Airbnb</a>
-      <a href="/contact/" class="btn btn-ghost">Demander un devis</a>
+  <section class="v-sec v-cta"><div class="v-wrap v-reveal">
+    <h2>{cta.heading}</h2>
+    <p>{cta.text}</p>
+    <div class="actions" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <a href={booking.primary} target="_blank" rel="noopener" class="v-btn v-btn-book">Réserver sur Airbnb</a>
+      <a href={withBase('/contact/')} class="v-btn v-btn-ghost" style="border-color:rgba(255,255,255,.7)">Nous contacter</a>
     </div>
   </div></section>
-</BaseLayout>
+</V3Layout>

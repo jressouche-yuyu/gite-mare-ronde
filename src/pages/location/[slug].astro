@@ -1,52 +1,72 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import V3Layout from '../../layouts/V3Layout.astro';
 import { locations } from '../../data/locations';
+import { listings } from '../../data/listings';
 import { site } from '../../data/site';
+import { locationEditorial } from '../../data/seoContent';
+import GiteCards from '../../components/GiteCards.astro';
+import { withBase } from '../../lib/url';
 
 export function getStaticPaths() {
   return locations.map((l) => ({ params: { slug: l.slug }, props: { l } }));
 }
 const { l } = Astro.props;
 const path = `/location/${l.slug}/`;
-const title = `${l.title} — ${site.shortName}`;
+// Title précis et local : on garde l'intitulé géographique et on ajoute un repère concret,
+// sans dupliquer la marque quand l'intitulé la contient déjà.
+const hasBrand = /Mare Ronde/.test(l.title);
+const title = hasBrand ? `${l.title} — piscine, tennis & grand parc` : `${l.title} — piscine, tennis & parc | La Mare Ronde`;
 const description = `${l.intro}`.slice(0, 155);
+const edito = locationEditorial(l.place, Boolean(l.isHub));
+const faqJsonLd = {
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: edito.more.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
 ---
-<BaseLayout title={title} description={description} path={path}>
-  <section class="page-hero" style="background-image:linear-gradient(rgba(28,30,24,.6),rgba(28,30,24,.8)),url(/uploads/domaine/01.jpg);background-size:cover;background-position:center">
-    <div class="wrap">
-      <p class="breadcrumb"><a href="/">Accueil</a> › Situation › {l.place}</p>
-      <p class="eyebrow">{l.place} · {site.department}</p>
-      <h1>{l.h1}</h1>
-      <p>{l.intro}</p>
-      <div style="margin-top:28px"><a href="/hebergements/" class="btn btn-primary">Voir les hébergements</a></div>
-    </div>
-  </section>
+<V3Layout title={title} description={description} path={path} ogImage="/uploads/domaine/01.jpg" jsonld={faqJsonLd}>
+  <div class="v-band"><img src={withBase('/uploads/domaine/01.jpg')} alt={l.h1} /></div>
 
-  <section><div class="wrap prose reveal">
-    <h2>{l.h1}</h2>
-    <p>Idéalement situé près de {l.place}, le Gîte de la Mare Ronde est une ancienne ferme rénovée à {site.city}, dans la {site.department}. Vous y trouverez une piscine, un terrain de tennis et un grand parc arboré, dans un cadre nature à deux pas du Mans.</p>
-    <ul>
+  <section class="v-sec"><div class="v-wrap v-prose v-reveal">
+    <p class="v-crumb"><a href={withBase('/location/')}>Localisation</a> · {l.place}</p>
+    <p class="v-eyebrow">{l.place} · {site.department}</p>
+    <h1 style="font-size:clamp(2rem,4vw,2.8rem);margin:8px 0 14px">{l.h1}</h1>
+    <p style="font-style:italic;color:var(--v-terra);font-size:1.15rem">{l.intro}</p>
+    {edito.lead.map((p) => <p>{p}</p>)}
+    <ul class="v-hlist">
       <li>Hébergement de charme au calme de la campagne</li>
-      <li>Piscine, tennis et grand parc privatifs</li>
+      <li>Piscine, court de tennis et grand parc clos privatifs</li>
       <li>Accès facile au Mans, au circuit et à la Sarthe</li>
     </ul>
-    <p><em>Distances précises depuis {l.place} : à compléter.</em></p>
   </div></section>
 
-  <section class="loc"><div class="wrap grid">
-    <div class="reveal">
-      <p class="eyebrow">Aux alentours</p>
-      <h2>Tout près de l'essentiel.</h2>
-      <ul class="dist">
+  <!-- GÎTES ADAPTÉS -->
+  <section class="v-sec alt"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">Le gîte adapté</p><h2>Nos gîtes près de {l.place}</h2><div class="v-rule"></div><p>Le domaine entier pour vos grandes occasions, ou un appartement pour une escapade plus intime.</p></div>
+    <GiteCards items={listings} />
+  </div></section>
+
+  <section class="v-sec"><div class="v-wrap v-2col v-reveal">
+    <iframe class="v-mapframe" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Carte — Yvré-l’Évêque, Sarthe" src="https://www.google.com/maps?q=Yvr%C3%A9-l%27%C3%89v%C3%AAque%2C%20Sarthe&output=embed"></iframe>
+    <div>
+      <p class="v-eyebrow">Aux alentours</p>
+      <h2>Tout près de l’essentiel</h2>
+      <ul class="v-dist">
         {site.distances.map((d) => (<li><span>{d.place}</span><span>{d.time}</span></li>))}
       </ul>
     </div>
-    <iframe class="mapframe" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Carte — Yvré-l'Évêque, Sarthe" src="https://www.google.com/maps?q=Yvr%C3%A9-l%27%C3%89v%C3%AAque%2C%20Sarthe&output=embed"></iframe>
   </div></section>
 
-  <section class="cta"><div class="wrap reveal">
-    <p class="eyebrow">Votre séjour</p>
-    <h2>Séjournez près de {l.place}.</h2>
-    <a href="/contact/" class="btn btn-primary">Demander une disponibilité</a>
+  <!-- EN SAVOIR PLUS (SEO/GEO replié) -->
+  <section class="v-sec alt"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">En savoir plus</p><h2>Votre gîte près de {l.place}</h2><div class="v-rule"></div></div>
+    <div class="v-faq v-reveal">
+      {edito.more.map((f) => (<details><summary>{f.q}</summary><div class="ans">{f.a}</div></details>))}
+    </div>
   </div></section>
-</BaseLayout>
+
+  <section class="v-sec v-cta"><div class="v-wrap v-reveal">
+    <h2>Séjournez près de {l.place}</h2>
+    <p>Dites-nous vos dates : nous revenons vers vous rapidement.</p>
+    <a href={withBase('/contact/')} class="v-btn v-btn-ghost" style="border-color:rgba(255,255,255,.7)">Demander une disponibilité</a>
+  </div></section>
+</V3Layout>

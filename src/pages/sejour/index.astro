@@ -1,49 +1,47 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import V3Layout from '../../layouts/V3Layout.astro';
 import { usages, categoryLabels, type UsageCategory } from '../../data/usages';
 import { site } from '../../data/site';
+import { withBase } from '../../lib/url';
 
 const order: UsageCategory[] = ['evenement', 'entreprise', 'groupe', 'passion'];
 const byCat = order.map((cat) => ({ cat, items: usages.filter((u) => u.category === cat) }));
 ---
-<BaseLayout
-  title={`Séjours & événements — ${site.shortName} en Sarthe`}
+<V3Layout
+  title={`Mariage, séminaire, week-end : votre gîte près du Mans (72)`}
   description="Mariage, anniversaire, séminaire d'entreprise, team building, week-end entre amis, 24 Heures du Mans : un domaine pour chaque occasion près du Mans."
   path="/sejour/"
+  ogImage="/uploads/domaine/01.jpg"
 >
-  <section class="page-hero" style="background-image:linear-gradient(rgba(28,30,24,.6),rgba(28,30,24,.8)),url(/uploads/domaine/01.jpg);background-size:cover;background-position:center">
-    <div class="wrap">
-      <p class="breadcrumb"><a href="/">Accueil</a> › Séjours</p>
-      <p class="eyebrow">Pour chaque occasion</p>
-      <h1>Séjours &amp; événements à la Mare Ronde</h1>
-      <p>Un domaine de caractère qui s'adapte à votre projet : célébrations, séminaires d'entreprise, retrouvailles entre amis ou en famille, et grands rendez-vous du circuit du Mans.</p>
-    </div>
-  </section>
+  <section class="v-phero"><div class="v-wrap">
+    <p class="v-eyebrow" style="color:var(--v-rose)">Pour chaque occasion</p>
+    <h1>Séjours &amp; événements à la Mare Ronde, près du Mans</h1>
+    <p>Un domaine de caractère qui s’adapte à votre projet : célébrations, séminaires d’entreprise, retrouvailles entre amis ou en famille, et grands rendez-vous du circuit du Mans.</p>
+  </div></section>
 
-  {byCat.map(({ cat, items }) => (
-    <section class={cat === 'entreprise' || cat === 'passion' ? 'spaces' : ''}>
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <p class="eyebrow">{categoryLabels[cat].eyebrow}</p>
-          <h2>{categoryLabels[cat].label}</h2>
-          <p>{categoryLabels[cat].blurb}</p>
-        </div>
-        <div class="linkgrid reveal">
-          {items.map((u) => (
-            <a class="linkcard" href={`/sejour/${u.slug}/`}>
-              <h3>{u.h1}</h3>
-              <p>{u.intro.slice(0, 110)}…</p>
-            </a>
-          ))}
-        </div>
+  {byCat.map(({ cat, items }, idx) => (
+    <section class={`v-sec${idx % 2 ? ' alt' : ''}`}><div class="v-wrap">
+      <div class="v-head v-reveal">
+        <p class="v-eyebrow">{categoryLabels[cat].eyebrow}</p>
+        <h2>{categoryLabels[cat].label}</h2>
+        <div class="v-rule"></div>
+        <p>{categoryLabels[cat].blurb}</p>
       </div>
-    </section>
+      <div class="v-linkgrid v-reveal">
+        {items.map((u) => (
+          <a class="v-linkcard" href={withBase(`/sejour/${u.slug}/`)}>
+            <h3>{u.h1}</h3>
+            <p>{u.intro.slice(0, 110)}…</p>
+            <span class="arrow">Découvrir →</span>
+          </a>
+        ))}
+      </div>
+    </div></section>
   ))}
 
-  <section class="cta"><div class="wrap reveal">
-    <p class="eyebrow">Votre projet</p>
+  <section class="v-sec v-cta"><div class="v-wrap v-reveal">
     <h2>Une occasion particulière ?</h2>
     <p>Décrivez-nous votre événement : nous vous orientons vers la meilleure formule et un devis adapté.</p>
-    <a href="/contact/" class="btn btn-primary">Demander un devis</a>
+    <a href={withBase('/contact/')} class="v-btn v-btn-ghost" style="border-color:rgba(255,255,255,.7)">Demander un devis</a>
   </div></section>
-</BaseLayout>
+</V3Layout>

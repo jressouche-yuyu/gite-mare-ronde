@@ -1,51 +1,67 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import V3Layout from '../layouts/V3Layout.astro';
 import { site } from '../data/site';
+import { equipment } from '../data/v3';
+import { withBase } from '../lib/url';
 ---
-<BaseLayout
+<V3Layout
   title={`Le domaine — ${site.name} à ${site.city}`}
-  description="Découvrez Les Gîtes de la Mare Ronde : ancienne ferme rénovée avec piscine, tennis et pétanque à Yvré-l’Évêque, près du Mans. 3 gîtes, jusqu'à 16 personnes."
+  description="Découvrez Les Gîtes de la Mare Ronde : ancienne ferme rénovée avec piscine, tennis et pétanque à Yvré-l’Évêque, près du Mans. 3 gîtes, jusqu’à 16 personnes."
   path="/le-gite/"
+  ogImage="/uploads/domaine/01.jpg"
 >
-  <section class="page-hero"><div class="wrap">
-    <p class="breadcrumb"><a href="/">Accueil</a> › Le domaine</p>
-    <p class="eyebrow">Le lieu</p>
-    <h1>Une ancienne ferme rénovée, au cœur de la verdure.</h1>
-    <p>Pierre, bois et grands volumes : tout le charme de l'ancien, avec le confort d'aujourd'hui.</p>
+  <section class="v-phero"><div class="v-wrap">
+    <p class="v-eyebrow" style="color:var(--v-rose)">Le lieu</p>
+    <h1>Une ancienne ferme rénovée, au cœur de la verdure</h1>
+    <p>Pierre, bois et grands volumes : tout le charme de l’ancien, avec le confort d’aujourd’hui.</p>
   </div></section>
 
-  <section><div class="wrap story reveal">
-    <div class="imgwrap"><img class="cover" src="/uploads/domaine/01.jpg" alt="La façade en pierre du domaine de la Mare Ronde et sa piscine" /></div>
-    <div class="txt">
-      <p class="eyebrow">Présentation</p>
-      <h2>Bienvenue à la Mare Ronde.</h2>
-      <div class="rule"></div>
-      <p>Niché à {site.city}, à deux pas du Mans, le domaine de la Mare Ronde réunit <strong>trois gîtes de charme</strong> au sein d'une authentique propriété de caractère, restaurée avec soin pour conserver l'âme de la ferme d'origine.</p>
-      <p>On y vient pour le calme, l'espace et la nature — et pour se retrouver, en famille ou entre amis. Le domaine entier accueille jusqu'à <strong>{site.capacityMax} personnes</strong> ({site.bedrooms} chambres, {site.beds} couchages, {site.baths} salles de bain) ; les appartements se louent aussi séparément.</p>
-      <a href="/hebergements/" class="btn btn-dark" style="margin-top:14px">Voir les 3 hébergements</a>
+  <section class="v-sec"><div class="v-wrap v-story v-reveal">
+    <div class="imgs">
+      <img src={withBase('/uploads/domaine/01.jpg')} alt="La façade en pierre du domaine de la Mare Ronde et sa piscine" />
+      <img src={withBase('/uploads/domaine/10.jpg')} alt="Cuisine de caractère en pierre et bois" />
+    </div>
+    <div>
+      <p class="v-eyebrow">Présentation</p>
+      <h2>Bienvenue à la Mare Ronde</h2>
+      <p>Niché à {site.city}, à deux pas du Mans, le domaine de la Mare Ronde réunit <strong>trois gîtes de charme</strong> au sein d’une authentique propriété de caractère, restaurée avec soin pour conserver l’âme de la ferme d’origine.</p>
+      <p>On y vient pour le calme, l’espace et la nature — et pour se retrouver, en famille ou entre amis. Le domaine entier accueille jusqu’à <strong>{site.capacityMax} personnes</strong> ({site.bedrooms} chambres, {site.beds} couchages, {site.baths} salles de bain) ; les appartements se louent aussi séparément.</p>
+      <a href={withBase('/nos-gites/')} class="v-btn v-btn-dark" style="margin-top:8px">Voir les 3 hébergements</a>
     </div>
   </div></section>
 
-  <section class="spaces"><div class="wrap">
-    <div class="sec-head reveal"><p class="eyebrow">Les espaces</p><h2>Tout ce qu'il faut pour un grand séjour.</h2><p>Piscine, tennis et pétanque dehors ; cheminée, grandes tablées et cuisines de caractère dedans.</p></div>
-    <div class="cards">
-      <article class="card reveal"><div class="imgwrap"><img class="cover" loading="lazy" src="/uploads/domaine/02.jpg" alt="La piscine et le jardin du domaine" /></div><div class="body"><h3>La piscine &amp; le jardin</h3><p>Un bassin avec abri au cœur d'un vaste jardin clos, court de tennis et terrain de pétanque privatifs.</p></div></article>
-      <article class="card reveal"><div class="imgwrap"><img class="cover" loading="lazy" src="/uploads/domaine/04.jpg" alt="Salle à manger à poutres et cheminée" /></div><div class="body"><h3>Les salles à manger</h3><p>De grands espaces à poutres apparentes et cheminée, parfaits pour réunir tout le monde autour de la table.</p></div></article>
-      <article class="card reveal"><div class="imgwrap"><img class="cover" loading="lazy" src="/uploads/domaine/10.jpg" alt="Cuisine de caractère en pierre et bois" /></div><div class="body"><h3>Cuisines de caractère</h3><p>Des cuisines équipées mêlant pierre, brique et bois, pour cuisiner comme à la maison.</p></div></article>
+  <section class="v-sec alt"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">Les espaces</p><h2>Tout ce qu’il faut pour un grand séjour</h2><div class="v-rule"></div><p>Piscine, tennis et pétanque dehors ; cheminée, grandes tablées et cuisines de caractère dedans.</p></div>
+    <div class="v-spaces v-reveal">
+      <article class="sp">
+        <div class="ph"><img src={withBase('/uploads/domaine/02.jpg')} alt="La piscine et le jardin clos du domaine" loading="lazy" /></div>
+        <div class="bd"><h3>La piscine &amp; le jardin</h3><p>Un bassin avec abri au cœur d’un vaste jardin clos, court de tennis et terrain de pétanque privatifs.</p></div>
+      </article>
+      <article class="sp">
+        <div class="ph"><img src={withBase('/uploads/domaine/04.jpg')} alt="Salle à manger à poutres apparentes et cheminée" loading="lazy" /></div>
+        <div class="bd"><h3>Les salles à manger</h3><p>De grands espaces à poutres et cheminée, parfaits pour réunir tout le monde autour de la table.</p></div>
+      </article>
+      <article class="sp">
+        <div class="ph"><img src={withBase('/uploads/domaine/10.jpg')} alt="Cuisine de caractère en pierre et bois" loading="lazy" /></div>
+        <div class="bd"><h3>Cuisines de caractère</h3><p>Des cuisines équipées mêlant pierre, brique et bois, pour cuisiner comme à la maison.</p></div>
+      </article>
+    </div>
+    <div class="v-amenrow v-reveal">
+      {equipment.map((e) => (<span class="chip"><span class="em">{e.ic}</span>{e.name}</span>))}
     </div>
   </div></section>
 
-  <section><div class="wrap">
-    <div class="sec-head reveal"><p class="eyebrow">Aperçu</p><h2>Le domaine en images.</h2></div>
-    <div class="pgrid reveal">
-      {['01','03','05','07','11','17'].map((n) => (<div class="imgwrap"><img class="cover" loading="lazy" src={`/uploads/domaine/${n}.jpg`} alt="Les Gîtes de la Mare Ronde" /></div>))}
+  <section class="v-sec"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">Aperçu</p><h2>Le domaine en images</h2><div class="v-rule"></div></div>
+    <div class="v-grid v-reveal">
+      {['01','03','05','07','11','17'].map((n) => (<img src={withBase(`/uploads/domaine/${n}.jpg`)} alt="Les Gîtes de la Mare Ronde" loading="lazy" />))}
     </div>
-    <div style="margin-top:28px"><a href="/galerie/" class="btn btn-dark">Voir toutes les photos</a></div>
+    <div style="text-align:center;margin-top:28px"><a href={withBase('/galerie/')} class="v-btn v-btn-dark">Voir toutes les photos</a></div>
   </div></section>
 
-  <section class="cta"><div class="wrap reveal">
-    <p class="eyebrow">Votre séjour</p>
+  <section class="v-sec v-cta"><div class="v-wrap v-reveal">
     <h2>Envie de découvrir le domaine ?</h2>
-    <a href="/hebergements/" class="btn btn-primary">Voir les hébergements</a>
+    <p>Réservez en direct sur Airbnb, ou écrivez-nous pour un séjour sur mesure.</p>
+    <a href={withBase('/nos-gites/')} class="v-btn v-btn-ghost" style="border-color:rgba(255,255,255,.7)">Voir les hébergements</a>
   </div></section>
-</BaseLayout>
+</V3Layout>

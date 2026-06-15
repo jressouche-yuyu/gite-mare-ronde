@@ -1,56 +1,81 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import V3Layout from '../../layouts/V3Layout.astro';
 import { capacities } from '../../data/capacities';
 import { usages } from '../../data/usages';
+import { listings } from '../../data/listings';
 import { site } from '../../data/site';
+import { capacityEditorial } from '../../data/seoContent';
+import GiteCards from '../../components/GiteCards.astro';
+import { withBase } from '../../lib/url';
 
 export function getStaticPaths() {
   return capacities.map((c) => ({ params: { slug: c.slug }, props: { c } }));
 }
 const { c } = Astro.props;
 const path = `/capacite/${c.slug}/`;
-const title = `${c.title} — ${site.shortName}, près du Mans`;
-const description = `Louez un gîte pour ${c.count} personnes à ${site.city} : piscine, tennis, grand parc. ${c.angle}. Disponibilités & tarifs.`;
+const big = c.count >= 15;
+const h1 = big ? `Un grand gîte pour ${c.count} personnes en Sarthe` : `Un gîte pour ${c.count} personnes près du Mans`;
+const title = `${big ? 'Grand gîte' : 'Gîte'} ${c.count} personnes près du Mans — Yvré-l’Évêque (72)`;
+const description = `Louez un gîte pour ${c.count} personnes à ${site.city}, près du Mans : piscine, tennis, grand parc clos. ${c.angle}. Disponibilités & tarifs.`;
 const related = usages.filter((u) => u.priority).slice(0, 3);
+const edito = capacityEditorial(c.count);
+// Gîte(s) pouvant accueillir le groupe (du plus petit adapté au domaine entier) ; sinon le plus grand.
+const fits = listings.filter((x) => x.capacity >= c.count).sort((a, b) => a.capacity - b.capacity);
+const adapted = fits.length ? fits : [...listings].sort((a, b) => b.capacity - a.capacity).slice(0, 1);
+const faqJsonLd = {
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: edito.more.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
 ---
-<BaseLayout title={title} description={description} path={path}>
-  <section class="page-hero" style="background-image:linear-gradient(rgba(28,30,24,.6),rgba(28,30,24,.8)),url(/uploads/domaine/01.jpg);background-size:cover;background-position:center">
-    <div class="wrap">
-      <p class="breadcrumb"><a href="/">Accueil</a> › Capacité › {c.count} personnes</p>
-      <p class="eyebrow">{c.angle}</p>
-      <h1>{c.title}</h1>
-      <p>{c.intro}</p>
-      <div style="margin-top:28px"><a href="/hebergements/" class="btn btn-primary">Voir les hébergements</a></div>
-    </div>
-  </section>
+<V3Layout title={title} description={description} path={path} ogImage="/uploads/domaine/01.jpg" jsonld={faqJsonLd}>
+  <div class="v-band"><img src={withBase('/uploads/domaine/01.jpg')} alt={`Gîte pour ${c.count} personnes près du Mans — La Mare Ronde`} /></div>
 
-  <section><div class="wrap prose reveal">
+  <section class="v-sec"><div class="v-wrap v-prose v-reveal">
+    <p class="v-crumb"><a href={withBase('/capacite/')}>Par capacité</a> · {c.count} personnes</p>
+    <p class="v-eyebrow">{c.angle}</p>
+    <h1 style="font-size:clamp(2rem,4vw,2.8rem);margin:8px 0 14px">{h1}</h1>
+    <p style="font-style:italic;color:var(--v-terra);font-size:1.15rem">{c.intro}</p>
+
     <h2>Un gîte adapté à {c.count} personnes en Sarthe</h2>
-    <p>Le Gîte de la Mare Ronde, ancienne ferme rénovée à {site.city}, accueille confortablement {c.count} personnes dans un cadre nature préservé, à une dizaine de minutes du Mans.</p>
-    <ul>
-      <li>Piscine privative et terrain de tennis</li>
-      <li>Grand parc arboré, à l'abri des regards</li>
+    {edito.lead.map((p) => <p>{p}</p>)}
+    <ul class="v-hlist">
+      <li>Piscine privative et court de tennis</li>
+      <li>Grand parc arboré et clos, à l’abri des regards</li>
       <li>Espaces de vie généreux pour les grandes tablées</li>
-      <li>Proche du Mans et du circuit des 24 Heures</li>
+      <li>À ~10 min du Mans et ~15 min du circuit des 24 Heures</li>
     </ul>
-    <h3>Idéal pour</h3>
-    <p>Que ce soit pour des vacances, un week-end ou une grande occasion, ce format de {c.count} personnes convient parfaitement à votre projet de séjour dans la Sarthe.</p>
-    <p><em>Détails de couchage et tarifs : à compléter avec les informations du propriétaire.</em></p>
   </div></section>
 
-  <section class="spaces"><div class="wrap">
-    <div class="sec-head reveal"><p class="eyebrow">Et aussi</p><h2>Pour quelle occasion ?</h2></div>
-    <div class="linkgrid reveal">
+  <!-- GÎTE(S) ADAPTÉ(S) -->
+  <section class="v-sec alt"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">Le gîte adapté</p><h2>{adapted.length > 1 ? `Nos gîtes pour ${c.count} personnes` : `Le gîte pour ${c.count} personnes`}</h2><div class="v-rule"></div></div>
+    <GiteCards items={adapted} />
+  </div></section>
+
+  <!-- EN SAVOIR PLUS (SEO/GEO replié) -->
+  <section class="v-sec"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">En savoir plus</p><h2>Un gîte pour {c.count} personnes près du Mans</h2><div class="v-rule"></div></div>
+    <div class="v-faq v-reveal">
+      {edito.more.map((f) => (<details><summary>{f.q}</summary><div class="ans">{f.a}</div></details>))}
+    </div>
+  </div></section>
+
+  <section class="v-sec alt"><div class="v-wrap">
+    <div class="v-head v-reveal"><p class="v-eyebrow">Et aussi</p><h2>Pour quelle occasion ?</h2><div class="v-rule"></div></div>
+    <div class="v-linkgrid v-reveal">
       {related.map((u) => (
-        <a class="linkcard" href={`/sejour/${u.slug}/`}><h3>{u.h1}</h3><p>{u.intro}</p></a>
+        <a class="v-linkcard" href={withBase(`/sejour/${u.slug}/`)}>
+          <h3>{u.h1}</h3>
+          <p>{u.intro.slice(0, 100)}…</p>
+          <span class="arrow">Découvrir →</span>
+        </a>
       ))}
     </div>
   </div></section>
 
-  <section class="cta"><div class="wrap reveal">
-    <p class="eyebrow">Votre séjour</p>
-    <h2>Réservez le gîte pour {c.count} personnes.</h2>
+  <section class="v-sec v-cta"><div class="v-wrap v-reveal">
+    <h2>Réservez le gîte pour {c.count} personnes</h2>
     <p>Dites-nous vos dates : nous revenons vers vous rapidement.</p>
-    <a href="/contact/" class="btn btn-primary">Demander une disponibilité</a>
+    <a href={withBase('/contact/')} class="v-btn v-btn-ghost" style="border-color:rgba(255,255,255,.7)">Demander une disponibilité</a>
   </div></section>
-</BaseLayout>
+</V3Layout>

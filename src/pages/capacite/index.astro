@@ -1,24 +1,29 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import V3Layout from '../../layouts/V3Layout.astro';
 import { capacities } from '../../data/capacities';
 import { site } from '../../data/site';
+import { withBase } from '../../lib/url';
 ---
-<BaseLayout
-  title={`Gîte par capacité en Sarthe — ${site.shortName}`}
-  description="Trouvez le gîte adapté à votre groupe : de 2 à 20 personnes, à Yvré-l’Évêque près du Mans."
+<V3Layout
+  title={`Gîte de 2 à 20 personnes près du Mans — Yvré-l’Évêque (72)`}
+  description="Trouvez le gîte adapté à votre groupe : de 2 à 20 personnes, à Yvré-l’Évêque près du Mans. Piscine, tennis, grand parc."
   path="/capacite/"
 >
-  <section class="page-hero"><div class="wrap">
-    <p class="breadcrumb"><a href="/">Accueil</a> › Capacité</p>
-    <p class="eyebrow">Par capacité</p>
-    <h1>Quel que soit le nombre de convives.</h1>
-    <p>Du couple au grand groupe de 20 personnes, le domaine s'adapte à votre séjour.</p>
+  <section class="v-phero"><div class="v-wrap">
+    <p class="v-eyebrow" style="color:var(--v-rose)">Par capacité</p>
+    <h1>Un gîte pour 2 à 20 personnes près du Mans</h1>
+    <p>Du couple au grand groupe de 20 personnes, le domaine s’adapte à votre séjour.</p>
   </div></section>
-  <section><div class="wrap">
-    <div class="linkgrid reveal">
+
+  <section class="v-sec"><div class="v-wrap">
+    <div class="v-linkgrid v-reveal">
       {capacities.map((c) => (
-        <a class="linkcard" href={`/capacite/${c.slug}/`}><h3>{c.count} personnes</h3><p>{c.angle}</p></a>
+        <a class="v-linkcard" href={withBase(`/capacite/${c.slug}/`)}>
+          <h3>{c.count} personnes</h3>
+          <p>{c.angle}</p>
+          <span class="arrow">Découvrir →</span>
+        </a>
       ))}
     </div>
   </div></section>
-</BaseLayout>
+</V3Layout>

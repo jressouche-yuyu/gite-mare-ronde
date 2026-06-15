@@ -1,8 +1,8 @@
 ---
-import V3Layout from '../../layouts/V3Layout.astro';
-import { listings } from '../../data/listings';
-import { withBase } from '../../lib/url';
-import data from '../../content/nosgites/nosgites.json';
+import V3Layout from '../layouts/V3Layout.astro';
+import { listings } from '../data/listings';
+import { withBase } from '../lib/url';
+import data from '../content/nosgites/nosgites.json';
 
 const seo = (data as any).seo ?? {};
 const { hero } = data as any;
@@ -10,7 +10,7 @@ const { hero } = data as any;
 <V3Layout
   title={seo.metaTitle || data.title}
   description={seo.metaDescription || ''}
-  path="/v3/nos-gites/"
+  path="/nos-gites/"
   ogImage="/uploads/domaine/01.jpg"
   noindex={seo.noindex}
 >
@@ -24,7 +24,7 @@ const { hero } = data as any;
     <div class="v-gites">
       {listings.map((l) => (
         <article class={`v-gcard v-reveal${l.featured ? ' featured' : ''}`}>
-          <a href={withBase(`/v3/gites/${l.slug}/`)} class="ph"><img src={withBase(l.photos[0])} alt={l.name} loading="lazy" /></a>
+          <a href={withBase(`/gites/${l.slug}/`)} class="ph"><img src={withBase(l.photos[0])} alt={l.name} loading="lazy" /></a>
           <div class="hd"><span class="tag">{l.type}</span>{l.name}</div>
           <div class="bd">
             <p class="tagline">{l.tagline}</p>
@@ -34,7 +34,7 @@ const { hero } = data as any;
               {l.baths && <span>🛁 {l.baths}</span>}
             </div>
             <div class="links">
-              <a href={withBase(`/v3/gites/${l.slug}/`)} class="v-btn v-btn-dark" style="padding:10px 16px">Découvrir</a>
+              <a href={withBase(`/gites/${l.slug}/`)} class="v-btn v-btn-dark" style="padding:10px 16px">Découvrir</a>
               <a href={l.airbnb} target="_blank" rel="noopener" class="v-btn v-btn-book" style="padding:10px 16px">Réserver</a>
             </div>
           </div>

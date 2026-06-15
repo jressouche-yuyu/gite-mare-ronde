@@ -1,7 +1,7 @@
 ---
-import V3Layout from '../../layouts/V3Layout.astro';
-import { withBase } from '../../lib/url';
-import data from '../../content/apropos/apropos.json';
+import V3Layout from '../layouts/V3Layout.astro';
+import { withBase } from '../lib/url';
+import data from '../content/apropos/apropos.json';
 
 const seo = (data as any).seo ?? {};
 const { hero, story, valuesHeading, values } = data as any;
@@ -9,7 +9,7 @@ const { hero, story, valuesHeading, values } = data as any;
 <V3Layout
   title={seo.metaTitle || data.title}
   description={seo.metaDescription || ''}
-  path="/v3/qui-sommes-nous/"
+  path="/qui-sommes-nous/"
   noindex={seo.noindex}
 >
   <section class="v-phero"><div class="v-wrap">

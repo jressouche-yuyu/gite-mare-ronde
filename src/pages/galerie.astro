@@ -1,35 +1,34 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import V3Layout from '../layouts/V3Layout.astro';
 import { site } from '../data/site';
 import { listings } from '../data/listings';
+import { withBase } from '../lib/url';
 ---
-<BaseLayout
+<V3Layout
   title={`Galerie photos — ${site.name} à ${site.city}`}
-  description="Photos des Gîtes de la Mare Ronde : piscine, tennis, jardin, intérieurs de charme à Yvré-l'Évêque, près du Mans."
+  description="Photos des Gîtes de la Mare Ronde : piscine, tennis, jardin, intérieurs de charme à Yvré-l’Évêque, près du Mans."
   path="/galerie/"
+  ogImage="/uploads/domaine/01.jpg"
 >
-  <section class="page-hero"><div class="wrap">
-    <p class="breadcrumb"><a href="/">Accueil</a> › Galerie</p>
-    <p class="eyebrow">Galerie</p>
-    <h1>Le domaine en images.</h1>
+  <section class="v-phero"><div class="v-wrap">
+    <p class="v-eyebrow" style="color:var(--v-rose)">Galerie</p>
+    <h1>Le domaine en images</h1>
     <p>Le domaine, ses extérieurs et ses trois gîtes de charme.</p>
   </div></section>
 
-  {listings.map((l) => (
-    <section style="padding-bottom:0"><div class="wrap">
-      <div class="sec-head reveal" style="margin-bottom:24px">
-        <p class="eyebrow">{l.type}</p><h2>{l.name}</h2>
+  {listings.map((l, idx) => (
+    <section class={`v-sec${idx % 2 ? ' alt' : ''}`}><div class="v-wrap">
+      <div class="v-head v-reveal"><p class="v-eyebrow">{l.type}</p><h2>{l.name}</h2><div class="v-rule"></div></div>
+      <div class="v-grid v-reveal">
+        {l.photos.slice(0, 30).map((p, i) => (<img src={withBase(p)} alt={`${l.name} — photo ${i + 1}`} loading="lazy" decoding="async" />))}
       </div>
-      <div class="pgrid reveal">
-        {l.photos.slice(0, 30).map((p, i) => (<div class="imgwrap"><img class="cover" loading="lazy" decoding="async" src={p} alt={`${l.name} — photo ${i + 1}`} /></div>))}
-      </div>
-      <div style="margin-top:24px"><a href={`/hebergements/${l.slug}/`} class="btn btn-dark">Découvrir {l.name}</a></div>
+      <div style="text-align:center;margin-top:24px"><a href={withBase(`/gites/${l.slug}/`)} class="v-btn v-btn-dark">Découvrir {l.name}</a></div>
     </div></section>
   ))}
 
-  <section class="cta" style="margin-top:90px"><div class="wrap reveal">
-    <p class="eyebrow">Votre séjour</p>
+  <section class="v-sec v-cta"><div class="v-wrap v-reveal">
     <h2>Ces images vous parlent ?</h2>
-    <a href="/hebergements/" class="btn btn-primary">Voir les hébergements</a>
+    <p>Réservez en direct sur Airbnb, ou écrivez-nous pour un séjour sur mesure.</p>
+    <a href={withBase('/nos-gites/')} class="v-btn v-btn-ghost" style="border-color:rgba(255,255,255,.7)">Voir les hébergements</a>
   </div></section>
-</BaseLayout>
+</V3Layout>
