@@ -1,0 +1,66 @@
+{
+  "title": "Accueil",
+  "seo": {
+    "metaTitle": "Gîte de la Mare Ronde — Gîtes de charme avec piscine près du Mans",
+    "metaDescription": "Domaine de caractère à Yvré-l'Évêque (Sarthe) : 3 gîtes, piscine, tennis et pétanque, à 15 min du circuit des 24 Heures du Mans. Idéal familles, groupes et événements.",
+    "schemaType": "WebPage"
+  },
+  "hero": {
+    "eyebrow": "Yvré-l'Évêque · Sarthe",
+    "title": "Une ferme d'autrefois, cachée dans la verdure",
+    "lede": "Trois gîtes de charme, une piscine, un court de tennis et un vaste jardin — à deux pas du Mans et à 15 min du circuit des 24 Heures. Pour les familles, les groupes et les grandes occasions.",
+    "image": { "src": "/photos/domaine/01.jpg", "alt": "Le domaine de la Mare Ronde, sa ferme en pierre et sa piscine" },
+    "ctaPrimaryLabel": "Découvrir nos gîtes",
+    "ctaSecondaryLabel": "Réserver sur Airbnb"
+  },
+  "domaine": {
+    "eyebrow": "Notre domaine",
+    "heading": "Un domaine de caractère, rénové avec âme",
+    "body": "Dissimulés derrière les arbres, à Yvré-l'Évêque, Les Gîtes de la Mare Ronde réunissent trois logements élégants au sein d'une authentique propriété de caractère : pierre, poutres, tomettes et grands volumes.\n\nOn s'y réveille au calme, on partage de longues tablées, on profite de la piscine et du jardin — loin de l'agitation, mais à quelques minutes du Mans.",
+    "image1": { "src": "/photos/domaine/01.jpg", "alt": "Extérieur du domaine et sa piscine" },
+    "image2": { "src": "/photos/domaine/04.jpg", "alt": "Salle à manger de caractère à poutres et cheminée" }
+  },
+  "spaces": {
+    "heading": "Des espaces pensés pour se retrouver",
+    "intro": "Piscine, tennis et pétanque dehors ; cheminée et grandes tablées dedans.",
+    "cards": [
+      { "image": { "src": "/photos/domaine/02.jpg", "alt": "La piscine et le jardin clos du domaine" }, "title": "La piscine & le jardin", "text": "Un bassin (avec abri) au cœur d'un vaste jardin clos, court de tennis et terrain de pétanque." },
+      { "image": { "src": "/photos/domaine/04.jpg", "alt": "Salle à manger à poutres apparentes et cheminée" }, "title": "Les espaces de vie", "text": "De grandes salles à manger à poutres apparentes et cheminée, pour réunir tout le monde." },
+      { "image": { "src": "/photos/domaine/10.jpg", "alt": "Cuisine de caractère en pierre et bois" }, "title": "Cuisine de caractère", "text": "Cuisines équipées mêlant pierre, brique et bois, pour cuisiner comme à la maison." }
+    ],
+    "equipment": [
+      { "icon": "🏊", "name": "Piscine" },
+      { "icon": "🎾", "name": "Tennis" },
+      { "icon": "🎯", "name": "Pétanque" },
+      { "icon": "🌿", "name": "Parc arboré" }
+    ]
+  },
+  "region": {
+    "eyebrow": "La région",
+    "heading": "Aux portes du Mans, au cœur de la nature",
+    "body": "Yvré-l'Évêque est une commune paisible à quelques minutes du Mans, dans la Sarthe, dans un cadre naturel préservé tout en restant proche des commodités.\n\nÀ découvrir aux alentours : le circuit des 24 Heures du Mans (à ~15 min), la cité Plantagenêt et la cathédrale Saint-Julien, les châteaux de la vallée du Loir, les marchés et la gastronomie sarthoise."
+  },
+  "reviewsSection": {
+    "heading": "Avis de nos voyageurs",
+    "items": [
+      { "who": "Marie L.", "via": "Airbnb", "stars": 5, "text": "Un domaine magnifique, idéal pour notre réunion de famille. La piscine et le parc ont fait l'unanimité ! Accueil parfait." },
+      { "who": "Thomas R.", "via": "Google", "stars": 5, "text": "Parfait pour les 24 Heures : à 15 min du circuit et tellement calme au retour. On reviendra sans hésiter." },
+      { "who": "Sophie & Julien", "via": "Airbnb", "stars": 5, "text": "Le charme de l'ancien et tout le confort moderne. Les grandes tablées et la cheminée ont rendu notre week-end inoubliable." },
+      { "who": "Camille D.", "via": "Airbnb", "stars": 5, "text": "L'Escapade est un vrai cocon pour deux. Décoration soignée, calme absolu, on s'est ressourcés." }
+    ]
+  },
+  "faqSection": {
+    "heading": "Questions fréquentes",
+    "items": [
+      { "q": "Où se situe le Gîte de la Mare Ronde ?", "a": "Le domaine se trouve à Yvré-l'Évêque, dans la Sarthe (72), à environ 10 minutes du Mans et 15 minutes du circuit des 24 Heures." },
+      { "q": "Combien de personnes le domaine peut-il accueillir ?", "a": "Le domaine entier réunit 3 gîtes et accueille jusqu'à 16 personnes (7 chambres, 19 couchages, 4,5 salles de bain). Les appartements se louent aussi séparément (2 et 4 personnes)." },
+      { "q": "Y a-t-il une piscine et un terrain de tennis ?", "a": "Oui. Le domaine dispose d'une piscine, d'un court de tennis et d'un terrain de pétanque privatifs, ainsi que d'un vaste jardin clos." },
+      { "q": "Peut-on organiser un mariage ou un événement de famille ?", "a": "Oui, la grande capacité et le cadre du domaine se prêtent aux mariages, anniversaires et réunions de famille (formule événement sur devis)." },
+      { "q": "Comment réserver ?", "a": "La réservation et les prix en temps réel se font sur Airbnb. Pour un événement, contactez-nous pour un devis." }
+    ]
+  },
+  "cta": {
+    "heading": "Prêt à vivre La Mare Ronde ?",
+    "text": "Réservez en direct sur Airbnb, ou écrivez-nous pour un séjour sur mesure."
+  }
+}

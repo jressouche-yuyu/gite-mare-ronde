@@ -3,34 +3,37 @@ import V3Layout from '../../layouts/V3Layout.astro';
 import { site } from '../../data/site';
 import { booking } from '../../data/booking';
 import { listings } from '../../data/listings';
-import { reviews, equipment, homeFaq } from '../../data/v3';
 import { withBase } from '../../lib/url';
+import home from '../../content/home/home.json';
 
+const seo = (home as any).seo ?? {};
+const { hero, domaine, spaces, region, reviewsSection, faqSection, cta } = home as any;
+const paras = (s: string) => String(s || '').split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
 const faqJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: homeFaq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: (faqSection.items || []).map((f: any) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
 };
 ---
 <V3Layout
-  title={`${site.name} — ${site.tagline}`}
-  description={site.description}
+  title={seo.metaTitle || site.name}
+  description={seo.metaDescription || site.description}
   path="/v3/"
-  ogImage="/photos/domaine/01.jpg"
+  ogImage={hero?.image?.src || '/photos/domaine/01.jpg'}
+  noindex={seo.noindex}
   jsonld={faqJsonLd}
   heroHeader
 >
   <!-- HERO -->
   <section class="v-hero">
-    <div class="photo"><img src={withBase('/photos/domaine/01.jpg')} alt="Le domaine de la Mare Ronde, sa ferme en pierre et sa piscine" /></div>
+    <div class="photo"><img src={withBase(hero.image?.src)} alt={hero.image?.alt || ''} /></div>
     <div class="v-wrap">
-      <p class="v-eyebrow">{site.city} · {site.department}</p>
-      <h1>Une ferme d’autrefois, cachée dans la verdure</h1>
+      <p class="v-eyebrow">{hero.eyebrow}</p>
+      <h1>{hero.title}</h1>
       <div class="v-rule"></div>
-      <p class="lede">Trois gîtes de charme, une piscine, un court de tennis et un vaste jardin — à deux pas du Mans et à 15 min du circuit des 24 Heures. Pour les familles, les groupes et les grandes occasions.</p>
+      <p class="lede">{hero.lede}</p>
       <div class="actions">
-        <a href={withBase('/v3/nos-gites/')} class="v-btn v-btn-primary">Découvrir nos gîtes</a>
-        <a href={booking.primary} target="_blank" rel="noopener" class="v-btn v-btn-ghost">Réserver sur Airbnb</a>
+        <a href={withBase('/v3/nos-gites/')} class="v-btn v-btn-primary">{hero.ctaPrimaryLabel}</a>
+        <a href={booking.primary} target="_blank" rel="noopener" class="v-btn v-btn-ghost">{hero.ctaSecondaryLabel}</a>
       </div>
     </div>
   </section>
@@ -38,14 +41,13 @@ const faqJsonLd = {
   <!-- NOTRE DOMAINE -->
   <section class="v-sec"><div class="v-wrap v-story v-reveal">
     <div class="imgs">
-      <img src={withBase('/photos/domaine/01.jpg')} alt="Extérieur du domaine et sa piscine" />
-      <img src={withBase('/photos/domaine/04.jpg')} alt="Salle à manger de caractère à poutres et cheminée" />
+      <img src={withBase(domaine.image1?.src)} alt={domaine.image1?.alt || ''} />
+      <img src={withBase(domaine.image2?.src)} alt={domaine.image2?.alt || ''} />
     </div>
     <div>
-      <p class="v-eyebrow">Notre domaine</p>
-      <h2>Un domaine de caractère, rénové avec âme</h2>
-      <p>Dissimulés derrière les arbres, à {site.city}, Les Gîtes de la Mare Ronde réunissent trois logements élégants au sein d’une authentique propriété de caractère : pierre, poutres, tomettes et grands volumes.</p>
-      <p>On s’y réveille au calme, on partage de longues tablées, on profite de la piscine et du jardin — loin de l’agitation, mais à quelques minutes du Mans.</p>
+      <p class="v-eyebrow">{domaine.eyebrow}</p>
+      <h2>{domaine.heading}</h2>
+      {paras(domaine.body).map((p) => <p>{p}</p>)}
       <a href={withBase('/v3/nos-gites/')} class="v-btn v-btn-dark" style="margin-top:8px">Découvrir les 3 gîtes</a>
     </div>
   </div></section>
@@ -75,25 +77,19 @@ const faqJsonLd = {
     </div>
   </div></section>
 
-  <!-- À VIVRE — cartes photo des espaces -->
+  <!-- À VIVRE -->
   <section class="v-sec"><div class="v-wrap">
-    <div class="v-head v-reveal"><p class="v-eyebrow">À vivre</p><h2>Des espaces pensés pour se retrouver</h2><div class="v-rule"></div><p>Piscine, tennis et pétanque dehors ; cheminée et grandes tablées dedans.</p></div>
+    <div class="v-head v-reveal"><p class="v-eyebrow">À vivre</p><h2>{spaces.heading}</h2><div class="v-rule"></div><p>{spaces.intro}</p></div>
     <div class="v-spaces v-reveal">
-      <article class="sp">
-        <div class="ph"><img src={withBase('/photos/domaine/02.jpg')} alt="La piscine et le jardin clos du domaine" loading="lazy" /></div>
-        <div class="bd"><h3>La piscine &amp; le jardin</h3><p>Un bassin (avec abri) au cœur d’un vaste jardin clos, court de tennis et terrain de pétanque.</p></div>
-      </article>
-      <article class="sp">
-        <div class="ph"><img src={withBase('/photos/domaine/04.jpg')} alt="Salle à manger à poutres apparentes et cheminée" loading="lazy" /></div>
-        <div class="bd"><h3>Les espaces de vie</h3><p>De grandes salles à manger à poutres apparentes et cheminée, pour réunir tout le monde.</p></div>
-      </article>
-      <article class="sp">
-        <div class="ph"><img src={withBase('/photos/domaine/10.jpg')} alt="Cuisine de caractère en pierre et bois" loading="lazy" /></div>
-        <div class="bd"><h3>Cuisine de caractère</h3><p>Cuisines équipées mêlant pierre, brique et bois, pour cuisiner comme à la maison.</p></div>
-      </article>
+      {spaces.cards.map((c: any) => (
+        <article class="sp">
+          <div class="ph"><img src={withBase(c.image?.src)} alt={c.image?.alt || ''} loading="lazy" /></div>
+          <div class="bd"><h3>{c.title}</h3><p>{c.text}</p></div>
+        </article>
+      ))}
     </div>
     <div class="v-amenrow v-reveal">
-      {equipment.map((e) => (<span class="chip"><span class="em">{e.ic}</span>{e.name}</span>))}
+      {spaces.equipment.map((e: any) => (<span class="chip"><span class="em">{e.icon}</span>{e.name}</span>))}
     </div>
   </div></section>
 
@@ -102,42 +98,38 @@ const faqJsonLd = {
 
   <!-- RÉGION -->
   <section class="v-sec alt"><div class="v-wrap v-2col v-reveal">
-    <iframe class="v-mapframe" loading="lazy" title="Carte — Yvré-l’Évêque" src="https://www.google.com/maps?q=Yvr%C3%A9-l%27%C3%89v%C3%AAque%2C%20Sarthe&output=embed"></iframe>
+    <iframe class="v-mapframe" loading="lazy" title="Carte — Yvré-l'Évêque" src="https://www.google.com/maps?q=Yvr%C3%A9-l%27%C3%89v%C3%AAque%2C%20Sarthe&output=embed"></iframe>
     <div>
-      <p class="v-eyebrow">La région</p>
-      <h2>Aux portes du Mans, au cœur de la nature</h2>
-      <p>Yvré-l’Évêque est une commune paisible à quelques minutes du Mans, dans la Sarthe, dans un cadre naturel préservé tout en restant proche des commodités.</p>
-      <p>À découvrir aux alentours : le <strong>circuit des 24 Heures du Mans</strong> (à ~15 min), la cité Plantagenêt et la cathédrale Saint-Julien, les châteaux de la vallée du Loir, les marchés et la gastronomie sarthoise.</p>
+      <p class="v-eyebrow">{region.eyebrow}</p>
+      <h2>{region.heading}</h2>
+      {paras(region.body).map((p) => <p set:html={p.replace(/circuit des 24 Heures du Mans/i, '<strong>circuit des 24 Heures du Mans</strong>')} />)}
     </div>
   </div></section>
 
   <!-- TÉMOIGNAGES -->
   <section class="v-sec"><div class="v-wrap">
-    <div class="v-head v-reveal"><p class="v-eyebrow">Ils ont séjourné chez nous</p><h2>Avis de nos voyageurs</h2><div class="v-rule"></div></div>
+    <div class="v-head v-reveal"><p class="v-eyebrow">Ils ont séjourné chez nous</p><h2>{reviewsSection.heading}</h2><div class="v-rule"></div></div>
     <div class="v-revs v-reveal">
-      {reviews.map((r) => (
-        <div class="v-rev"><div class="stars">{'★'.repeat(r.stars)}</div><p>« {r.text} »</p><div class="who">{r.who} · {r.via}</div></div>
+      {reviewsSection.items.map((r: any) => (
+        <div class="v-rev"><div class="stars">{'★'.repeat(r.stars || 5)}</div><p>« {r.text} »</p><div class="who">{r.who} · {r.via}</div></div>
       ))}
     </div>
   </div></section>
 
   <!-- FAQ -->
   <section class="v-sec alt"><div class="v-wrap">
-    <div class="v-head v-reveal"><p class="v-eyebrow">Bon à savoir</p><h2>Questions fréquentes</h2><div class="v-rule"></div></div>
+    <div class="v-head v-reveal"><p class="v-eyebrow">Bon à savoir</p><h2>{faqSection.heading}</h2><div class="v-rule"></div></div>
     <div class="v-faq v-reveal">
-      {homeFaq.map((f) => (
-        <details>
-          <summary>{f.q}</summary>
-          <div class="ans">{f.a}</div>
-        </details>
+      {faqSection.items.map((f: any) => (
+        <details><summary>{f.q}</summary><div class="ans">{f.a}</div></details>
       ))}
     </div>
   </div></section>
 
   <!-- CTA -->
   <section class="v-sec v-cta"><div class="v-wrap v-reveal">
-    <h2>Prêt à vivre La Mare Ronde ?</h2>
-    <p>Réservez en direct sur Airbnb, ou écrivez-nous pour un séjour sur mesure.</p>
+    <h2>{cta.heading}</h2>
+    <p>{cta.text}</p>
     <div class="actions" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
       <a href={booking.primary} target="_blank" rel="noopener" class="v-btn v-btn-book">Réserver sur Airbnb</a>
       <a href={withBase('/v3/contact/')} class="v-btn v-btn-ghost" style="border-color:rgba(255,255,255,.7)">Nous contacter</a>

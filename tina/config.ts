@@ -192,6 +192,97 @@ export default defineConfig({
           },
         ],
       },
+      {
+        name: 'home',
+        label: '🏠 Page d’accueil',
+        path: 'src/content/home',
+        format: 'json',
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: 'string', name: 'title', label: 'Nom (interne)', isTitle: true, required: true },
+          seoField,
+          {
+            type: 'object', name: 'hero', label: '🏞️ Hero (en-tête)',
+            fields: [
+              { type: 'string', name: 'eyebrow', label: 'Sur-titre' },
+              { type: 'string', name: 'title', label: 'Titre H1' },
+              { type: 'string', name: 'lede', label: 'Accroche', ui: { component: 'textarea' } },
+              imageWithAlt('image', 'Photo de fond'),
+              { type: 'string', name: 'ctaPrimaryLabel', label: 'Bouton 1 — texte' },
+              { type: 'string', name: 'ctaSecondaryLabel', label: 'Bouton 2 — texte (Airbnb)' },
+            ],
+          },
+          {
+            type: 'object', name: 'domaine', label: '🏡 Section « Notre domaine »',
+            fields: [
+              { type: 'string', name: 'eyebrow', label: 'Sur-titre' },
+              { type: 'string', name: 'heading', label: 'Titre (H2)' },
+              { type: 'string', name: 'body', label: 'Texte (un paragraphe par ligne vide)', ui: { component: 'textarea' } },
+              imageWithAlt('image1', 'Image 1'),
+              imageWithAlt('image2', 'Image 2'),
+            ],
+          },
+          {
+            type: 'object', name: 'spaces', label: '🛋️ Section « À vivre »',
+            fields: [
+              { type: 'string', name: 'heading', label: 'Titre (H2)' },
+              { type: 'string', name: 'intro', label: 'Intro' },
+              {
+                type: 'object', name: 'cards', label: 'Cartes', list: true,
+                ui: { itemProps: (i: any) => ({ label: i?.title }) },
+                fields: [imageWithAlt('image', 'Photo'), { type: 'string', name: 'title', label: 'Titre' }, { type: 'string', name: 'text', label: 'Texte', ui: { component: 'textarea' } }],
+              },
+              {
+                type: 'object', name: 'equipment', label: 'Équipements (puces)', list: true,
+                ui: { itemProps: (i: any) => ({ label: i?.name }) },
+                fields: [{ type: 'string', name: 'icon', label: 'Emoji' }, { type: 'string', name: 'name', label: 'Nom' }],
+              },
+            ],
+          },
+          {
+            type: 'object', name: 'region', label: '📍 Section « La région »',
+            fields: [
+              { type: 'string', name: 'eyebrow', label: 'Sur-titre' },
+              { type: 'string', name: 'heading', label: 'Titre (H2)' },
+              { type: 'string', name: 'body', label: 'Texte', ui: { component: 'textarea' } },
+            ],
+          },
+          {
+            type: 'object', name: 'reviewsSection', label: '⭐ Section « Avis »',
+            fields: [
+              { type: 'string', name: 'heading', label: 'Titre (H2)' },
+              {
+                type: 'object', name: 'items', label: 'Avis', list: true,
+                ui: { itemProps: (i: any) => ({ label: i?.who }) },
+                fields: [
+                  { type: 'string', name: 'who', label: 'Auteur' },
+                  { type: 'string', name: 'via', label: 'Source (Airbnb, Google…)' },
+                  { type: 'number', name: 'stars', label: 'Étoiles (1 à 5)' },
+                  { type: 'string', name: 'text', label: 'Avis', ui: { component: 'textarea' } },
+                ],
+              },
+            ],
+          },
+          {
+            type: 'object', name: 'faqSection', label: '❓ Section FAQ',
+            fields: [
+              { type: 'string', name: 'heading', label: 'Titre (H2)' },
+              {
+                type: 'object', name: 'items', label: 'Questions / Réponses', list: true,
+                ui: { itemProps: (i: any) => ({ label: i?.q }) },
+                fields: [{ type: 'string', name: 'q', label: 'Question' }, { type: 'string', name: 'a', label: 'Réponse', ui: { component: 'textarea' } }],
+              },
+            ],
+          },
+          {
+            type: 'object', name: 'cta', label: '🎯 Bandeau final',
+            fields: [
+              { type: 'string', name: 'heading', label: 'Titre' },
+              { type: 'string', name: 'text', label: 'Texte' },
+            ],
+          },
+        ],
+      },
     ],
   },
 });
