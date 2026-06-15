@@ -222,6 +222,70 @@ export default defineConfig({
         ],
       },
       {
+        name: 'apropos',
+        label: '👋 Qui sommes-nous',
+        path: 'src/content/apropos',
+        format: 'json',
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: 'string', name: 'title', label: 'Nom (interne)', isTitle: true, required: true },
+          seoField,
+          {
+            type: 'object', name: 'hero', label: 'En-tête',
+            fields: [{ type: 'string', name: 'eyebrow', label: 'Sur-titre' }, { type: 'string', name: 'title', label: 'Titre H1' }],
+          },
+          {
+            type: 'object', name: 'story', label: 'Notre histoire',
+            fields: [
+              { type: 'string', name: 'quote', label: 'Citation' },
+              { type: 'string', name: 'paragraphs', label: 'Paragraphes', list: true, ui: { component: 'textarea' } },
+              imageWithAlt('image1', 'Image 1'),
+              imageWithAlt('image2', 'Image 2'),
+            ],
+          },
+          { type: 'string', name: 'valuesHeading', label: 'Titre « Nos valeurs »' },
+          {
+            type: 'object', name: 'values', label: 'Valeurs', list: true,
+            ui: { itemProps: (i: any) => ({ label: i?.name }) },
+            fields: [{ type: 'string', name: 'icon', label: 'Emoji' }, { type: 'string', name: 'name', label: 'Nom' }, { type: 'string', name: 'desc', label: 'Description' }],
+          },
+        ],
+      },
+      {
+        name: 'contact',
+        label: '✉️ Contact',
+        path: 'src/content/contact',
+        format: 'json',
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: 'string', name: 'title', label: 'Nom (interne)', isTitle: true, required: true },
+          seoField,
+          {
+            type: 'object', name: 'hero', label: 'En-tête',
+            fields: [{ type: 'string', name: 'eyebrow', label: 'Sur-titre' }, { type: 'string', name: 'title', label: 'Titre H1' }, { type: 'string', name: 'intro', label: 'Intro', ui: { component: 'textarea' } }],
+          },
+          {
+            type: 'object', name: 'coordinates', label: 'Coordonnées',
+            fields: [{ type: 'string', name: 'address', label: 'Adresse' }, { type: 'string', name: 'email', label: 'E-mail' }, { type: 'string', name: 'phone', label: 'Téléphone' }],
+          },
+        ],
+      },
+      {
+        name: 'nosgites',
+        label: '🗂 Page « Nos Gîtes »',
+        path: 'src/content/nosgites',
+        format: 'json',
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: 'string', name: 'title', label: 'Nom (interne)', isTitle: true, required: true },
+          seoField,
+          {
+            type: 'object', name: 'hero', label: 'En-tête',
+            fields: [{ type: 'string', name: 'eyebrow', label: 'Sur-titre' }, { type: 'string', name: 'title', label: 'Titre H1' }, { type: 'string', name: 'intro', label: 'Intro', ui: { component: 'textarea' } }],
+          },
+        ],
+      },
+      {
         name: 'home',
         label: '🏠 Page d’accueil',
         path: 'src/content/home',

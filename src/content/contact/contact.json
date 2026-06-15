@@ -1,0 +1,17 @@
+{
+  "title": "Contact",
+  "seo": {
+    "metaTitle": "Contact — La Mare Ronde, Gîtes à Yvré-l'Évêque (Sarthe)",
+    "metaDescription": "Contactez La Mare Ronde pour toute question sur nos gîtes de caractère à Yvré-l'Évêque. Formulaire, coordonnées et liens de réservation Airbnb."
+  },
+  "hero": {
+    "eyebrow": "Contact",
+    "title": "Nous contacter",
+    "intro": "Une question sur nos gîtes, nos disponibilités ou pour un séjour sur mesure ? Écrivez-nous, nous répondons sous 24 à 48 h."
+  },
+  "coordinates": {
+    "address": "Yvré-l'Évêque (72530), Sarthe",
+    "email": "contact@lamareronde.fr",
+    "phone": "+33 (0)X XX XX XX XX"
+  }
+}

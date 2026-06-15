@@ -1,0 +1,25 @@
+{
+  "title": "Qui sommes-nous",
+  "seo": {
+    "metaTitle": "Qui sommes-nous — Les hôtes de La Mare Ronde",
+    "metaDescription": "Découvrez l'histoire et les valeurs du domaine La Mare Ronde, gîtes de caractère à Yvré-l'Évêque en Sarthe. Nos hôtes vous accueillent avec passion."
+  },
+  "hero": { "eyebrow": "Notre histoire", "title": "L'histoire de La Mare Ronde" },
+  "story": {
+    "quote": "Vous accueillir comme nous aimerions l'être.",
+    "paragraphs": [
+      "La Mare Ronde, c'est avant tout une histoire de passion. Celle d'un domaine tombé sous le charme de ses propriétaires, et d'un projet porté avec soin pour en faire un lieu d'exception ouvert aux voyageurs.",
+      "Séduits par le caractère de cette propriété sarthoise, nous avons imaginé et aménagé chaque gîte avec une attention particulière : des matériaux naturels, l'âme des lieux préservée, et le confort d'aujourd'hui.",
+      "(Texte à personnaliser avec votre histoire.)"
+    ],
+    "image1": { "src": "/uploads/domaine/05.jpg", "alt": "Le domaine de la Mare Ronde" },
+    "image2": { "src": "/uploads/domaine/03.jpg", "alt": "Ambiance du domaine" }
+  },
+  "valuesHeading": "Nos valeurs",
+  "values": [
+    { "icon": "✨", "name": "Authenticité", "desc": "Préserver le caractère et l'âme des lieux." },
+    { "icon": "🌿", "name": "Nature", "desc": "Un cadre verdoyant, des extérieurs soignés." },
+    { "icon": "🤝", "name": "Hospitalité", "desc": "Une disponibilité réelle pour vous faciliter la vie." },
+    { "icon": "⭐", "name": "Qualité", "desc": "Literie confortable, espaces propres et accueillants." }
+  ]
+}

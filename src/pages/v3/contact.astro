@@ -2,17 +2,21 @@
 import V3Layout from '../../layouts/V3Layout.astro';
 import { site } from '../../data/site';
 import { booking } from '../../data/booking';
-import { withBase } from '../../lib/url';
+import data from '../../content/contact/contact.json';
+
+const seo = (data as any).seo ?? {};
+const { hero, coordinates } = data as any;
 ---
 <V3Layout
-  title="Contact — La Mare Ronde, Gîtes à Yvré-l’Évêque (Sarthe)"
-  description="Contactez La Mare Ronde pour toute question sur nos gîtes de caractère à Yvré-l’Évêque. Formulaire, coordonnées et liens de réservation Airbnb."
+  title={seo.metaTitle || data.title}
+  description={seo.metaDescription || ''}
   path="/v3/contact/"
+  noindex={seo.noindex}
 >
   <section class="v-phero"><div class="v-wrap">
-    <p class="v-eyebrow" style="color:var(--v-rose)">Contact</p>
-    <h1>Nous contacter</h1>
-    <p>Une question sur nos gîtes, nos disponibilités ou pour un séjour sur mesure ? Écrivez-nous, nous répondons sous 24 à 48 h.</p>
+    <p class="v-eyebrow" style="color:var(--v-rose)">{hero.eyebrow}</p>
+    <h1>{hero.title}</h1>
+    <p>{hero.intro}</p>
   </div></section>
 
   <section class="v-sec"><div class="v-wrap v-2col v-reveal" style="align-items:start">
@@ -36,14 +40,13 @@ import { withBase } from '../../lib/url';
         <label class="rgpd"><input type="checkbox" required style="width:auto" /> J’accepte que mes données soient utilisées pour traiter ma demande (RGPD).</label>
         <button type="submit" class="v-btn v-btn-primary" style="border:0">Envoyer le message</button>
       </form>
-      <p style="font-size:.8rem;color:var(--v-gris);margin-top:12px"><em>Formulaire via Web3Forms — coller la clé dans <code>src/data/site.ts</code>.</em></p>
     </div>
     <div>
       <iframe class="v-mapframe" loading="lazy" title="Carte — Yvré-l’Évêque" src="https://www.google.com/maps?q=Yvr%C3%A9-l%27%C3%89v%C3%AAque%2C%20Sarthe&output=embed"></iframe>
       <div style="margin-top:18px;color:var(--v-brun)">
-        <p>📍 {site.city} ({site.postalCode}), {site.department}</p>
-        <p>📧 {site.email}</p>
-        <p>📞 {site.phone}</p>
+        <p>📍 {coordinates.address}</p>
+        <p>📧 {coordinates.email}</p>
+        <p>📞 {coordinates.phone}</p>
       </div>
       <h4 style="font-family:var(--v-serif);color:var(--v-terra);margin:18px 0 10px">Réserver directement</h4>
       <div style="display:grid;gap:8px;max-width:300px">
