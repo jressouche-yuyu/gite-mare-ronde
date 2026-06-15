@@ -1,0 +1,30 @@
+{
+  "slug": "gite-evjf-evg",
+  "category": "evenement",
+  "priority": false,
+  "heroPhoto": "/uploads/domaine/02.jpg",
+  "title": "Gîte EVJF / EVG en Sarthe près du Mans",
+  "h1": "Enterrement de vie de jeune fille ou de garçon",
+  "intro": "Un domaine privatif rien que pour votre groupe : piscine, tennis et jardin pour fêter l'événement en toute liberté.",
+  "body": [
+    "Pour un EVJF ou un EVG réussi, rien de tel qu'un lieu privatif où profiter sans contrainte. Le domaine de la Mare Ronde réunit votre groupe (jusqu'à 16 personnes) avec piscine, tennis, pétanque et grand jardin.",
+    "Au calme de la campagne mais à deux pas du Mans, vous combinez facilement détente au domaine et sorties en ville."
+  ],
+  "bullets": [
+    "Domaine privatif jusqu'à 16 personnes",
+    "Piscine, tennis et pétanque pour s'amuser",
+    "Grandes pièces de vie pour les soirées",
+    "À 10 min du Mans pour sortir"
+  ],
+  "faq": [
+    {
+      "q": "Quelle est la capacité du domaine ?",
+      "a": "Jusqu'à 16 personnes (7 chambres, 19 couchages)."
+    },
+    {
+      "q": "Les fêtes sont-elles autorisées ?",
+      "a": "Le cadre est privatif ; le respect du voisinage et du règlement reste demandé. Précisez votre projet à la réservation."
+    }
+  ],
+  "order": 2
+}

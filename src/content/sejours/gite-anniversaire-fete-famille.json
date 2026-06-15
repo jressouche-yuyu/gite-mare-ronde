@@ -1,0 +1,36 @@
+{
+  "slug": "gite-anniversaire-fete-famille",
+  "category": "evenement",
+  "priority": true,
+  "heroPhoto": "/uploads/domaine/01.jpg",
+  "title": "Gîte anniversaire & fête de famille en Sarthe",
+  "h1": "Fêtez l’événement dans un grand gîte près du Mans",
+  "intro": "Anniversaire, baptême ou réunion de famille : profitez de la piscine, du tennis et des grandes tablées pour rassembler tous vos proches.",
+  "body": [
+    "Pour un anniversaire marquant ou une fête de famille, le domaine de la Mare Ronde offre l'espace qui manque souvent à la maison : 7 chambres, de grandes salles à manger conviviales et un vaste jardin clos où petits et grands trouvent leur place.",
+    "On souffle ses bougies au bord de la piscine, on enchaîne les parties de pétanque et de tennis, et l'on prolonge la soirée autour d'une longue tablée, au calme de la campagne sarthoise.",
+    "Le domaine entier se réserve pour le week-end ou la semaine ; les appartements peuvent compléter l'hébergement des invités les plus proches."
+  ],
+  "bullets": [
+    "Jusqu'à 16 personnes réunies sous un même domaine",
+    "Piscine, tennis et pétanque pour animer la journée",
+    "Grandes salles à manger pour les repas de fête",
+    "Cadre privatif et calme, sans vis-à-vis",
+    "À 10 min du Mans"
+  ],
+  "faq": [
+    {
+      "q": "Le domaine convient-il à une grande tablée ?",
+      "a": "Oui, les salles à manger et le jardin permettent de réunir confortablement l'ensemble de vos convives."
+    },
+    {
+      "q": "Peut-on venir avec de jeunes enfants ?",
+      "a": "Le jardin est clos et le domaine dispose d'un lit parapluie. Précisez vos besoins lors de la réservation."
+    },
+    {
+      "q": "Le domaine est-il proche du circuit des 24 Heures ?",
+      "a": "Oui, à environ 15 minutes du Circuit des 24 Heures du Mans, et à une dizaine de minutes du centre du Mans."
+    }
+  ],
+  "order": 1
+}

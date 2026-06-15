@@ -1,0 +1,35 @@
+{
+  "slug": "gite-seminaire-entreprise",
+  "category": "entreprise",
+  "priority": true,
+  "heroPhoto": "/uploads/domaine/04.jpg",
+  "title": "Gîte séminaire d’entreprise en Sarthe près du Mans",
+  "h1": "Séminaire d’entreprise au vert près du Mans",
+  "intro": "Réunissez vos équipes dans un cadre ressourçant : grandes salles, jardin et activités (tennis, piscine) pour un séminaire mémorable.",
+  "body": [
+    "À une dizaine de minutes du Mans et de sa gare TGV (Paris en 1 h), le domaine de la Mare Ronde offre un cadre nature et privatif pour vos séminaires, journées d'étude et réunions au vert.",
+    "Les grandes salles à manger se prêtent aux temps de travail comme aux repas conviviaux, tandis que le jardin, la piscine, le tennis et la pétanque facilitent les moments de cohésion. Hébergement sur place jusqu'à 16 personnes, en formule privatisée."
+  ],
+  "bullets": [
+    "Cadre privatif et calme, propice à la concentration",
+    "Hébergement de l'équipe sur place (jusqu'à 16 personnes)",
+    "Grands espaces modulables pour ateliers et repas",
+    "Wifi sur le domaine",
+    "À 12 min de la gare du Mans (TGV Paris 1 h)"
+  ],
+  "faq": [
+    {
+      "q": "Combien de personnes peut-on accueillir ?",
+      "a": "Jusqu'à 16 personnes en hébergement ; pour une journée d'étude sans nuitée, la capacité se définit selon votre format."
+    },
+    {
+      "q": "Y a-t-il le wifi ?",
+      "a": "Oui, le wifi est disponible sur le domaine."
+    },
+    {
+      "q": "Le domaine est-il proche du circuit des 24 Heures ?",
+      "a": "Oui, à environ 15 minutes du Circuit des 24 Heures du Mans, et à une dizaine de minutes du centre du Mans."
+    }
+  ],
+  "order": 4
+}

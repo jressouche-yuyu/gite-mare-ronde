@@ -1,0 +1,35 @@
+{
+  "slug": "gite-team-building",
+  "category": "entreprise",
+  "priority": true,
+  "heroPhoto": "/uploads/domaine/02.jpg",
+  "title": "Gîte team building & journée d’équipe en Sarthe",
+  "h1": "Un team building au vert près du Mans",
+  "intro": "Renforcez la cohésion de vos équipes dans un domaine privatif : activités de plein air, piscine, tennis et pétanque, à 10 minutes du Mans.",
+  "body": [
+    "Pour une journée de team building ou un incentive, le domaine de la Mare Ronde met à votre disposition un grand jardin clos et des équipements parfaits pour les activités de groupe : tournois de tennis, parties de pétanque, moments de détente à la piscine.",
+    "Le cadre privatif et nature, à deux pas du Mans, favorise les échanges informels et la cohésion d'équipe. Possibilité d'y associer un hébergement sur place (jusqu'à 16 personnes) pour prolonger sur deux jours."
+  ],
+  "bullets": [
+    "Grand jardin clos pour les activités de groupe",
+    "Tennis, pétanque et piscine sur place",
+    "Cadre privatif propice à la cohésion",
+    "Hébergement possible jusqu'à 16 personnes",
+    "À 10 min du Mans, 12 min de la gare TGV"
+  ],
+  "faq": [
+    {
+      "q": "Peut-on organiser une journée sans nuitée ?",
+      "a": "Oui, le domaine peut se privatiser à la journée. Contactez-nous pour un devis selon votre format."
+    },
+    {
+      "q": "Quelles activités sur place ?",
+      "a": "Court de tennis, terrain de pétanque, piscine et vaste jardin clos."
+    },
+    {
+      "q": "Le domaine est-il proche du circuit des 24 Heures ?",
+      "a": "Oui, à environ 15 minutes du Circuit des 24 Heures du Mans, et à une dizaine de minutes du centre du Mans."
+    }
+  ],
+  "order": 5
+}

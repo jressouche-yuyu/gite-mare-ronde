@@ -1,0 +1,31 @@
+{
+  "slug": "gite-week-end-entre-amis",
+  "category": "groupe",
+  "priority": false,
+  "heroPhoto": "/uploads/domaine/02.jpg",
+  "title": "Gîte week-end entre amis en Sarthe",
+  "h1": "Un grand gîte pour un week-end entre amis",
+  "intro": "Détente, piscine, tennis et grandes soirées : le lieu parfait pour se retrouver entre amis le temps d'un week-end près du Mans.",
+  "body": [
+    "Envie d'un week-end entre amis sans se marcher dessus ? Le domaine de la Mare Ronde réunit jusqu'à 16 couchages dans un cadre privatif, avec piscine, court de tennis et terrain de pétanque.",
+    "On profite du jardin la journée, on cuisine ensemble dans de grandes cuisines de caractère, et l'on refait le monde au coin de la cheminée le soir venu — au calme de la campagne, à deux pas du Mans."
+  ],
+  "bullets": [
+    "Jusqu'à 16 personnes, chacun son espace",
+    "Piscine, tennis et pétanque privatifs",
+    "Grandes cuisines et salles à manger",
+    "Cadre privatif, sans vis-à-vis",
+    "À 10 min du Mans"
+  ],
+  "faq": [
+    {
+      "q": "Quelle est la capacité ?",
+      "a": "Le domaine entier accueille jusqu'à 16 personnes (7 chambres, 19 couchages)."
+    },
+    {
+      "q": "Peut-on louer un seul appartement ?",
+      "a": "Oui : Le Jardin (4 pers.) et L'Escapade (2 pers.) se louent séparément."
+    }
+  ],
+  "order": 6
+}

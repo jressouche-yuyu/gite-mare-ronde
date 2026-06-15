@@ -1,0 +1,31 @@
+{
+  "slug": "gite-cousinade-reunion-famille",
+  "category": "evenement",
+  "priority": false,
+  "heroPhoto": "/uploads/domaine/01.jpg",
+  "title": "Gîte cousinade & réunion de famille en Sarthe",
+  "h1": "Réunir toute la famille sous un même toit",
+  "intro": "La grande capacité du domaine permet de rassembler plusieurs générations le temps d'une cousinade au vert.",
+  "body": [
+    "Une cousinade, des retrouvailles, une grande réunion de famille ? Le domaine de la Mare Ronde réunit jusqu'à 16 personnes dans trois gîtes complémentaires — de quoi loger plusieurs générations tout en préservant l'intimité de chacun.",
+    "Les grandes tablées, le jardin, la piscine et les activités sur place rythment les retrouvailles, dans un cadre de caractère à deux pas du Mans."
+  ],
+  "bullets": [
+    "Jusqu'à 16 personnes en 3 gîtes complémentaires",
+    "Indépendance de chacun + espaces communs généreux",
+    "Piscine, tennis, pétanque et grand jardin",
+    "Grandes salles à manger pour les repas de famille",
+    "À 10 min du Mans"
+  ],
+  "faq": [
+    {
+      "q": "Peut-on loger plusieurs familles ?",
+      "a": "Oui : le domaine réunit 3 gîtes, idéal pour que chaque famille garde son espace tout en partageant les moments communs."
+    },
+    {
+      "q": "Combien de couchages ?",
+      "a": "19 couchages au total, répartis dans 7 chambres."
+    }
+  ],
+  "order": 3
+}

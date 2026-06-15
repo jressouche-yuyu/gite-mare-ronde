@@ -1,0 +1,36 @@
+{
+  "slug": "gite-mariage-sarthe",
+  "category": "evenement",
+  "priority": true,
+  "heroPhoto": "/uploads/domaine/04.jpg",
+  "title": "Gîte mariage & réception en Sarthe près du Mans",
+  "h1": "Votre mariage dans un domaine de charme en Sarthe",
+  "intro": "Un cadre nature préservé, une grande capacité d'hébergement et un vaste jardin : le domaine de la Mare Ronde réunit vos invités pour célébrer à deux pas du Mans.",
+  "body": [
+    "Vous cherchez un lieu pour célébrer votre mariage en Sarthe, où vos proches pourront aussi dormir sur place ? Les Gîtes de la Mare Ronde, à Yvré-l'Évêque, réunissent un domaine de caractère, un vaste jardin clos et jusqu'à 16 couchages — à quelques minutes du Mans.",
+    "L'ancienne ferme rénovée — pierre, poutres, grandes salles à manger à cheminée — crée une atmosphère authentique et chaleureuse pour votre réception. Dehors, la piscine, le court de tennis et le terrain de pétanque prolongent la fête côté détente.",
+    "Le domaine se loue en formule événement : parlez-nous de votre projet (nombre d'invités, prestations, hébergement) et nous vous établissons un devis sur mesure."
+  ],
+  "bullets": [
+    "Domaine privatif de caractère, à l'abri des regards",
+    "Hébergement sur place jusqu'à 16 personnes (7 chambres)",
+    "Grandes salles de réception à poutres et cheminée",
+    "Vaste jardin clos, piscine, tennis et pétanque",
+    "À 10 min du Mans, 15 min du circuit, 1 h de Paris en TGV"
+  ],
+  "faq": [
+    {
+      "q": "Combien d'invités peut-on héberger sur place ?",
+      "a": "Le domaine héberge jusqu'à 16 personnes (7 chambres, 19 couchages, 4,5 salles de bain)."
+    },
+    {
+      "q": "Peut-on organiser la réception au domaine ?",
+      "a": "Oui, le cadre s'y prête. Les conditions (traiteur, horaires, capacité en journée) se définissent ensemble — demandez un devis."
+    },
+    {
+      "q": "Quand faut-il réserver ?",
+      "a": "Les dates de printemps et d'été sont très demandées : réservez le plus tôt possible."
+    }
+  ],
+  "order": 0
+}

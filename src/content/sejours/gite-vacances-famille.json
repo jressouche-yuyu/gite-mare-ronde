@@ -1,0 +1,31 @@
+{
+  "slug": "gite-vacances-famille",
+  "category": "groupe",
+  "priority": false,
+  "heroPhoto": "/uploads/domaine/01.jpg",
+  "title": "Gîte vacances en famille en Sarthe",
+  "h1": "Des vacances en famille au cœur de la campagne",
+  "intro": "Un jardin clos pour les enfants, une piscine pour tous et le calme de la campagne sarthoise pour des vacances réussies.",
+  "body": [
+    "Pour des vacances en famille, le domaine de la Mare Ronde conjugue espace, nature et tranquillité : un vaste jardin clos où les enfants jouent en sécurité, une piscine pour les après-midis d'été et de grands espaces de vie pour se retrouver.",
+    "À deux pas du Mans, vous rayonnez facilement vers la cité Plantagenêt, le circuit, les Alpes mancelles et les nombreuses activités de la Sarthe."
+  ],
+  "bullets": [
+    "Vaste jardin clos, idéal pour les enfants",
+    "Piscine et activités sur place",
+    "Grands espaces de vie et nombreuses chambres",
+    "Lit parapluie disponible",
+    "À 10 min du Mans, nombreuses visites alentour"
+  ],
+  "faq": [
+    {
+      "q": "Le jardin est-il sécurisé pour les enfants ?",
+      "a": "Le jardin est clos. La piscine doit faire l'objet d'une surveillance des enfants par les adultes."
+    },
+    {
+      "q": "Peut-on venir hors saison ?",
+      "a": "Oui, le domaine se loue toute l'année — la campagne sarthoise est belle en toute saison."
+    }
+  ],
+  "order": 7
+}
