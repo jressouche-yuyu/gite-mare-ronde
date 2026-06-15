@@ -38,11 +38,18 @@ jobs:
         run: npm run tina:build -- --skip-cloud-checks
       - name: Committer tina-lock.json (indexation TinaCloud)
         run: |
+          echo "── recherche tina-lock.json ──"
+          find . -name 'tina-lock.json' -not -path './node_modules/*' || true
+          ls -la tina/ || true
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add tina-lock.json
-          git diff --staged --quiet || git commit -m "chore: update tina-lock.json [skip ci]"
-          git push || echo "rien à pousser"
+          LOCK=$(find . -name 'tina-lock.json' -not -path './node_modules/*' | head -1)
+          if [ -n "$LOCK" ]; then
+            git add -f "$LOCK"
+            git diff --staged --quiet || { git commit -m "chore: update tina-lock.json [skip ci]"; git push; }
+          else
+            echo "Aucun tina-lock.json généré — on continue le déploiement."
+          fi
       - name: Build (Astro + base path)
         run: npm run build
       - name: Uploader l'artefact
