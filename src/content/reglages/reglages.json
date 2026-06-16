@@ -1,0 +1,62 @@
+{
+  "title": "Réglages du site",
+  "brand": {
+    "name": "La Mare Ronde",
+    "sublabel": "Gîtes de caractère",
+    "logo": { "src": "/logo-160.png", "alt": "Logo La Mare Ronde" }
+  },
+  "contact": {
+    "city": "Yvré-l’Évêque",
+    "postalCode": "72530",
+    "region": "Pays de la Loire",
+    "email": "contact@gite-marre-ronde.fr",
+    "phone": "+33 (0)X XX XX XX XX"
+  },
+  "facts": {
+    "capacityMax": "16",
+    "bedrooms": "7",
+    "beds": "19",
+    "baths": "4,5"
+  },
+  "booking": {
+    "primary": "https://www.airbnb.fr/rooms/1694094489622768302"
+  },
+  "nav": [
+    { "label": "Accueil", "href": "/" },
+    { "label": "Le domaine", "href": "/le-gite/" },
+    { "label": "Nos Gîtes", "href": "/nos-gites/" },
+    { "label": "Séjours", "href": "/sejour/" },
+    { "label": "Contact", "href": "/contact/" }
+  ],
+  "footerBlurb": "Domaine de caractère à Yvré-l’Évêque (72530), Sarthe — trois gîtes, piscine, tennis et pétanque, à deux pas du Mans.",
+  "footerColumns": [
+    {
+      "heading": "Découvrir",
+      "links": [
+        { "label": "Le domaine", "href": "/le-gite/" },
+        { "label": "Nos gîtes", "href": "/nos-gites/" },
+        { "label": "Galerie photos", "href": "/galerie/" },
+        { "label": "Prix & disponibilités", "href": "/prix/" }
+      ]
+    },
+    {
+      "heading": "Séjourner",
+      "links": [
+        { "label": "Séjours & événements", "href": "/sejour/" },
+        { "label": "Par capacité", "href": "/capacite/" },
+        { "label": "Par localisation", "href": "/location/" },
+        { "label": "Questions fréquentes", "href": "/faq/" }
+      ]
+    },
+    {
+      "heading": "La Mare Ronde",
+      "links": [
+        { "label": "Qui sommes-nous", "href": "/qui-sommes-nous/" },
+        { "label": "Accès & itinéraire", "href": "/acces/" },
+        { "label": "Contact", "href": "/contact/" },
+        { "label": "Mentions légales", "href": "/mentions-legales/" },
+        { "label": "Confidentialité", "href": "/confidentialite/" }
+      ]
+    }
+  ]
+}

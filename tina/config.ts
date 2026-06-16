@@ -436,6 +436,73 @@ export default defineConfig({
           { type: 'number', name: 'order', label: 'Ordre d’affichage' },
         ],
       },
+      {
+        name: 'reglages',
+        label: '⚙️ Réglages du site',
+        path: 'src/content/reglages',
+        format: 'json',
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: 'string', name: 'title', label: 'Nom (interne)', isTitle: true, required: true },
+          {
+            type: 'object', name: 'brand', label: '🏷️ Identité',
+            fields: [
+              { type: 'string', name: 'name', label: 'Nom du site' },
+              { type: 'string', name: 'sublabel', label: 'Sous-titre du logo' },
+              imageWithAlt('logo', 'Logo'),
+            ],
+          },
+          {
+            type: 'object', name: 'contact', label: '📞 Coordonnées',
+            fields: [
+              { type: 'string', name: 'city', label: 'Commune' },
+              { type: 'string', name: 'postalCode', label: 'Code postal' },
+              { type: 'string', name: 'region', label: 'Région' },
+              { type: 'string', name: 'email', label: 'E-mail' },
+              { type: 'string', name: 'phone', label: 'Téléphone' },
+            ],
+          },
+          {
+            type: 'object', name: 'facts', label: '🔑 Faits clés (capacité)',
+            fields: [
+              { type: 'string', name: 'capacityMax', label: 'Capacité max (personnes)' },
+              { type: 'string', name: 'bedrooms', label: 'Chambres' },
+              { type: 'string', name: 'beds', label: 'Couchages' },
+              { type: 'string', name: 'baths', label: 'Salles de bain' },
+            ],
+          },
+          {
+            type: 'object', name: 'booking', label: '🛎️ Réservation',
+            fields: [
+              { type: 'string', name: 'primary', label: 'Lien de réservation principal (Airbnb domaine)' },
+            ],
+          },
+          {
+            type: 'object', name: 'nav', label: '🧭 Menu de navigation', list: true,
+            ui: { itemProps: (i: any) => ({ label: i?.label }) },
+            fields: [
+              { type: 'string', name: 'label', label: 'Libellé' },
+              { type: 'string', name: 'href', label: 'Lien (ex. /nos-gites/)' },
+            ],
+          },
+          { type: 'string', name: 'footerBlurb', label: 'Pied de page — texte de présentation', ui: { component: 'textarea' } },
+          {
+            type: 'object', name: 'footerColumns', label: '📋 Pied de page — colonnes de liens', list: true,
+            ui: { itemProps: (i: any) => ({ label: i?.heading }) },
+            fields: [
+              { type: 'string', name: 'heading', label: 'Titre de colonne' },
+              {
+                type: 'object', name: 'links', label: 'Liens', list: true,
+                ui: { itemProps: (i: any) => ({ label: i?.label }) },
+                fields: [
+                  { type: 'string', name: 'label', label: 'Libellé' },
+                  { type: 'string', name: 'href', label: 'Lien' },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     ],
   },
 });

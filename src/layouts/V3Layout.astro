@@ -4,6 +4,7 @@ import '../styles/v3.css';
 import { site } from '../data/site';
 import { booking } from '../data/booking';
 import { withBase } from '../lib/url';
+import reglages from '../content/reglages/reglages.json';
 
 interface Props {
   title: string;
@@ -27,13 +28,8 @@ const origin = Astro.site ?? new URL(site.domain);
 const canonical = new URL(baseNoSlash + path, origin).href;
 const ogImageUrl = new URL(baseNoSlash + (ogImage || '/logo.png'), origin).href;
 
-const nav = [
-  { href: '/', label: 'Accueil' },
-  { href: '/le-gite/', label: 'Le domaine' },
-  { href: '/nos-gites/', label: 'Nos Gîtes' },
-  { href: '/sejour/', label: 'Séjours' },
-  { href: '/contact/', label: 'Contact' },
-];
+const nav = reglages.nav;
+const brand = reglages.brand;
 
 // JSON-LD établissement présent sur toutes les pages (richesse SEO/GEO héritée de la V1)
 const lodging = {
@@ -90,8 +86,8 @@ const lodging = {
   <header class:list={["v-header", { "solid": !heroHeader, "solid-locked": !heroHeader }]} id="v-header">
     <div class="bar">
       <a href={withBase('/')} class="v-logo">
-        <img src={withBase('/logo-160.png')} alt="Logo La Mare Ronde" width="44" height="44" />
-        <span class="t">La Mare Ronde<small>Gîtes de caractère</small></span>
+        <img src={withBase(brand.logo?.src || '/logo-160.png')} alt={brand.logo?.alt || brand.name} width="44" height="44" />
+        <span class="t">{brand.name}<small>{brand.sublabel}</small></span>
       </a>
       <nav class="v-nav">
         <ul>
@@ -111,40 +107,20 @@ const lodging = {
     <div class="v-wrap">
       <div class="v-fgrid">
         <div>
-          <div class="brand">La Mare Ronde</div>
-          <p>Domaine de caractère à {site.city} ({site.postalCode}), Sarthe — trois gîtes, piscine, tennis et pétanque, à deux pas du Mans.</p>
+          <div class="brand">{brand.name}</div>
+          <p>{reglages.footerBlurb}</p>
           <p style="margin-top:10px"><a href={booking.primary} target="_blank" rel="noopener" style="color:var(--v-terra-light);font-weight:700">Réserver sur Airbnb →</a></p>
         </div>
-        <div>
-          <h4>Découvrir</h4>
-          <ul>
-            <li><a href={withBase('/le-gite/')}>Le domaine</a></li>
-            <li><a href={withBase('/nos-gites/')}>Nos gîtes</a></li>
-            <li><a href={withBase('/galerie/')}>Galerie photos</a></li>
-            <li><a href={withBase('/prix/')}>Prix &amp; disponibilités</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Séjourner</h4>
-          <ul>
-            <li><a href={withBase('/sejour/')}>Séjours &amp; événements</a></li>
-            <li><a href={withBase('/capacite/')}>Par capacité</a></li>
-            <li><a href={withBase('/location/')}>Par localisation</a></li>
-            <li><a href={withBase('/faq/')}>Questions fréquentes</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>La Mare Ronde</h4>
-          <ul>
-            <li><a href={withBase('/qui-sommes-nous/')}>Qui sommes-nous</a></li>
-            <li><a href={withBase('/acces/')}>Accès &amp; itinéraire</a></li>
-            <li><a href={withBase('/contact/')}>Contact</a></li>
-            <li><a href={withBase('/mentions-legales/')}>Mentions légales</a></li>
-            <li><a href={withBase('/confidentialite/')}>Confidentialité</a></li>
-          </ul>
-        </div>
+        {reglages.footerColumns.map((col) => (
+          <div>
+            <h4>{col.heading}</h4>
+            <ul>
+              {col.links.map((l) => <li><a href={withBase(l.href)}>{l.label}</a></li>)}
+            </ul>
+          </div>
+        ))}
       </div>
-      <div class="v-fbot">© 2026 La Mare Ronde · {site.city} (72)</div>
+      <div class="v-fbot">© 2026 {brand.name} · {site.city} (72)</div>
     </div>
   </footer>
 

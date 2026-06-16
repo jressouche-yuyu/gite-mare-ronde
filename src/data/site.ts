@@ -1,22 +1,25 @@
 // Informations centrales du site (NAP, atouts, distances).
-// ⚠️ Les valeurs "XX" sont des placeholders — à compléter avec les infos réelles du propriétaire.
+// Le sous-ensemble éditable (identité, contact, faits clés) provient du CMS via reglages.json.
+// Les champs structurels (domaine, clé formulaire) restent dans le code.
+import reglages from '../content/reglages/reglages.json';
+
 export const site = {
-  name: 'Gîte de la Mare Ronde',
+  name: reglages.brand.name,
   shortName: 'Mare Ronde',
   tagline: 'Gîte de charme avec piscine près du Mans',
   domain: 'https://www.gite-marre-ronde.fr',
-  city: 'Yvré-l’Évêque',
-  postalCode: '72530',
-  region: 'Pays de la Loire',
+  city: reglages.contact.city,
+  postalCode: reglages.contact.postalCode,
+  region: reglages.contact.region,
   department: 'Sarthe',
-  email: 'contact@gite-marre-ronde.fr',
-  phone: '+33 (0)X XX XX XX XX',
+  email: reglages.contact.email,
+  phone: reglages.contact.phone,
   // Formulaire de contact : clé gratuite à créer sur https://web3forms.com (saisir l'e-mail du gîte)
   web3formsKey: 'VOTRE_CLE_WEB3FORMS',
-  capacityMax: '16',
-  bedrooms: '7',
-  beds: '19',
-  baths: '4,5',
+  capacityMax: reglages.facts.capacityMax,
+  bedrooms: reglages.facts.bedrooms,
+  beds: reglages.facts.beds,
+  baths: reglages.facts.baths,
   description:
     "Domaine de caractère à Yvré-l’Évêque, près du Mans : 3 gîtes réunissant 16 couchages, avec piscine, court de tennis, terrain de pétanque et vaste jardin. À 15 minutes du Circuit des 24 Heures du Mans.",
   highlights: [
