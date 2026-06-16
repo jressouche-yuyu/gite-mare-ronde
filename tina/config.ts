@@ -535,6 +535,130 @@ export default defineConfig({
         ],
       },
       {
+        name: 'legite',
+        label: '🏡 Page « Le domaine »',
+        path: 'src/content/legite',
+        format: 'json',
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: 'string', name: 'title', label: 'Nom (interne)', isTitle: true, required: true },
+          seoField,
+          {
+            type: 'object', name: 'hero', label: 'En-tête',
+            fields: [{ type: 'string', name: 'eyebrow', label: 'Sur-titre' }, { type: 'string', name: 'title', label: 'Titre H1' }, { type: 'string', name: 'intro', label: 'Intro', ui: { component: 'textarea' } }],
+          },
+          {
+            type: 'object', name: 'presentation', label: 'Présentation',
+            fields: [
+              { type: 'string', name: 'eyebrow', label: 'Sur-titre' },
+              { type: 'string', name: 'heading', label: 'Titre (H2)' },
+              { type: 'string', name: 'paragraphs', label: 'Paragraphes (HTML simple autorisé : <strong>)', list: true, ui: { component: 'textarea' } },
+              imageWithAlt('image1', 'Image 1'),
+              imageWithAlt('image2', 'Image 2'),
+              { type: 'string', name: 'ctaLabel', label: 'Bouton — texte' },
+              { type: 'string', name: 'ctaHref', label: 'Bouton — lien' },
+            ],
+          },
+          {
+            type: 'object', name: 'spaces', label: 'Les espaces',
+            fields: [
+              { type: 'string', name: 'eyebrow', label: 'Sur-titre' },
+              { type: 'string', name: 'heading', label: 'Titre (H2)' },
+              { type: 'string', name: 'intro', label: 'Intro' },
+              {
+                type: 'object', name: 'cards', label: 'Cartes', list: true,
+                ui: { itemProps: (i: any) => ({ label: i?.title }) },
+                fields: [imageWithAlt('image', 'Photo'), { type: 'string', name: 'title', label: 'Titre' }, { type: 'string', name: 'text', label: 'Texte', ui: { component: 'textarea' } }],
+              },
+            ],
+          },
+          {
+            type: 'object', name: 'equipment', label: 'Équipements (puces)', list: true,
+            ui: { itemProps: (i: any) => ({ label: i?.name }) },
+            fields: [{ type: 'string', name: 'ic', label: 'Emoji' }, { type: 'string', name: 'name', label: 'Nom' }],
+          },
+          {
+            type: 'object', name: 'gallery', label: 'Aperçu photos',
+            fields: [
+              { type: 'string', name: 'eyebrow', label: 'Sur-titre' },
+              { type: 'string', name: 'heading', label: 'Titre (H2)' },
+              { type: 'image', name: 'photos', label: 'Photos', list: true },
+              { type: 'string', name: 'ctaLabel', label: 'Bouton — texte' },
+              { type: 'string', name: 'ctaHref', label: 'Bouton — lien' },
+            ],
+          },
+          {
+            type: 'object', name: 'cta', label: 'Bandeau final',
+            fields: [
+              { type: 'string', name: 'heading', label: 'Titre' },
+              { type: 'string', name: 'text', label: 'Texte' },
+              { type: 'string', name: 'buttonLabel', label: 'Bouton — texte' },
+              { type: 'string', name: 'buttonHref', label: 'Bouton — lien' },
+            ],
+          },
+        ],
+      },
+      {
+        name: 'prix',
+        label: '💶 Page Prix',
+        path: 'src/content/prix',
+        format: 'json',
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: 'string', name: 'title', label: 'Nom (interne)', isTitle: true, required: true },
+          seoField,
+          {
+            type: 'object', name: 'hero', label: 'En-tête',
+            fields: [{ type: 'string', name: 'eyebrow', label: 'Sur-titre' }, { type: 'string', name: 'title', label: 'Titre H1' }, { type: 'string', name: 'intro', label: 'Intro', ui: { component: 'textarea' } }, { type: 'string', name: 'ctaLabel', label: 'Bouton Airbnb — texte' }],
+          },
+          {
+            type: 'object', name: 'calendarHeading', label: 'Titre du calendrier',
+            fields: [{ type: 'string', name: 'eyebrow', label: 'Sur-titre' }, { type: 'string', name: 'heading', label: 'Titre (H2)' }],
+          },
+          {
+            type: 'object', name: 'seasons', label: 'Saisons', list: true,
+            ui: { itemProps: (i: any) => ({ label: i?.label }) },
+            fields: [
+              { type: 'string', name: 'key', label: 'Clé (basse / moyenne / haute / evenement)' },
+              { type: 'string', name: 'label', label: 'Libellé' },
+              { type: 'string', name: 'color', label: 'Couleur (hex)' },
+              { type: 'string', name: 'period', label: 'Période' },
+              { type: 'string', name: 'note', label: 'Note (optionnelle)' },
+            ],
+          },
+          {
+            type: 'object', name: 'calendar', label: 'Calendrier (12 mois)', list: true,
+            ui: { itemProps: (i: any) => ({ label: i?.month }) },
+            fields: [
+              { type: 'string', name: 'month', label: 'Mois (abrégé)' },
+              { type: 'string', name: 'season', label: 'Saison (clé)' },
+              { type: 'string', name: 'tag', label: 'Étiquette (ex. 24 H du Mans)' },
+            ],
+          },
+          {
+            type: 'object', name: 'gridHeading', label: 'Titre de la grille',
+            fields: [{ type: 'string', name: 'eyebrow', label: 'Sur-titre' }, { type: 'string', name: 'heading', label: 'Titre (H2)' }, { type: 'string', name: 'intro', label: 'Intro' }],
+          },
+          {
+            type: 'object', name: 'priceGrid', label: 'Grille tarifaire', list: true,
+            ui: { itemProps: (i: any) => ({ label: i?.unit }) },
+            fields: [
+              { type: 'string', name: 'unit', label: 'Hébergement' },
+              { type: 'string', name: 'basse', label: 'Basse saison' },
+              { type: 'string', name: 'moyenne', label: 'Moyenne saison' },
+              { type: 'string', name: 'haute', label: 'Haute saison' },
+              { type: 'string', name: 'evenement', label: 'Événements' },
+            ],
+          },
+          { type: 'string', name: 'gridFootnote', label: 'Note sous la grille', ui: { component: 'textarea' } },
+          { type: 'string', name: 'notesHeading', label: 'Titre « Bon à savoir »' },
+          {
+            type: 'object', name: 'cta', label: 'Bandeau final',
+            fields: [{ type: 'string', name: 'heading', label: 'Titre' }, { type: 'string', name: 'text', label: 'Texte' }],
+          },
+        ],
+      },
+      {
         name: 'reglages',
         label: '⚙️ Réglages du site',
         path: 'src/content/reglages',

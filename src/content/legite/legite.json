@@ -1,0 +1,48 @@
+{
+  "title": "Le domaine",
+  "seo": {
+    "metaTitle": "Le domaine — Gîte de la Mare Ronde à Yvré-l’Évêque",
+    "metaDescription": "Découvrez Les Gîtes de la Mare Ronde : ancienne ferme rénovée avec piscine, tennis et pétanque à Yvré-l’Évêque, près du Mans. 3 gîtes, jusqu’à 16 personnes."
+  },
+  "hero": {
+    "eyebrow": "Le lieu",
+    "title": "Une ancienne ferme rénovée, au cœur de la verdure",
+    "intro": "Pierre, bois et grands volumes : tout le charme de l’ancien, avec le confort d’aujourd’hui."
+  },
+  "presentation": {
+    "eyebrow": "Présentation",
+    "heading": "Bienvenue à la Mare Ronde",
+    "paragraphs": [
+      "Niché à Yvré-l’Évêque, à deux pas du Mans, le domaine de la Mare Ronde réunit <strong>trois gîtes de charme</strong> au sein d’une authentique propriété de caractère, restaurée avec soin pour conserver l’âme de la ferme d’origine.",
+      "On y vient pour le calme, l’espace et la nature — et pour se retrouver, en famille ou entre amis. Le domaine entier accueille jusqu’à <strong>16 personnes</strong> (7 chambres, 19 couchages, 4,5 salles de bain) ; les appartements se louent aussi séparément."
+    ],
+    "image1": { "src": "/uploads/domaine/01.jpg", "alt": "La façade en pierre du domaine de la Mare Ronde et sa piscine" },
+    "image2": { "src": "/uploads/domaine/10.jpg", "alt": "Cuisine de caractère en pierre et bois" },
+    "ctaLabel": "Voir les 3 hébergements",
+    "ctaHref": "/nos-gites/"
+  },
+  "spaces": {
+    "eyebrow": "Les espaces",
+    "heading": "Tout ce qu’il faut pour un grand séjour",
+    "intro": "Piscine, tennis et pétanque dehors ; cheminée, grandes tablées et cuisines de caractère dedans.",
+    "cards": [
+      { "image": { "src": "/uploads/domaine/02.jpg", "alt": "La piscine et le jardin clos du domaine" }, "title": "La piscine & le jardin", "text": "Un bassin avec abri au cœur d’un vaste jardin clos, court de tennis et terrain de pétanque privatifs." },
+      { "image": { "src": "/uploads/domaine/04.jpg", "alt": "Salle à manger à poutres apparentes et cheminée" }, "title": "Les salles à manger", "text": "De grands espaces à poutres et cheminée, parfaits pour réunir tout le monde autour de la table." },
+      { "image": { "src": "/uploads/domaine/10.jpg", "alt": "Cuisine de caractère en pierre et bois" }, "title": "Cuisines de caractère", "text": "Des cuisines équipées mêlant pierre, brique et bois, pour cuisiner comme à la maison." }
+    ]
+  },
+  "equipment": [
+    { "ic": "🏊", "name": "Piscine" },
+    { "ic": "🎾", "name": "Tennis" },
+    { "ic": "🎯", "name": "Pétanque" },
+    { "ic": "🌿", "name": "Parc arboré" }
+  ],
+  "gallery": {
+    "eyebrow": "Aperçu",
+    "heading": "Le domaine en images",
+    "photos": ["/uploads/domaine/01.jpg", "/uploads/domaine/03.jpg", "/uploads/domaine/05.jpg", "/uploads/domaine/07.jpg", "/uploads/domaine/11.jpg", "/uploads/domaine/17.jpg"],
+    "ctaLabel": "Voir toutes les photos",
+    "ctaHref": "/galerie/"
+  },
+  "cta": { "heading": "Envie de découvrir le domaine ?", "text": "Réservez en direct sur Airbnb, ou écrivez-nous pour un séjour sur mesure.", "buttonLabel": "Voir les hébergements", "buttonHref": "/nos-gites/" }
+}

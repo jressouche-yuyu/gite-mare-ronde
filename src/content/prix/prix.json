@@ -1,0 +1,43 @@
+{
+  "title": "Prix & calendrier",
+  "seo": {
+    "metaTitle": "Prix & calendrier des tarifs — Gîte de la Mare Ronde",
+    "metaDescription": "Grille tarifaire du Gîte de la Mare Ronde par période (basse, moyenne, haute saison, événements). Réservation et prix en temps réel sur Airbnb."
+  },
+  "hero": {
+    "eyebrow": "Tarifs & disponibilités",
+    "title": "Nos prix selon la période",
+    "intro": "Les tarifs varient au fil de l’année. La réservation et les prix en temps réel se font sur Airbnb.",
+    "ctaLabel": "Voir les prix en direct sur Airbnb"
+  },
+  "calendarHeading": { "eyebrow": "Calendrier de l’année", "heading": "Quelle période pour votre séjour ?" },
+  "seasons": [
+    { "key": "basse", "label": "Basse saison", "color": "#6d7459", "period": "Novembre → mars (hors fêtes & vacances)", "note": "Les meilleurs tarifs, au calme." },
+    { "key": "moyenne", "label": "Moyenne saison", "color": "#c8a24b", "period": "Avril, mai, juin, septembre, octobre", "note": "" },
+    { "key": "haute", "label": "Haute saison", "color": "#b5623c", "period": "Juillet & août, vacances scolaires", "note": "Forte demande : réservez tôt." },
+    { "key": "evenement", "label": "Événements", "color": "#9a4f2f", "period": "24 Heures du Mans, Grand Prix moto, fêtes de fin d’année", "note": "Tarifs spécifiques, séjours souvent en formule événement." }
+  ],
+  "calendar": [
+    { "month": "Jan", "season": "basse", "tag": "" },
+    { "month": "Fév", "season": "basse", "tag": "" },
+    { "month": "Mar", "season": "basse", "tag": "" },
+    { "month": "Avr", "season": "moyenne", "tag": "" },
+    { "month": "Mai", "season": "moyenne", "tag": "" },
+    { "month": "Juin", "season": "evenement", "tag": "24 H du Mans" },
+    { "month": "Juil", "season": "haute", "tag": "" },
+    { "month": "Août", "season": "haute", "tag": "" },
+    { "month": "Sep", "season": "moyenne", "tag": "GP moto" },
+    { "month": "Oct", "season": "moyenne", "tag": "" },
+    { "month": "Nov", "season": "basse", "tag": "" },
+    { "month": "Déc", "season": "evenement", "tag": "Fêtes" }
+  ],
+  "gridHeading": { "eyebrow": "Grille indicative", "heading": "Tarifs par hébergement", "intro": "Prix indicatifs par nuit. Tarifs définitifs et disponibilités sur Airbnb." },
+  "priceGrid": [
+    { "unit": "Les Gîtes de la Mare Ronde (16 pers.)", "basse": "XX €", "moyenne": "XX €", "haute": "XX €", "evenement": "sur devis" },
+    { "unit": "Le Jardin de la Mare Ronde (4 pers.)", "basse": "XX €", "moyenne": "XX €", "haute": "XX €", "evenement": "sur devis" },
+    { "unit": "L'Escapade de la Mare Ronde (2 pers.)", "basse": "XX €", "moyenne": "XX €", "haute": "XX €", "evenement": "sur devis" }
+  ],
+  "gridFootnote": "* Hors taxe de séjour et caution. Durée minimum de séjour variable selon la saison. Semaine des 24 Heures du Mans et fêtes de fin d’année : conditions spécifiques.",
+  "notesHeading": "Bon à savoir",
+  "cta": { "heading": "Réservez vos dates", "text": "Consultez le calendrier de disponibilités et réservez en direct sur Airbnb." }
+}

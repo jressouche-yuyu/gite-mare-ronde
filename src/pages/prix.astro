@@ -1,40 +1,42 @@
 ---
 import V3Layout from '../layouts/V3Layout.astro';
-import { site } from '../data/site';
 import { booking } from '../data/booking';
-import { seasons, calendar, priceGrid } from '../data/seasons';
 import { withBase } from '../lib/url';
+import data from '../content/prix/prix.json';
 
-const seasonByKey = Object.fromEntries(seasons.map((s) => [s.key, s]));
+const seo = (data as any).seo ?? {};
+const { hero, calendarHeading, seasons, calendar, gridHeading, priceGrid, gridFootnote, notesHeading, cta } = data as any;
+const seasonByKey: Record<string, any> = Object.fromEntries(seasons.map((s: any) => [s.key, s]));
 ---
 <V3Layout
-  title={`Prix & calendrier des tarifs — ${site.name}`}
-  description="Grille tarifaire du Gîte de la Mare Ronde par période (basse, moyenne, haute saison, événements). Réservation et prix en temps réel sur Airbnb."
+  title={seo.metaTitle || data.title}
+  description={seo.metaDescription || ''}
   path="/prix/"
+  noindex={seo.noindex}
 >
   <section class="v-phero"><div class="v-wrap">
-    <p class="v-eyebrow" style="color:var(--v-rose)">Tarifs & disponibilités</p>
-    <h1>Nos prix selon la période</h1>
-    <p>Les tarifs varient au fil de l’année. La réservation et les prix en temps réel se font sur Airbnb.</p>
-    <div style="margin-top:22px"><a href={booking.primary} target="_blank" rel="noopener" class="v-btn v-btn-book">Voir les prix en direct sur Airbnb</a></div>
+    <p class="v-eyebrow" style="color:var(--v-rose)">{hero.eyebrow}</p>
+    <h1>{hero.title}</h1>
+    <p>{hero.intro}</p>
+    <div style="margin-top:22px"><a href={booking.primary} target="_blank" rel="noopener" class="v-btn v-btn-book">{hero.ctaLabel}</a></div>
   </div></section>
 
   <!-- FRISE CALENDRIER -->
   <section class="v-sec"><div class="v-wrap">
-    <div class="v-head v-reveal"><p class="v-eyebrow">Calendrier de l’année</p><h2>Quelle période pour votre séjour ?</h2><div class="v-rule"></div></div>
+    <div class="v-head v-reveal"><p class="v-eyebrow">{calendarHeading.eyebrow}</p><h2>{calendarHeading.heading}</h2><div class="v-rule"></div></div>
     <div class="v-calbar v-reveal">
-      {calendar.map((c) => {
+      {calendar.map((c: any) => {
         const s = seasonByKey[c.season];
         return (
-          <div class="m" style={`background:${s.color}`} title={s.label}>
+          <div class="m" style={`background:${s?.color}`} title={s?.label}>
             <div class="mn">{c.month}</div>
-            <div class="mt">{c.tag || s.label}</div>
+            <div class="mt">{c.tag || s?.label}</div>
           </div>
         );
       })}
     </div>
     <div class="v-legend v-reveal">
-      {seasons.map((s) => (
+      {seasons.map((s: any) => (
         <span class="lg"><span class="dot" style={`background:${s.color}`}></span>{s.label} — <span style="color:var(--v-gris)">{s.period}</span></span>
       ))}
     </div>
@@ -42,30 +44,30 @@ const seasonByKey = Object.fromEntries(seasons.map((s) => [s.key, s]));
 
   <!-- GRILLE TARIFAIRE -->
   <section class="v-sec alt"><div class="v-wrap">
-    <div class="v-head v-reveal"><p class="v-eyebrow">Grille indicative</p><h2>Tarifs par hébergement</h2><div class="v-rule"></div><p>Prix indicatifs par nuit. <em>Tarifs définitifs et disponibilités sur Airbnb.</em></p></div>
+    <div class="v-head v-reveal"><p class="v-eyebrow">{gridHeading.eyebrow}</p><h2>{gridHeading.heading}</h2><div class="v-rule"></div><p>{gridHeading.intro}</p></div>
     <div class="v-reveal" style="overflow-x:auto">
       <table class="v-table">
-        <thead><tr><th>Hébergement</th>{seasons.map((s) => <th>{s.label}</th>)}</tr></thead>
+        <thead><tr><th>Hébergement</th>{seasons.map((s: any) => <th>{s.label}</th>)}</tr></thead>
         <tbody>
-          {priceGrid.map((r) => (
+          {priceGrid.map((r: any) => (
             <tr><td>{r.unit}</td><td>{r.basse}</td><td>{r.moyenne}</td><td>{r.haute}</td><td>{r.evenement}</td></tr>
           ))}
         </tbody>
       </table>
     </div>
-    <p class="v-reveal" style="margin-top:18px;font-size:.85rem;color:var(--v-gris)">* Hors taxe de séjour et caution. Durée minimum de séjour variable selon la saison. Semaine des 24 Heures du Mans et fêtes de fin d’année : conditions spécifiques.</p>
+    <p class="v-reveal" style="margin-top:18px;font-size:.85rem;color:var(--v-gris)">{gridFootnote}</p>
   </div></section>
 
   <!-- NOTES SAISONS -->
   <section class="v-sec"><div class="v-wrap v-prose v-reveal" style="margin:0 auto">
-    <h2>Bon à savoir</h2>
-    {seasons.filter((s) => s.note).map((s) => (<p><strong>{s.label} —</strong> {s.note}</p>))}
+    <h2>{notesHeading}</h2>
+    {seasons.filter((s: any) => s.note).map((s: any) => (<p><strong>{s.label} —</strong> {s.note}</p>))}
     <p>Pour un mariage, un anniversaire ou un séminaire, le domaine se loue en formule événement : <a href={withBase('/contact/')}>demandez un devis</a>.</p>
   </div></section>
 
   <section class="v-sec v-cta"><div class="v-wrap v-reveal">
-    <h2>Réservez vos dates</h2>
-    <p>Consultez le calendrier de disponibilités et réservez en direct sur Airbnb.</p>
+    <h2>{cta.heading}</h2>
+    <p>{cta.text}</p>
     <a href={booking.primary} target="_blank" rel="noopener" class="v-btn v-btn-book">Réserver sur Airbnb</a>
   </div></section>
 </V3Layout>
