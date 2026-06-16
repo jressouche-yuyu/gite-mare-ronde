@@ -1,0 +1,9 @@
+{
+  "title": "Galerie photos",
+  "seo": {
+    "metaTitle": "Galerie photos — Gîte de la Mare Ronde à Yvré-l’Évêque",
+    "metaDescription": "Photos des Gîtes de la Mare Ronde : piscine, tennis, jardin, intérieurs de charme à Yvré-l’Évêque, près du Mans."
+  },
+  "hero": { "eyebrow": "Galerie", "title": "Le domaine en images", "intro": "Le domaine, ses extérieurs et ses trois gîtes de charme." },
+  "cta": { "heading": "Ces images vous parlent ?", "text": "Réservez en direct sur Airbnb, ou écrivez-nous pour un séjour sur mesure.", "buttonLabel": "Voir les hébergements", "buttonHref": "/nos-gites/" }
+}

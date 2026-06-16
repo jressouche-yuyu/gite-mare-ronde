@@ -1,17 +1,15 @@
 ---
 import V3Layout from '../layouts/V3Layout.astro';
-import { site } from '../data/site';
+import data from '../content/legal/mentions-legales.json';
+
+const seo = (data as any).seo ?? {};
+const { heroTitle, sections } = data as any;
 ---
-<V3Layout title={`Mentions légales — ${site.name}`} description="Mentions légales du site du Gîte de la Mare Ronde." path="/mentions-legales/">
+<V3Layout title={seo.metaTitle || data.title} description={seo.metaDescription || ''} path="/mentions-legales/" noindex={seo.noindex}>
   <section class="v-phero"><div class="v-wrap">
-    <h1>Mentions légales</h1>
+    <h1>{heroTitle}</h1>
   </div></section>
   <section class="v-sec"><div class="v-wrap v-prose v-reveal" style="margin:0 auto">
-    <h2>Éditeur</h2>
-    <p>{site.name} — {site.city} ({site.postalCode}). <em>(Raison sociale, SIRET, directeur de publication à compléter.)</em></p>
-    <h2>Hébergement</h2>
-    <p><em>(Nom et coordonnées de l’hébergeur à compléter.)</em></p>
-    <h2>Propriété intellectuelle</h2>
-    <p>L’ensemble des contenus de ce site est protégé. Toute reproduction sans autorisation est interdite.</p>
+    {sections.map((s: any) => (<><h2>{s.heading}</h2><p set:html={(s.body || '').replace(/\n/g, '<br>')} /></>))}
   </div></section>
 </V3Layout>

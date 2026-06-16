@@ -1,0 +1,19 @@
+{
+  "title": "FAQ",
+  "seo": {
+    "metaTitle": "FAQ — Gîte de la Mare Ronde",
+    "metaDescription": "Questions fréquentes sur le Gîte de la Mare Ronde : localisation, capacité, piscine, tennis, mariage, tarifs et réservation."
+  },
+  "hero": { "eyebrow": "Questions fréquentes", "title": "Tout savoir avant de réserver" },
+  "items": [
+    { "q": "Où se situe le Gîte de la Mare Ronde ?", "a": "À Yvré-l’Évêque, dans la Sarthe (72), à environ 10 minutes du centre du Mans, en pleine campagne." },
+    { "q": "Combien de personnes le gîte peut-il accueillir ?", "a": "Jusqu’à 16 personnes dans 7 chambres (19 couchages, 4,5 salles de bain). Les appartements se louent aussi séparément (2 et 4 personnes)." },
+    { "q": "Y a-t-il une piscine et un terrain de tennis ?", "a": "Oui, le domaine dispose d’une piscine et d’un terrain de tennis privatifs, ainsi que d’un grand parc arboré et d’un terrain de pétanque." },
+    { "q": "Peut-on organiser un mariage ou une réception ?", "a": "La capacité et le cadre s’y prêtent (mariages, anniversaires, réunions de famille). Le domaine se loue en formule événement sur devis." },
+    { "q": "Le gîte est-il proche du circuit des 24 Heures du Mans ?", "a": "Oui, à environ 15 minutes : c’est un point de chute idéal pour les 24 Heures et les événements du circuit." },
+    { "q": "Quel est le budget pour louer le gîte ?", "a": "Le tarif dépend de la saison et de la durée. Consultez la page Prix ou demandez un devis personnalisé." },
+    { "q": "Les animaux sont-ils acceptés ?", "a": "À préciser avec le propriétaire lors de la réservation." },
+    { "q": "Comment réserver ?", "a": "La réservation et les prix en temps réel se font sur Airbnb. Pour un événement, contactez-nous pour un devis." }
+  ],
+  "cta": { "heading": "Une autre question ?", "text": "Nous sommes à votre écoute pour préparer votre séjour.", "buttonLabel": "Nous contacter", "buttonHref": "/contact/" }
+}

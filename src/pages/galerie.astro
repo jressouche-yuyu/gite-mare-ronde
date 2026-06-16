@@ -1,19 +1,23 @@
 ---
 import V3Layout from '../layouts/V3Layout.astro';
-import { site } from '../data/site';
 import { listings } from '../data/listings';
 import { withBase } from '../lib/url';
+import data from '../content/galerie/galerie.json';
+
+const seo = (data as any).seo ?? {};
+const { hero, cta } = data as any;
 ---
 <V3Layout
-  title={`Galerie photos — ${site.name} à ${site.city}`}
-  description="Photos des Gîtes de la Mare Ronde : piscine, tennis, jardin, intérieurs de charme à Yvré-l’Évêque, près du Mans."
+  title={seo.metaTitle || data.title}
+  description={seo.metaDescription || ''}
   path="/galerie/"
   ogImage="/uploads/domaine/01.jpg"
+  noindex={seo.noindex}
 >
   <section class="v-phero"><div class="v-wrap">
-    <p class="v-eyebrow" style="color:var(--v-rose)">Galerie</p>
-    <h1>Le domaine en images</h1>
-    <p>Le domaine, ses extérieurs et ses trois gîtes de charme.</p>
+    <p class="v-eyebrow" style="color:var(--v-rose)">{hero.eyebrow}</p>
+    <h1>{hero.title}</h1>
+    <p>{hero.intro}</p>
   </div></section>
 
   {listings.map((l, idx) => (
@@ -27,8 +31,8 @@ import { withBase } from '../lib/url';
   ))}
 
   <section class="v-sec v-cta"><div class="v-wrap v-reveal">
-    <h2>Ces images vous parlent ?</h2>
-    <p>Réservez en direct sur Airbnb, ou écrivez-nous pour un séjour sur mesure.</p>
-    <a href={withBase('/nos-gites/')} class="v-btn v-btn-ghost" style="border-color:rgba(255,255,255,.7)">Voir les hébergements</a>
+    <h2>{cta.heading}</h2>
+    <p>{cta.text}</p>
+    <a href={withBase(cta.buttonHref)} class="v-btn v-btn-ghost" style="border-color:rgba(255,255,255,.7)">{cta.buttonLabel}</a>
   </div></section>
 </V3Layout>

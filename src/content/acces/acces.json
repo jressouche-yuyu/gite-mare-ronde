@@ -1,0 +1,22 @@
+{
+  "title": "Accès & itinéraire",
+  "seo": {
+    "metaTitle": "Accès & itinéraire — Gîte de la Mare Ronde",
+    "metaDescription": "Comment venir au Gîte de la Mare Ronde à Yvré-l’Évêque : accès depuis Le Mans, le circuit des 24 Heures, la gare TGV."
+  },
+  "hero": { "eyebrow": "Situation & accès", "title": "Comment venir au domaine", "intro": "Au vert, à Yvré-l’Évêque, et pourtant tout près du Mans et du circuit." },
+  "mapEmbed": "https://www.google.com/maps?q=Yvr%C3%A9-l%27%C3%89v%C3%AAque%2C%20Sarthe&output=embed",
+  "distancesHeading": "À deux pas de l’essentiel",
+  "distances": [
+    { "place": "Centre du Mans", "time": "~10 min" },
+    { "place": "Circuit des 24 Heures du Mans", "time": "~15 min" },
+    { "place": "Gare du Mans (TGV Paris 1h)", "time": "~12 min" },
+    { "place": "Vieux Mans — cité Plantagenêt", "time": "~12 min" },
+    { "place": "Commerces & restaurants", "time": "à proximité" }
+  ],
+  "address": "Yvré-l’Évêque (72530), Sarthe.",
+  "sections": [
+    { "heading": "En voiture", "body": "Depuis Le Mans, rejoignez Yvré-l’Évêque en une dizaine de minutes. (Itinéraire détaillé à compléter.)" },
+    { "heading": "En train", "body": "Gare du Mans à 1 h de Paris en TGV, puis quelques minutes jusqu’au domaine." }
+  ]
+}

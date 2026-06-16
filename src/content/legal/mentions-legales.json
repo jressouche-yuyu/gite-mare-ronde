@@ -1,0 +1,13 @@
+{
+  "title": "Mentions légales",
+  "seo": {
+    "metaTitle": "Mentions légales — Gîte de la Mare Ronde",
+    "metaDescription": "Mentions légales du site du Gîte de la Mare Ronde."
+  },
+  "heroTitle": "Mentions légales",
+  "sections": [
+    { "heading": "Éditeur", "body": "Gîte de la Mare Ronde — Yvré-l’Évêque (72530). (Raison sociale, SIRET, directeur de publication à compléter.)" },
+    { "heading": "Hébergement", "body": "(Nom et coordonnées de l’hébergeur à compléter.)" },
+    { "heading": "Propriété intellectuelle", "body": "L’ensemble des contenus de ce site est protégé. Toute reproduction sans autorisation est interdite." }
+  ]
+}

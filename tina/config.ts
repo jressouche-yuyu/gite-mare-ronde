@@ -437,6 +437,104 @@ export default defineConfig({
         ],
       },
       {
+        name: 'faqpage',
+        label: '❓ Page FAQ',
+        path: 'src/content/faqpage',
+        format: 'json',
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: 'string', name: 'title', label: 'Nom (interne)', isTitle: true, required: true },
+          seoField,
+          {
+            type: 'object', name: 'hero', label: 'En-tête',
+            fields: [{ type: 'string', name: 'eyebrow', label: 'Sur-titre' }, { type: 'string', name: 'title', label: 'Titre H1' }],
+          },
+          {
+            type: 'object', name: 'items', label: 'Questions / Réponses (→ données structurées auto)', list: true,
+            ui: { itemProps: (i: any) => ({ label: i?.q }) },
+            fields: [{ type: 'string', name: 'q', label: 'Question' }, { type: 'string', name: 'a', label: 'Réponse', ui: { component: 'textarea' } }],
+          },
+          {
+            type: 'object', name: 'cta', label: 'Bandeau final',
+            fields: [
+              { type: 'string', name: 'heading', label: 'Titre' },
+              { type: 'string', name: 'text', label: 'Texte' },
+              { type: 'string', name: 'buttonLabel', label: 'Bouton — texte' },
+              { type: 'string', name: 'buttonHref', label: 'Bouton — lien' },
+            ],
+          },
+        ],
+      },
+      {
+        name: 'acces',
+        label: '🚗 Page Accès',
+        path: 'src/content/acces',
+        format: 'json',
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: 'string', name: 'title', label: 'Nom (interne)', isTitle: true, required: true },
+          seoField,
+          {
+            type: 'object', name: 'hero', label: 'En-tête',
+            fields: [{ type: 'string', name: 'eyebrow', label: 'Sur-titre' }, { type: 'string', name: 'title', label: 'Titre H1' }, { type: 'string', name: 'intro', label: 'Intro', ui: { component: 'textarea' } }],
+          },
+          { type: 'string', name: 'mapEmbed', label: 'Carte Google Maps (URL d’intégration ...output=embed)' },
+          { type: 'string', name: 'distancesHeading', label: 'Titre du bloc distances' },
+          {
+            type: 'object', name: 'distances', label: 'Distances', list: true,
+            ui: { itemProps: (i: any) => ({ label: i?.place }) },
+            fields: [{ type: 'string', name: 'place', label: 'Lieu' }, { type: 'string', name: 'time', label: 'Temps / distance' }],
+          },
+          { type: 'string', name: 'address', label: 'Adresse affichée' },
+          {
+            type: 'object', name: 'sections', label: 'Sections (En voiture, En train…)', list: true,
+            ui: { itemProps: (i: any) => ({ label: i?.heading }) },
+            fields: [{ type: 'string', name: 'heading', label: 'Titre (H2)' }, { type: 'string', name: 'body', label: 'Texte', ui: { component: 'textarea' } }],
+          },
+        ],
+      },
+      {
+        name: 'galerie',
+        label: '🖼️ Page Galerie',
+        path: 'src/content/galerie',
+        format: 'json',
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: 'string', name: 'title', label: 'Nom (interne)', isTitle: true, required: true },
+          seoField,
+          {
+            type: 'object', name: 'hero', label: 'En-tête',
+            fields: [{ type: 'string', name: 'eyebrow', label: 'Sur-titre' }, { type: 'string', name: 'title', label: 'Titre H1' }, { type: 'string', name: 'intro', label: 'Intro', ui: { component: 'textarea' } }],
+          },
+          {
+            type: 'object', name: 'cta', label: 'Bandeau final',
+            fields: [
+              { type: 'string', name: 'heading', label: 'Titre' },
+              { type: 'string', name: 'text', label: 'Texte' },
+              { type: 'string', name: 'buttonLabel', label: 'Bouton — texte' },
+              { type: 'string', name: 'buttonHref', label: 'Bouton — lien' },
+            ],
+          },
+        ],
+      },
+      {
+        name: 'legal',
+        label: '⚖️ Pages légales',
+        path: 'src/content/legal',
+        format: 'json',
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: 'string', name: 'title', label: 'Nom (interne)', isTitle: true, required: true },
+          seoField,
+          { type: 'string', name: 'heroTitle', label: 'Titre H1' },
+          {
+            type: 'object', name: 'sections', label: 'Sections', list: true,
+            ui: { itemProps: (i: any) => ({ label: i?.heading }) },
+            fields: [{ type: 'string', name: 'heading', label: 'Titre (H2)' }, { type: 'string', name: 'body', label: 'Texte', ui: { component: 'textarea' } }],
+          },
+        ],
+      },
+      {
         name: 'reglages',
         label: '⚙️ Réglages du site',
         path: 'src/content/reglages',

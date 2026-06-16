@@ -1,0 +1,13 @@
+{
+  "title": "Politique de confidentialité",
+  "seo": {
+    "metaTitle": "Politique de confidentialité — Gîte de la Mare Ronde",
+    "metaDescription": "Politique de confidentialité et gestion des données du Gîte de la Mare Ronde."
+  },
+  "heroTitle": "Politique de confidentialité",
+  "sections": [
+    { "heading": "Données collectées", "body": "Les informations transmises via le formulaire de contact (nom, e-mail, dates, message) servent uniquement à traiter votre demande de séjour." },
+    { "heading": "Vos droits (RGPD)", "body": "Vous disposez d’un droit d’accès, de rectification et de suppression de vos données. Contact : contact@gite-marre-ronde.fr." },
+    { "heading": "Cookies", "body": "(À compléter selon les outils de mesure d’audience utilisés.)" }
+  ]
+}
