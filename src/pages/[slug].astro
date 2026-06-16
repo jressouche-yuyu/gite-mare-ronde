@@ -1,0 +1,37 @@
+---
+// Route générique « page builder » : rend toute page créée dans la collection Tina « Pages ».
+// L'URL = nom du fichier JSON (slug). Ex. src/content/pages/offres.json → /offres/
+// Les pages explicites (le-gite.astro, etc.) restent prioritaires sur cette route dynamique.
+import '../styles/global.css'; // habille les blocs du page builder (classes .page-hero, .wrap, .sec-head… définies ici)
+import V3Layout from '../layouts/V3Layout.astro';
+import Blocks from '../components/blocks/Blocks.astro';
+import { buildJsonLd } from '../lib/seo';
+import { site } from '../data/site';
+
+export function getStaticPaths() {
+  const mods = import.meta.glob('../content/pages/*.json', { eager: true });
+  return Object.entries(mods).map(([path, mod]) => {
+    const data = (mod as any).default ?? mod;
+    const slug = path.split('/').pop()!.replace(/\.json$/, '');
+    return { params: { slug }, props: { data, slug } };
+  });
+}
+
+const { data, slug } = Astro.props;
+const seo = (data as any).seo ?? {};
+const baseNoSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
+const origin = Astro.site ?? new URL(site.domain);
+const path = `/${slug}/`;
+const fullUrl = new URL(baseNoSlash + path, origin).href;
+const jsonld = buildJsonLd(data, { url: fullUrl, siteName: site.name, path });
+---
+<V3Layout
+  title={seo.metaTitle || (data as any).title}
+  description={seo.metaDescription || ''}
+  path={path}
+  ogImage={seo.ogImage?.src}
+  noindex={seo.noindex}
+  jsonld={jsonld}
+>
+  <Blocks blocks={(data as any).blocks} />
+</V3Layout>
