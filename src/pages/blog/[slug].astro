@@ -1,0 +1,65 @@
+---
+import V3Layout from '../../layouts/V3Layout.astro';
+import { withBase } from '../../lib/url';
+import { site } from '../../data/site';
+import { richTextToHtml, richTextToPlain } from '../../lib/richtext';
+
+export function getStaticPaths() {
+  const mods = import.meta.glob('../../content/posts/*.json', { eager: true });
+  return Object.values(mods).map((m: any) => {
+    const post = (m.default ?? m);
+    return { params: { slug: post.slug }, props: { post } };
+  });
+}
+
+const { post } = Astro.props;
+const seo = post.seo ?? {};
+const fmt = (d: string) => new Date(d).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });
+const bodyHtml = richTextToHtml(post.body);
+const baseNoSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
+const origin = Astro.site ?? new URL(site.domain);
+const url = new URL(baseNoSlash + `/blog/${post.slug}/`, origin).href;
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.title,
+  description: seo.metaDescription || post.excerpt || richTextToPlain(post.body).slice(0, 200),
+  image: post.coverImage?.src ? new URL(baseNoSlash + post.coverImage.src, origin).href : undefined,
+  datePublished: post.date,
+  author: { '@type': 'Organization', name: site.name },
+  publisher: { '@type': 'Organization', name: site.name },
+  mainEntityOfPage: url,
+};
+---
+<V3Layout
+  title={seo.metaTitle || post.title}
+  description={seo.metaDescription || post.excerpt || ''}
+  path={`/blog/${post.slug}/`}
+  ogImage={post.coverImage?.src}
+  noindex={seo.noindex}
+  jsonld={articleJsonLd}
+>
+  <section class="v-phero"><div class="v-wrap">
+    <p class="v-eyebrow" style="color:var(--v-rose)">{post.category || 'Le journal'}</p>
+    <h1>{post.title}</h1>
+    <p style="opacity:.8">{fmt(post.date)}</p>
+  </div></section>
+
+  {post.coverImage?.src && (
+    <section class="v-sec" style="padding-bottom:0"><div class="v-wrap">
+      <img class="bcover" src={withBase(post.coverImage.src)} alt={post.coverImage.alt || post.title} />
+    </div></section>
+  )}
+
+  <section class="v-sec"><div class="v-wrap v-prose v-reveal" style="margin:0 auto" set:html={bodyHtml} /></section>
+
+  <section class="v-sec v-cta"><div class="v-wrap v-reveal">
+    <h2>Envie de séjourner à la Mare Ronde ?</h2>
+    <p>Découvrez nos trois gîtes de charme, ou revenez au journal.</p>
+    <a href={withBase('/blog/')} class="v-btn v-btn-ghost" style="border-color:rgba(255,255,255,.7)">← Tous les articles</a>
+  </div></section>
+</V3Layout>
+
+<style>
+  .bcover{width:100%;max-height:480px;object-fit:cover;border-radius:8px}
+</style>

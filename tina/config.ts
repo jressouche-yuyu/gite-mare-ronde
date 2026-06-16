@@ -659,6 +659,23 @@ export default defineConfig({
         ],
       },
       {
+        name: 'post',
+        label: '📰 Blog / Articles',
+        path: 'src/content/posts',
+        format: 'json',
+        defaultItem: () => ({ date: new Date().toISOString() }),
+        fields: [
+          { type: 'string', name: 'title', label: 'Titre de l’article', isTitle: true, required: true },
+          { type: 'string', name: 'slug', label: 'Identifiant URL', required: true, description: 'Forme l’URL /blog/{slug}.' },
+          { type: 'datetime', name: 'date', label: 'Date de publication' },
+          { type: 'string', name: 'category', label: 'Catégorie' },
+          { type: 'string', name: 'excerpt', label: 'Accroche (résumé liste + méta)', ui: { component: 'textarea' } },
+          imageWithAlt('coverImage', 'Image de couverture'),
+          seoField,
+          { type: 'rich-text', name: 'body', label: 'Contenu de l’article' },
+        ],
+      },
+      {
         name: 'reglages',
         label: '⚙️ Réglages du site',
         path: 'src/content/reglages',

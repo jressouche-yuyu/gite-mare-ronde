@@ -1,0 +1,52 @@
+---
+import V3Layout from '../../layouts/V3Layout.astro';
+import { withBase } from '../../lib/url';
+
+const mods = import.meta.glob('../../content/posts/*.json', { eager: true });
+const posts = Object.values(mods)
+  .map((m: any) => (m.default ?? m))
+  .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
+const fmt = (d: string) => new Date(d).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<V3Layout
+  title="Blog — Gîte de la Mare Ronde"
+  description="Conseils, idées de sorties et actualités autour du Gîte de la Mare Ronde, près du Mans et du circuit des 24 Heures."
+  path="/blog/"
+>
+  <section class="v-phero"><div class="v-wrap">
+    <p class="v-eyebrow" style="color:var(--v-rose)">Le journal</p>
+    <h1>Conseils & idées de séjour en Sarthe</h1>
+    <p>Sorties autour du Mans, événements du circuit et bonnes adresses pour profiter de votre séjour.</p>
+  </div></section>
+
+  <section class="v-sec"><div class="v-wrap">
+    <div class="blog-grid v-reveal">
+      {posts.map((p: any) => (
+        <article class="bcard">
+          <a href={withBase(`/blog/${p.slug}/`)} class="bph"><img src={withBase(p.coverImage?.src)} alt={p.coverImage?.alt || p.title} loading="lazy" /></a>
+          <div class="bbd">
+            <div class="bmeta">{p.category && <span class="bcat">{p.category}</span>}<time>{fmt(p.date)}</time></div>
+            <h2><a href={withBase(`/blog/${p.slug}/`)}>{p.title}</a></h2>
+            <p>{p.excerpt}</p>
+            <a href={withBase(`/blog/${p.slug}/`)} class="blink">Lire l’article →</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div></section>
+</V3Layout>
+
+<style>
+  .blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:30px}
+  .bcard{background:#fff;border:1px solid var(--v-line,rgba(42,38,32,.12));border-radius:8px;overflow:hidden;display:flex;flex-direction:column}
+  .bph{display:block;aspect-ratio:16/10;overflow:hidden}
+  .bph img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+  .bcard:hover .bph img{transform:scale(1.04)}
+  .bbd{padding:22px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .bmeta{display:flex;align-items:center;gap:12px;font-size:.72rem;letter-spacing:.06em;color:var(--v-gris,#6b6258)}
+  .bcat{text-transform:uppercase;font-weight:700;color:var(--v-terra,#b5623c);letter-spacing:.12em}
+  .bbd h2{font-size:1.32rem;line-height:1.2;margin:0}
+  .bbd h2 a{color:inherit}
+  .bbd p{color:var(--v-gris,#5c554a);font-size:.95rem;flex:1}
+  .blink{font-weight:700;color:var(--v-terra,#b5623c)}
+</style>

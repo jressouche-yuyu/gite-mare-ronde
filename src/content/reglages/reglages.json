@@ -26,6 +26,7 @@
     { "label": "Le domaine", "href": "/le-gite/" },
     { "label": "Nos Gîtes", "href": "/nos-gites/" },
     { "label": "Séjours", "href": "/sejour/" },
+    { "label": "Blog", "href": "/blog/" },
     { "label": "Contact", "href": "/contact/" }
   ],
   "footerBlurb": "Domaine de caractère à Yvré-l’Évêque (72530), Sarthe — trois gîtes, piscine, tennis et pétanque, à deux pas du Mans.",
@@ -36,7 +37,8 @@
         { "label": "Le domaine", "href": "/le-gite/" },
         { "label": "Nos gîtes", "href": "/nos-gites/" },
         { "label": "Galerie photos", "href": "/galerie/" },
-        { "label": "Prix & disponibilités", "href": "/prix/" }
+        { "label": "Prix & disponibilités", "href": "/prix/" },
+        { "label": "Blog", "href": "/blog/" }
       ]
     },
     {

@@ -1,0 +1,28 @@
+{
+  "title": "5 sorties incontournables autour du Mans",
+  "slug": "sorties-autour-du-mans",
+  "date": "2026-06-01T09:00:00.000Z",
+  "category": "Découvrir la région",
+  "excerpt": "Du Vieux Mans au circuit des 24 Heures, voici cinq idées de sorties à moins de 20 minutes du domaine pour rythmer votre séjour en Sarthe.",
+  "coverImage": { "src": "/uploads/domaine/03.jpg", "alt": "Le parc et la piscine du domaine de la Mare Ronde au coucher du soleil" },
+  "seo": {
+    "metaTitle": "Que faire autour du Mans ? 5 sorties près du gîte",
+    "metaDescription": "Nos 5 sorties préférées autour du Mans, à moins de 20 minutes du Gîte de la Mare Ronde : cité Plantagenêt, circuit, abbaye, Alpes mancelles."
+  },
+  "body": {
+    "type": "root",
+    "children": [
+      { "type": "p", "children": [{ "type": "text", "text": "Séjourner à la Mare Ronde, c'est profiter du calme de la campagne sarthoise tout en restant à quelques minutes des plus belles visites du Mans et de ses environs. Voici cinq idées pour rythmer votre séjour." }] },
+      { "type": "h2", "children": [{ "type": "text", "text": "1. Le Vieux Mans, cité Plantagenêt" }] },
+      { "type": "p", "children": [{ "type": "text", "text": "À une dizaine de minutes, flânez dans l'un des plus beaux quartiers médiévaux de France : ruelles pavées, maisons à pans de bois et muraille romaine." }] },
+      { "type": "h2", "children": [{ "type": "text", "text": "2. Le circuit des 24 Heures du Mans" }] },
+      { "type": "p", "children": [{ "type": "text", "text": "Mythique pour les passionnés : musée des 24 Heures, tours de circuit et grands événements auto et moto, à environ 15 minutes du domaine." }] },
+      { "type": "h2", "children": [{ "type": "text", "text": "3. L'abbaye de l'Épau" }] },
+      { "type": "p", "children": [{ "type": "text", "text": "Une abbaye cistercienne nichée dans un écrin de verdure, idéale pour une promenade culturelle et paisible." }] },
+      { "type": "h2", "children": [{ "type": "text", "text": "4. Les Alpes mancelles" }] },
+      { "type": "p", "children": [{ "type": "text", "text": "À une grosse demi-heure, ce petit coin de Suisse normande offre rivières, sentiers de randonnée et villages de caractère comme Saint-Léonard-des-Bois." }] },
+      { "type": "h2", "children": [{ "type": "text", "text": "5. Un marché de producteurs" }] },
+      { "type": "p", "children": [{ "type": "text", "text": "Rillettes, pommes, fromages : faites le plein de spécialités sarthoises sur les marchés des environs, parfait pour cuisiner au gîte." }] }
+    ]
+  }
+}
