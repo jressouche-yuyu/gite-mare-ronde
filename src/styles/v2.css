@@ -49,11 +49,11 @@
 .v-hero{min-height:92vh;display:flex;align-items:flex-end;position:relative;color:#fff;overflow:hidden;background:var(--v-brun)}
 .v-hero .photo{position:absolute;inset:0;z-index:0}
 .v-hero .photo img{width:100%;height:100%;object-fit:cover}
-.v-hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(44,34,32,.82),rgba(44,34,32,.3) 55%,rgba(44,34,32,.45))}
+.v-hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(44,34,32,.88),rgba(44,34,32,.55) 55%,rgba(44,34,32,.62))}
 .v-hero .v-wrap{position:relative;z-index:2;padding-bottom:10vh;padding-top:20vh;text-align:center;margin:0 auto}
-.v-hero .v-eyebrow{color:var(--v-rose)}
-.v-hero h1{color:#fff;font-size:clamp(2.6rem,6vw,4.6rem);margin:16px 0 14px;text-shadow:0 2px 24px rgba(0,0,0,.4)}
-.v-hero p.lede{font-size:clamp(1.05rem,1.5vw,1.28rem);max-width:46ch;margin:0 auto;color:rgba(255,255,255,.92);font-weight:300}
+.v-hero .v-eyebrow{color:var(--v-rose);text-shadow:0 1px 10px rgba(0,0,0,.5)}
+.v-hero h1{color:#fff;font-size:clamp(2.6rem,6vw,4.6rem);margin:16px 0 14px;text-shadow:0 2px 24px rgba(0,0,0,.55)}
+.v-hero p.lede{font-size:clamp(1.05rem,1.5vw,1.28rem);max-width:46ch;margin:0 auto;color:#fff;font-weight:400;text-shadow:0 1px 14px rgba(0,0,0,.6)}
 .v-hero .actions{display:flex;gap:14px;justify-content:center;margin-top:34px;flex-wrap:wrap}
 .v-hero .v-rule{background:var(--v-rose)}
 
@@ -135,9 +135,13 @@
 .v-phero p{color:rgba(250,243,230,.82);max-width:54ch;margin:8px auto 0}
 
 /* Formulaire */
-.v-form{display:grid;gap:14px;max-width:520px}
-.v-form input,.v-form select,.v-form textarea{padding:13px 14px;border:1px solid var(--v-rose);border-radius:3px;font:inherit;background:var(--v-blanc);color:var(--v-noir)}
+.v-form{display:grid;gap:14px;max-width:520px;min-width:0}
+.v-form input,.v-form select,.v-form textarea{width:100%;min-width:0;max-width:100%;padding:13px 14px;border:1px solid var(--v-rose);border-radius:3px;font:inherit;background:var(--v-blanc);color:var(--v-noir)}
+.v-form textarea{resize:vertical}
 .v-form label.rgpd{display:flex;gap:10px;align-items:flex-start;font-size:.82rem;color:var(--v-gris)}
+/* Évite le "grid blowout" (ex. <select> plus large que l'écran) dans les grilles 2 colonnes */
+.v-2col{min-width:0}
+.v-2col>*{min-width:0}
 
 /* Footer */
 .v-footer{background:var(--v-brun);color:rgba(250,243,230,.72);padding:64px 0 28px;font-size:.9rem}
