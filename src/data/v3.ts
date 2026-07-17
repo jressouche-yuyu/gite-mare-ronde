@@ -9,10 +9,11 @@ export const reviews = [
 ];
 
 export const equipment = [
-  { ic: '🏊', name: 'Piscine', desc: 'Extérieure avec abri, au cœur du parc' },
+  { ic: '🏊', name: 'Piscine chauffée', desc: 'Extérieure avec abri, au cœur du parc' },
   { ic: '🎾', name: 'Tennis', desc: 'Court privatif' },
   { ic: '🎯', name: 'Pétanque', desc: 'Apéritif garanti' },
-  { ic: '🌿', name: 'Parc arboré', desc: 'Vaste jardin clos & calme' },
+  { ic: '🍖', name: 'Barbecue & plancha', desc: 'Pour les repas au grand air' },
+  { ic: '🌿', name: 'Parc arboré', desc: 'Vaste jardin & calme' },
 ];
 
 export const values = [
@@ -25,8 +26,8 @@ export const values = [
 // FAQ d'accueil (reprise de la V1 — utile pour le SEO/GEO et le schema FAQPage)
 export const homeFaq = [
   { q: 'Où se situe le Gîte de la Mare Ronde ?', a: 'Le domaine se trouve à Yvré-l’Évêque, dans la Sarthe (72), à environ 10 minutes du Mans et 15 minutes du circuit des 24 Heures.' },
-  { q: 'Combien de personnes le domaine peut-il accueillir ?', a: 'Le domaine entier réunit 3 gîtes et accueille jusqu’à 16 personnes (7 chambres, 19 couchages, 4,5 salles de bain). Les appartements se louent aussi séparément (2 et 4 personnes).' },
-  { q: 'Y a-t-il une piscine et un terrain de tennis ?', a: 'Oui. Le domaine dispose d’une piscine, d’un court de tennis et d’un terrain de pétanque privatifs, ainsi que d’un vaste jardin clos.' },
-  { q: 'Peut-on organiser un mariage ou un événement de famille ?', a: 'Oui, la grande capacité et le cadre du domaine se prêtent aux mariages, anniversaires et réunions de famille (formule événement sur devis).' },
+  { q: 'Combien de personnes le domaine peut-il accueillir ?', a: 'Le domaine entier réunit 3 gîtes et accueille jusqu’à 16 personnes (7 chambres, 19 couchages modulables dont 5 lits doubles, 5 salles de bain). Les appartements se louent aussi séparément (2 et 4 personnes).' },
+  { q: 'Y a-t-il une piscine et un terrain de tennis ?', a: 'Oui. Le domaine dispose d’une piscine chauffée, d’un court de tennis et d’un terrain de pétanque privatifs, ainsi que d’un vaste jardin.' },
+  { q: 'Peut-on organiser un mariage ou un événement de famille ?', a: 'Oui, la grande capacité et le cadre du domaine se prêtent aux mariages, anniversaires et cousinades (formule événement sur devis). Par égard pour le voisinage, les fêtes bruyantes et la musique amplifiée en soirée ne sont pas autorisées.' },
   { q: 'Comment réserver ?', a: 'La réservation et les prix en temps réel se font sur Airbnb. Pour un événement, contactez-nous pour un devis.' },
 ];

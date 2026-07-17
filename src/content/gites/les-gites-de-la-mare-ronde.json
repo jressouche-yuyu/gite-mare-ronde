@@ -4,41 +4,46 @@
   "type": "Domaine entier · 3 gîtes",
   "capacity": 16,
   "bedrooms": "7 chambres",
-  "beds": "19 couchages",
-  "baths": "4,5 salles de bain",
+  "beds": "19 couchages modulables (dont 5 lits doubles)",
+  "baths": "5 salles de bain",
   "featured": true,
   "tagline": "Le domaine entier, pour vos grandes occasions",
-  "intro": "Un domaine de caractère réunissant trois gîtes élégants et privatifs, idéal pour les séjours d'exception en famille ou entre amis. 7 chambres, 19 couchages, 4,5 salles de bain, un vaste jardin, une piscine, un court de tennis et un terrain de pétanque, dans un cadre paisible et raffiné. À seulement 15 minutes du Circuit des 24 Heures du Mans.",
+  "intro": "Un hameau du 16ᵉ siècle aux murs en pierre réunissant trois gîtes élégants et privatifs, idéal pour les séjours d'exception en famille ou entre amis. 7 chambres, 19 couchages modulables (dont 5 lits doubles), 5 salles de bain, un vaste jardin, une piscine chauffée, un court de tennis et un terrain de pétanque, dans un véritable écrin de verdure. À seulement 15 minutes du Circuit des 24 Heures du Mans.",
   "long": [
-    "Les Gîtes de la Mare Ronde forment un domaine de caractère composé de trois logements élégants et privatifs, que l'on peut réunir pour accueillir un même groupe ou louer séparément. Pensé pour les séjours d'exception — en famille, entre amis ou pour un événement privé — il conjugue authenticité, confort et convivialité.",
-    "Sept chambres offrent 19 couchages et 4,5 salles de bain. Les espaces communs — grandes salles à manger à poutres et cheminée, cuisines équipées — invitent aux longues tablées, tandis que le vaste jardin clos abrite la piscine (avec abri), le court de tennis et le terrain de pétanque.",
-    "À seulement 15 minutes du mythique Circuit des 24 Heures du Mans et à une dizaine de minutes du centre du Mans, le domaine est le point de chute idéal pour les grands rendez-vous manceaux comme pour une parenthèse au vert."
+    "Les Gîtes de la Mare Ronde forment un hameau du 16ᵉ siècle aux murs en pierre, composé de trois logements élégants et privatifs, que l'on peut réunir pour accueillir un même groupe ou louer séparément. Pensé pour les séjours d'exception — en famille, entre amis ou pour un événement privé — il conjugue authenticité, confort et convivialité.",
+    "Sept chambres offrent 19 couchages modulables (dont 5 lits doubles) et 5 salles de bain. Les espaces communs — grandes salles à manger à poutres et cheminée, cuisines équipées — invitent aux longues tablées, tandis que le vaste jardin abrite la piscine chauffée (avec abri), le court de tennis, le terrain de pétanque, un barbecue et une plancha. Des chemins de promenade serpentent autour des gîtes, et un vaste stationnement accueille de nombreuses voitures.",
+    "À seulement 15 minutes du mythique Circuit des 24 Heures du Mans et à une dizaine de minutes du centre du Mans — à moins de 500 m de la zone commerciale de Sargé-lès-le-Mans, à moins de 3 km de la rocade et à moins de 5 km du Pôle Européen du Cheval — le domaine est le point de chute idéal pour les grands rendez-vous manceaux comme pour une parenthèse dans un écrin de verdure."
   ],
   "amenities": [
-    "Piscine",
+    "Piscine chauffée",
     "Court de tennis",
     "Terrain de pétanque",
-    "Vaste jardin clos",
+    "Barbecue",
+    "Plancha",
+    "Vaste jardin",
+    "Chemins de promenade",
     "Cheminée",
     "Cuisine équipée",
     "Lave-linge",
     "Wifi",
-    "Stationnement gratuit",
+    "Nombreuses places de parking",
     "Télévision",
-    "Chauffage"
+    "Chauffage",
+    "Animaux acceptés sur autorisation"
   ],
   "highlights": [
-    "Domaine privatif réunissant 3 gîtes indépendants",
-    "Piscine (avec abri), court de tennis et terrain de pétanque",
-    "7 chambres · 19 couchages · 4,5 salles de bain",
-    "Grandes salles à manger à poutres et cheminée",
+    "Hameau du 16ᵉ siècle aux murs en pierre, réunissant 3 gîtes indépendants",
+    "Piscine chauffée (avec abri), court de tennis et terrain de pétanque",
+    "7 chambres · 19 couchages modulables (dont 5 lits doubles) · 5 salles de bain",
+    "Grandes salles à manger à poutres et cheminée, barbecue et plancha",
+    "Vaste stationnement et chemins de promenade autour des gîtes",
     "À 15 minutes du Circuit des 24 Heures du Mans",
-    "Idéal mariages, cousinades, séminaires et grandes occasions"
+    "Idéal mariages, anniversaires, cousinades et grandes occasions"
   ],
   "faq": [
     {
       "q": "Combien de personnes le domaine accueille-t-il ?",
-      "a": "Jusqu'à 16 personnes, réparties dans 7 chambres (19 couchages) et 4,5 salles de bain."
+      "a": "Jusqu'à 16 personnes, réparties dans 7 chambres (19 couchages modulables, dont 5 lits doubles) et 5 salles de bain."
     },
     {
       "q": "Peut-on louer les gîtes séparément ?",
@@ -46,11 +51,19 @@
     },
     {
       "q": "Quels équipements extérieurs ?",
-      "a": "Une piscine avec abri, un court de tennis et un terrain de pétanque privatifs, dans un vaste jardin clos."
+      "a": "Une piscine chauffée avec abri, un court de tennis, un terrain de pétanque, un barbecue et une plancha, dans un vaste jardin, avec des chemins de promenade et un vaste stationnement pour de nombreuses voitures."
+    },
+    {
+      "q": "Peut-on organiser un événement (mariage, anniversaire, cousinade) ?",
+      "a": "Oui, le domaine se prête aux mariages, anniversaires et cousinades, avec des équipes professionnelles à disposition (sur devis). Par égard pour le voisinage, les fêtes bruyantes et la musique amplifiée en soirée ne sont pas autorisées : merci de respecter les horaires de calme."
+    },
+    {
+      "q": "Les animaux sont-ils acceptés ?",
+      "a": "Les animaux sont acceptés sur autorisation préalable ; merci de nous en informer lors de la réservation."
     },
     {
       "q": "À quelle distance du circuit des 24 Heures ?",
-      "a": "Le domaine est à environ 15 minutes du Circuit des 24 Heures du Mans."
+      "a": "Le domaine est à environ 15 minutes du Circuit des 24 Heures du Mans, à moins de 500 m de la zone commerciale de Sargé-lès-le-Mans, à moins de 3 km de la rocade et à moins de 5 km du Pôle Européen du Cheval."
     }
   ],
   "photos": [
