@@ -16,7 +16,7 @@ const path = `/capacite/${c.slug}/`;
 const big = c.count >= 15;
 const h1 = big ? `Un grand gîte pour ${c.count} personnes en Sarthe` : `Un gîte pour ${c.count} personnes près du Mans`;
 const title = `${big ? 'Grand gîte' : 'Gîte'} ${c.count} personnes près du Mans — Yvré-l’Évêque (72)`;
-const description = `Louez un gîte pour ${c.count} personnes à ${site.city}, près du Mans : piscine, tennis, grand parc clos. ${c.angle}. Disponibilités & tarifs.`;
+const description = `Louez un gîte pour ${c.count} personnes à ${site.city}, près du Mans : piscine chauffée, tennis, grand parc. ${c.angle}. Disponibilités & tarifs.`;
 const related = usages.filter((u) => u.priority).slice(0, 3);
 const edito = capacityEditorial(c.count);
 // Gîte(s) pouvant accueillir le groupe (du plus petit adapté au domaine entier) ; sinon le plus grand.
@@ -39,8 +39,8 @@ const faqJsonLd = {
     <h2>Un gîte adapté à {c.count} personnes en Sarthe</h2>
     {edito.lead.map((p) => <p>{p}</p>)}
     <ul class="v-hlist">
-      <li>Piscine privative et court de tennis</li>
-      <li>Grand parc arboré et clos, à l’abri des regards</li>
+      <li>Piscine chauffée privative et court de tennis</li>
+      <li>Grand parc arboré, à l’abri des regards</li>
       <li>Espaces de vie généreux pour les grandes tablées</li>
       <li>À ~10 min du Mans et ~15 min du circuit des 24 Heures</li>
     </ul>

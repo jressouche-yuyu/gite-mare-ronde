@@ -4,40 +4,43 @@
   "type": "Appartement · 1er étage",
   "capacity": 4,
   "bedrooms": "1 chambre",
-  "beds": "2 lits simples modulables + 2 couchages salon",
+  "beds": "2 lits simples de 80 cm modulables + 2 couchages salon",
   "baths": "1 salle de bain",
   "featured": false,
   "tagline": "Charme et sérénité pour 4 personnes",
-  "intro": "Au premier étage d'une propriété de caractère, un appartement confortable pour 4 personnes au cœur d'un environnement calme et verdoyant. Une chambre (deux lits simples modulables en grand lit double), une cuisine équipée avec espace repas et un salon avec deux couchages supplémentaires. Accès au court de tennis, au terrain de pétanque et au stationnement privé.",
+  "intro": "Au premier étage d'un ancien bâtiment du 16ᵉ siècle, un appartement confortable pour 4 personnes au cœur d'un environnement calme et verdoyant. Une chambre (deux lits simples de 80 cm modulables en grand lit double), une cuisine équipée avec espace repas et un salon avec deux couchages supplémentaires. Espace repas extérieur, accès au court de tennis, au terrain de pétanque et au stationnement privé.",
   "long": [
-    "Situé au premier étage d'une propriété de caractère, Le Jardin de la Mare Ronde est un appartement chaleureux qui marie le charme de l'ancien et le confort du moderne : aménagements récents, literie neuve et équipements de qualité.",
-    "Il se compose d'une chambre (deux lits simples de 90×200 modulables en grand lit double), d'un salon offrant deux couchages supplémentaires et d'une cuisine entièrement équipée ouverte sur un espace repas convivial — de quoi accueillir confortablement jusqu'à 4 personnes.",
+    "Situé au premier étage d'un ancien bâtiment du 16ᵉ siècle, Le Jardin de la Mare Ronde est un appartement chaleureux qui marie le charme de l'ancien et le confort du moderne : aménagements récents, literie neuve et équipements de qualité.",
+    "Il se compose d'une chambre (deux lits simples de 80 cm modulables en grand lit double), d'un salon offrant deux couchages supplémentaires et d'une cuisine entièrement équipée (four combiné micro-ondes, bouilloire) ouverte sur un espace repas convivial. Un espace repas extérieur permet aussi de profiter des beaux jours — de quoi accueillir confortablement jusqu'à 4 personnes.",
     "Vous profitez du calme d'un environnement verdoyant, d'un stationnement privé dans la cour, et de l'accès au court de tennis et au terrain de pétanque du domaine."
   ],
   "amenities": [
     "Cuisine équipée",
+    "Four combiné micro-ondes",
+    "Bouilloire",
     "Wifi",
     "Stationnement gratuit",
     "Court de tennis",
     "Terrain de pétanque",
+    "Espace repas extérieur",
     "Arrière-cour privée",
-    "Chauffage central",
+    "Chauffage au bois (non électrique)",
     "Réfrigérateur",
-    "Micro-ondes",
     "Cafetière expresso"
   ],
   "highlights": [
-    "Appartement au 1er étage d’une propriété de caractère",
-    "1 chambre (2 lits simples modulables en lit double)",
+    "Appartement au 1er étage d’un ancien bâtiment du 16ᵉ siècle",
+    "1 chambre (2 lits simples de 80 cm modulables en lit double)",
     "Salon avec 2 couchages supplémentaires",
-    "Cuisine équipée ouverte sur l’espace repas",
+    "Cuisine équipée (four combiné micro-ondes, bouilloire) et espace repas extérieur",
+    "Chauffage au bois (non électrique)",
     "Accès au court de tennis et au terrain de pétanque",
     "Stationnement privé dans la cour"
   ],
   "faq": [
     {
       "q": "Quelle est la capacité ?",
-      "a": "Jusqu'à 4 personnes : une chambre (2 lits simples modulables en grand lit double) et un salon avec 2 couchages."
+      "a": "Jusqu'à 4 personnes : une chambre (2 lits simples de 80 cm modulables en grand lit double) et un salon avec 2 couchages."
     },
     {
       "q": "Y a-t-il un parking ?",

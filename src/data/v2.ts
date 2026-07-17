@@ -34,7 +34,7 @@ export const v2Gites: V2Gite[] = [
       'À l’intérieur, les espaces de vie s’enchaînent avec fluidité : un grand salon lumineux, une cuisine entièrement équipée pour les repas partagés, et des chambres soigneusement décorées qui mêlent le charme de l’ancien et le confort contemporain.',
       'Au-dehors, la terrasse invite à la douceur des soirées d’été, tandis que le parc et les équipements communs — piscine, court de tennis, pétanque — garantissent des journées riches en plaisirs partagés.',
     ],
-    capacity: '7 chambres · 19 lits · 4,5 salles de bain',
+    capacity: '7 chambres · 19 lits · 5 salles de bain',
     amenities: ['WiFi', 'Cuisine équipée', 'Lave-linge', 'Parking', 'Terrasse', 'Piscine', 'Tennis', 'Pétanque'],
     airbnb: booking.domaine,
     photos: pics('domaine', 18),

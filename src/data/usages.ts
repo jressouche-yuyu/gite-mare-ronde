@@ -18,7 +18,7 @@ export interface Usage {
 
 export const categoryLabels: Record<UsageCategory, { label: string; eyebrow: string; blurb: string }> = {
   evenement: { label: 'Événements & fêtes', eyebrow: 'Célébrer', blurb: "Mariages, anniversaires et grandes occasions dans un domaine privatif." },
-  entreprise: { label: 'Entreprise', eyebrow: 'Professionnels', blurb: "Séminaires, team building et journées d'équipe au vert, près du Mans." },
+  entreprise: { label: 'Entreprise', eyebrow: 'Professionnels', blurb: "Séminaires, team building et journées d'équipe dans un écrin de verdure, près du Mans." },
   groupe: { label: 'Groupes & familles', eyebrow: 'Se retrouver', blurb: "Week-ends entre amis, vacances en famille et réunions sous un même toit." },
   passion: { label: 'Sport & passion auto', eyebrow: 'Vivre l’événement', blurb: "L'adresse idéale pour les 24 Heures du Mans et les rendez-vous du circuit." },
 };
