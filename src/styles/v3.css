@@ -17,14 +17,14 @@
 .v3 .v-gites.adapted .v-gcard{flex:0 1 340px}
 .v3 .v-gites.adapted.solo .v-gcard{flex:0 1 420px}
 
-/* Liste de points forts — puce fine et élégante */
+/* Liste de points forts — puce fine et élégante (flex = alignement fiable) */
 .v3 .v-hlist{list-style:none;padding:0;margin:12px 0 4px;display:grid;gap:11px}
-.v3 .v-hlist li{position:relative;padding-left:24px;color:#3a2c28;line-height:1.55}
-.v3 .v-hlist li::before{content:"";position:absolute;left:2px;top:.58em;width:7px;height:7px;border-radius:50%;background:var(--v-terra);box-shadow:0 0 0 3px var(--v-rose)}
+.v3 .v-hlist li{position:relative;padding-left:0;color:#3a2c28;line-height:1.55;display:flex;align-items:flex-start;gap:13px}
+.v3 .v-hlist li::before{content:"";position:static;flex:none;width:7px;height:7px;margin-top:.62em;border-radius:50%;background:var(--v-terra);box-shadow:0 0 0 3px var(--v-rose)}
 /* En contexte .v-prose (page gîte) : 2 colonnes + override du chevron de .v-prose ul */
 .v3 .v-prose ul.v-hlist{grid-template-columns:1fr 1fr;gap:12px 32px;margin:14px 0 6px}
-.v3 .v-prose ul.v-hlist li{padding-left:24px}
-.v3 .v-prose ul.v-hlist li::before{content:"";left:2px;top:.58em;width:7px;height:7px;border-radius:50%;background:var(--v-terra);box-shadow:0 0 0 3px var(--v-rose);font-size:0}
+.v3 .v-prose ul.v-hlist li{padding-left:0}
+.v3 .v-prose ul.v-hlist li::before{content:"";position:static;left:auto;top:auto;flex:none;width:7px;height:7px;margin-top:.62em;border-radius:50%;background:var(--v-terra);box-shadow:0 0 0 3px var(--v-rose);font-size:0}
 
 /* Encadré réservation (sticky) — page gîte */
 .v3 .v-book{border:1px solid var(--v-rose);border-radius:6px;padding:26px;position:sticky;top:90px;background:var(--v-blanc);box-shadow:0 18px 40px -28px rgba(92,58,46,.5)}
