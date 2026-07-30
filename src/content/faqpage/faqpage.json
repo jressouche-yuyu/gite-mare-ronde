@@ -15,5 +15,5 @@
     { "q": "Les animaux sont-ils acceptés ?", "a": "Oui, sur autorisation préalable du propriétaire. Merci de nous en informer lors de la réservation." },
     { "q": "Comment réserver ?", "a": "La réservation et les prix en temps réel se font sur Airbnb. Pour un événement, contactez-nous pour un devis." }
   ],
-  "cta": { "heading": "Une autre question ?", "text": "Nous sommes à votre écoute pour préparer votre séjour.", "buttonLabel": "Nous contacter", "buttonHref": "/contact/" }
+  "cta": { "heading": "Une autre question ?", "text": "Écrivez-nous directement depuis l'annonce Airbnb du domaine, nous répondons rapidement.", "buttonLabel": "Voir le domaine sur Airbnb", "buttonHref": "https://www.airbnb.fr/rooms/1694094489622768302" }
 }

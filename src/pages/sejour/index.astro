@@ -2,6 +2,7 @@
 import V3Layout from '../../layouts/V3Layout.astro';
 import { usages, categoryLabels, type UsageCategory } from '../../data/usages';
 import { site } from '../../data/site';
+import { booking } from '../../data/booking';
 import { withBase } from '../../lib/url';
 
 const order: UsageCategory[] = ['evenement', 'entreprise', 'groupe', 'passion'];
@@ -41,7 +42,7 @@ const byCat = order.map((cat) => ({ cat, items: usages.filter((u) => u.category 
 
   <section class="v-sec v-cta"><div class="v-wrap v-reveal">
     <h2>Une occasion particulière ?</h2>
-    <p>Décrivez-nous votre événement : nous vous orientons vers la meilleure formule et un devis adapté.</p>
-    <a href={withBase('/contact/')} class="v-btn v-btn-ghost" style="border-color:rgba(255,255,255,.7)">Demander un devis</a>
+    <p>Consultez les disponibilités du domaine et échangez directement avec nous depuis Airbnb.</p>
+    <a href={booking.primary} target="_blank" rel="noopener" class="v-btn v-btn-ghost" style="border-color:rgba(255,255,255,.7)">Voir le domaine sur Airbnb</a>
   </div></section>
 </V3Layout>

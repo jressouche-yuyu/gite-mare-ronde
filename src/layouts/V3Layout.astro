@@ -38,7 +38,9 @@ const lodging = {
   name: site.name,
   description: site.description,
   url: new URL(baseNoSlash + '/', origin).href,
-  email: site.email,
+  // `email` volontairement absent : l'adresse de contact n'est pas encore fiable.
+  // La remettre (email: site.email) dès que la boîte du domaine existe — c'est un
+  // signal NAP repris par Google et les moteurs génératifs.
   address: {
     '@type': 'PostalAddress',
     addressLocality: site.city,

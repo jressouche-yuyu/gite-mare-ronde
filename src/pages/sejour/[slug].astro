@@ -3,6 +3,7 @@ import V3Layout from '../../layouts/V3Layout.astro';
 import { usages } from '../../data/usages';
 import { listings } from '../../data/listings';
 import { site } from '../../data/site';
+import { booking } from '../../data/booking';
 import { withBase } from '../../lib/url';
 
 export function getStaticPaths() {
@@ -32,7 +33,7 @@ const faqJsonLd = {
       <div class="v-book">
         <p class="v-eyebrow">L’essentiel</p>
         <ul class="v-hlist" style="margin-top:12px">{u.bullets.map((b) => <li>{b}</li>)}</ul>
-        <a href={withBase('/contact/')} class="v-btn v-btn-book" style="margin-top:18px">Demander un devis</a>
+        <a href={booking.primary} target="_blank" rel="noopener" class="v-btn v-btn-book" style="margin-top:18px">Voir le domaine sur Airbnb</a>
         <a href={withBase('/nos-gites/')} class="v-btn v-btn-dark" style="margin-top:10px">Voir les hébergements</a>
       </div>
     </aside>
@@ -73,7 +74,7 @@ const faqJsonLd = {
 
   <section class="v-sec v-cta"><div class="v-wrap v-reveal">
     <h2>Organisons-le ensemble</h2>
-    <p>Parlez-nous de votre projet : nous vous répondons rapidement.</p>
-    <a href={withBase('/contact/')} class="v-btn v-btn-ghost" style="border-color:rgba(255,255,255,.7)">Demander un devis</a>
+    <p>Consultez les dates disponibles et écrivez-nous directement depuis Airbnb.</p>
+    <a href={booking.primary} target="_blank" rel="noopener" class="v-btn v-btn-ghost" style="border-color:rgba(255,255,255,.7)">Voir le domaine sur Airbnb</a>
   </div></section>
 </V3Layout>

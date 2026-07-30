@@ -62,7 +62,7 @@ const seasonByKey: Record<string, any> = Object.fromEntries(seasons.map((s: any)
   <section class="v-sec"><div class="v-wrap v-prose v-reveal" style="margin:0 auto">
     <h2>{notesHeading}</h2>
     {seasons.filter((s: any) => s.note).map((s: any) => (<p><strong>{s.label} —</strong> {s.note}</p>))}
-    <p>Pour un mariage, un anniversaire ou un séminaire, le domaine se loue en formule événement : <a href={withBase('/contact/')}>demandez un devis</a>.</p>
+    <p>Pour un mariage, un anniversaire ou un séminaire, le domaine se loue en formule événement : <a href={booking.primary} target="_blank" rel="noopener">contactez-nous via Airbnb</a>.</p>
   </div></section>
 
   <section class="v-sec v-cta"><div class="v-wrap v-reveal">

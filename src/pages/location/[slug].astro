@@ -3,6 +3,7 @@ import V3Layout from '../../layouts/V3Layout.astro';
 import { locations } from '../../data/locations';
 import { listings } from '../../data/listings';
 import { site } from '../../data/site';
+import { booking } from '../../data/booking';
 import { locationEditorial } from '../../data/seoContent';
 import GiteCards from '../../components/GiteCards.astro';
 import { withBase } from '../../lib/url';
@@ -66,7 +67,7 @@ const faqJsonLd = {
 
   <section class="v-sec v-cta"><div class="v-wrap v-reveal">
     <h2>Séjournez près de {l.place}</h2>
-    <p>Dites-nous vos dates : nous revenons vers vous rapidement.</p>
-    <a href={withBase('/contact/')} class="v-btn v-btn-ghost" style="border-color:rgba(255,255,255,.7)">Demander une disponibilité</a>
+    <p>Disponibilités et prix en temps réel sur Airbnb.</p>
+    <a href={booking.primary} target="_blank" rel="noopener" class="v-btn v-btn-ghost" style="border-color:rgba(255,255,255,.7)">Voir les disponibilités sur Airbnb</a>
   </div></section>
 </V3Layout>
