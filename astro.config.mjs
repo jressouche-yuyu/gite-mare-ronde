@@ -1,11 +1,10 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// ⚠️ Remplacer par le domaine final avant mise en production.
+// Domaine de production : OVH `gites-de-la-mare-ronde.fr`, servi par GitHub Pages
+// via public/CNAME. Déploiement à la racine — plus de base path.
 export default defineConfig({
-  // GitHub Pages (site projet) — URL : https://jressouche-yuyu.github.io/gite-mare-ronde/
-  site: 'https://jressouche-yuyu.github.io',
-  base: '/gite-mare-ronde',
+  site: 'https://www.gites-de-la-mare-ronde.fr',
   // Exclut la page de démonstration (noindex) du sitemap.
   integrations: [sitemap({ filter: (page) => !page.includes('/demo/') })],
   build: { inlineStylesheets: 'auto' },

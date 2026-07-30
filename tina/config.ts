@@ -173,7 +173,7 @@ export default defineConfig({
   branch,
   clientId: process.env.TINA_CLIENT_ID || '04e841a3-1fb1-49c4-ae71-b8cd85d7ec4a',
   token: process.env.TINA_TOKEN || '',
-  build: { outputFolder: 'admin', publicFolder: 'public', basePath: 'gite-mare-ronde' },
+  build: { outputFolder: 'admin', publicFolder: 'public', basePath: '' },
   media: { tina: { mediaRoot: 'uploads', publicFolder: 'public' } },
   schema: {
     collections: [

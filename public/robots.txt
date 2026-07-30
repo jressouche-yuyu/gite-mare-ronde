@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jressouche-yuyu.github.io/gite-mare-ronde/sitemap-index.xml
+Sitemap: https://www.gites-de-la-mare-ronde.fr/sitemap-index.xml

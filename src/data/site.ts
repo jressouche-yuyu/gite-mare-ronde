@@ -7,7 +7,7 @@ export const site = {
   name: reglages.brand.name,
   shortName: 'Mare Ronde',
   tagline: 'Gîte de charme avec piscine près du Mans',
-  domain: 'https://www.gite-marre-ronde.fr',
+  domain: 'https://www.gites-de-la-mare-ronde.fr',
   city: reglages.contact.city,
   postalCode: reglages.contact.postalCode,
   region: reglages.contact.region,

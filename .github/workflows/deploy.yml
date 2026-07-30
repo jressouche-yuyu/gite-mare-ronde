@@ -53,7 +53,7 @@ jobs:
           fi
       - name: Construire l'admin TinaCMS
         run: npm run tina:build -- --skip-cloud-checks
-      - name: Build (Astro + base path)
+      - name: Build (Astro — domaine racine)
         run: npm run build
       - name: Uploader l'artefact
         uses: actions/upload-pages-artifact@v3
